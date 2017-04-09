@@ -1,0 +1,79 @@
+input, label
+    display block
+    width 100%
+
+label > input
+    display inline-block
+    width auto
+
+label
+    font-size 1em
+    margin 3*($line / 4) 0 ($line / 4) 0
+    
+input
+    font 1em/$line $basic-font-family
+    border-radius $basic-border-radius
+    border 1px solid $gray-light
+    padding (($line / 2) - 1px) 0.5em
+    
+    margin-bottom $line
+
+form .error
+    color $red
+
+$btn
+    border 0
+    padding ($line / 2) 1em
+    border-radius $basic-border-radius
+    display inline-block
+    text-decoration none
+    transition background-color 0.2s ease
+    color white
+    background-color $blue
+
+    &:hover
+        cursor pointer
+        background-color darken($blue, 10%)
+        
+$btn-small
+    border 0
+    padding ($line / 4) 0.5em
+    border-radius $basic-border-radius
+    display inline-block
+    text-decoration none
+    transition background-color 0.2s ease
+    
+    &:hover
+        cursor pointer
+        
+$btn-success
+    color white
+    background-color $green
+    
+    &:hover
+        background-color darken($green, 20%)
+
+$btn-edit
+    color rgba(white, 90%)
+    background-color $orange
+    
+    &:hover
+        background-color darken($orange, 20%)
+
+$btn-delete
+    color white
+    background-color rgba($red, 60%)
+    
+    &:hover
+        background-color rgba($red, 80%)
+
+.btn-small
+    @extends $btn-small
+
+.btn
+    @extends $btn
+
+button, input[type="submit"]
+    font 1em/$line $basic-font-family
+    @extends $btn
+

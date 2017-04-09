@@ -1,0 +1,34 @@
+.admin-header
+    margin-top $line
+    
+    clearfix()
+    
+    h1
+        float left
+        margin-bottom $line
+    
+    .edit, .add, .delete    
+        float right
+        margin-top 20px
+    
+    .add
+        @extends $btn, $btn-success
+    
+    .edit
+        @extends $btn, $btn-edit
+
+    .delete button
+        @extends $btn-delete
+
+form.main
+    max-width 30em
+    
+table.entities
+    .edit
+        @extends $btn-small, $btn-edit
+            
+    th.actions span
+        visibility hidden
+    
+    td.actions
+        text-align right

@@ -31,7 +31,6 @@ Generate the app key and create the database schema:
 ```sh
 php artisan key:generate
 php artisan migrate
-composer update --no-scripts
 ```
 
 Start the development server, and you’re done!

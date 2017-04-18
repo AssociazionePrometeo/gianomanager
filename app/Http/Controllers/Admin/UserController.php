@@ -41,9 +41,12 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
+            'mobile_number' =>'required|min:10',
+            'end_date' => 'required|date',
+            'info'
         ]);
 
-        User::create($request->only('name', 'email', 'password'));
+        User::create($request->only('name', 'email', 'password', 'mobile_number', 'end_date', 'info'));
 
         return redirect()->route('admin.users.index');
     }
@@ -81,6 +84,9 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id,
             'password' => 'nullable|min:8',
+            'mobile_number' =>'required|min:10',
+            'end_date' => 'required|date',
+            'info'
         ]);
 
         $attributes = $request->only('name', 'email');

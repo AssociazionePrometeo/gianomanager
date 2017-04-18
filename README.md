@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/AssociazionePrometeo/gianomanager.svg?branch=master)](https://travis-ci.org/AssociazionePrometeo/gianomanager)
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AssociazionePrometeo/gianomanager/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AssociazionePrometeo/gianomanager/?branch=master)
+
 Giano Manager is a web application to manage devices and reservations in shared spaces such as hackerspace, coworking, fablab.
 
 **⚠️️ Under heavy development!**

@@ -2,18 +2,23 @@
 
 [![Build Status](https://travis-ci.org/AssociazionePrometeo/gianomanager.svg?branch=master)](https://travis-ci.org/AssociazionePrometeo/gianomanager)
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AssociazionePrometeo/gianomanager/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AssociazionePrometeo/gianomanager/?branch=master)
+
 Giano Manager is a web application to manage devices and reservations in shared spaces such as hackerspace, coworking, fablab.
 
 **⚠️️ Under heavy development!**
 
 ### Local installation
 
-Clone the repository and install the dependencies.
-You will need composer (the PHP dependency manager), follow the instructions on https://getcomposer.org/ to install it.
+Clone the repository.
 
 ```sh
-git clone https://github.com/AssociazionePrometeo/gianomanager.git
-cd gianomanager
+git clone https://github.com/AssociazionePrometeo/gianomanager.git && cd gianomanager
+```
+
+Then install the dependencies. You will need composer (the PHP dependency manager), follow the instructions on https://getcomposer.org/ to install it, then run:
+
+```sh
 composer install
 ```
 
@@ -29,7 +34,6 @@ Generate the app key and create the database schema:
 ```sh
 php artisan key:generate
 php artisan migrate
-composer update --no-scripts
 ```
 
 Start the development server, and you’re done!

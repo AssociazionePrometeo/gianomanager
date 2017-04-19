@@ -10,12 +10,15 @@ Giano Manager is a web application to manage devices and reservations in shared 
 
 ### Local installation
 
-Clone the repository and install the dependencies.
-You will need composer (the PHP dependency manager), follow the instructions on https://getcomposer.org/ to install it.
+Clone the repository.
 
 ```sh
-git clone https://github.com/AssociazionePrometeo/gianomanager.git
-cd gianomanager
+git clone https://github.com/AssociazionePrometeo/gianomanager.git && cd gianomanager
+```
+
+Then install the dependencies. You will need composer (the PHP dependency manager), follow the instructions on https://getcomposer.org/ to install it, then run:
+
+```sh
 composer install
 ```
 

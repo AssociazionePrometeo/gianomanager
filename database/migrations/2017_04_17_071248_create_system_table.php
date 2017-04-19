@@ -14,7 +14,7 @@ class CreateSystemTable extends Migration
     public function up()
     {
         Schema::create('system', function (Blueprint $table) {
-             $table->enum('status', ['0', '1']);
+             $table->enum('status', ['enabled', 'disabled']);
              $table->timestamps();
         });
     }

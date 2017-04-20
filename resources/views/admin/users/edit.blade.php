@@ -16,46 +16,32 @@
         {{ method_field('PUT') }}
         {{ csrf_field() }}
 
-        @if ($errors->has('name'))
-            <div class="error">{{ $errors->first('name') }}</div>
-        @endif
+        @include('form.error', ['field' => 'name'])
         <label for="name">Nome</label>
         <input type="text" name="name" value="{{ old('name', $user->name) }}">
 
-        @if ($errors->has('email'))
-            <div class="error">{{ $errors->first('email') }}</div>
-        @endif
+        @include('form.error', ['field' => 'email'])
         <label for="email">Email</label>
         <input type="email" name="email" value="{{ old('email', $user->email) }}">
 
-        @if ($errors->has('mobile_number'))
-            <div class="error">{{ $errors->first('mobile_number') }}</div>
-        @endif
-        <label for="mobile_number">Numero di telefono</label>
-        <input type="phone" name="mobile_number" value="{{ old('mobile_number', $user->mobile_number) }}">
+        @include('form.error', ['field' => 'phone'])
+        <label for="phone">Numero di telefono</label>
+        <input type="phone" name="phone" value="{{ old('phone', $user->phone) }}">
 
-        @if ($errors->has('signup_date'))
-            <div class="error">{{ $errors->first('signup_date') }}</div>
-        @endif
+        @include('form.error', ['field' => 'signup_date'])
         <label for="signup_date">Data di iscrizione</label>
         <input type="text" name="signup_date" value="{{ old('signup_date', $user->signup_date) }}">
 
-        @if ($errors->has('end_date'))
-            <div class="error">{{ $errors->first('end_date') }}</div>
-        @endif
-        <label for="end_date">Data di scadenza</label>
-        <input type="date" name="end_date" value="{{ old('end_date', $user->end_date) }}">
+        @include('form.error', ['field' => 'expires_at'])
+        <label for="expires_at">Data di scadenza</label>
+        <input type="date" name="expires_at" value="{{ old('expires_at', $user->expires_at) }}">
 
-        @if ($errors->has('password'))
-            <div class="error">{{ $errors->first('password') }}</div>
-        @endif
+        @include('form.error', ['field' => 'password'])
         <label for="password">Password</label>
         <input type="password" name="password">
 
-        @if ($errors->has('info'))
-            <div class="error">{{ $errors->first('info') }}</div>
-        @endif
-        <labelname for="info">Info</label>
+        @include('form.error', ['field' => 'info'])
+        <label for="info">Info</label>
         <input type="text" name="info" value="{{ old('info', $user->info) }}">
 
         <button type="submit">Salva</button>

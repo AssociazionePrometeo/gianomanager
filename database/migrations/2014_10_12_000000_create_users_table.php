@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->text('info');
             $table->integer('user_level')->default(3);
             $table->string('mobile_number');
-            $table->dateTime('signup_date')->default(timestamps());
+            $table->dateTime('signup_date')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('expiration_date');
             $table->dateTime('last_login');
             $table->boolean('active');

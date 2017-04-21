@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCardsTable extends Migration
+class CreateSystemTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cards', function (Blueprint $table) {
-            $table->string('id')->unique();
-            $table->integer('user_id')->unsigned();
-            $table->enum('status', ['enabled', 'disabled'])->default(0);
-            $table->timestamps();
+        Schema::create('system', function (Blueprint $table) {
+             $table->enum('status', ['enabled', 'disabled']);
+             $table->timestamps();
         });
     }
 
@@ -28,6 +26,6 @@ class CreateCardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('system');
     }
 }

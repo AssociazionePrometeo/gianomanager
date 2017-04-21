@@ -18,6 +18,13 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->text('info');
+            $table->integer('user_level')->default(3);
+            $table->string('mobile_number');
+            $table->dateTime('signup_date')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('expiration_date');
+            $table->dateTime('last_login');
+            $table->boolean('active');
             $table->rememberToken();
             $table->timestamps();
         });

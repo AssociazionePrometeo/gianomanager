@@ -24,13 +24,13 @@
         <label for="email">Email</label>
         <input type="email" name="email" value="{{ old('email', $user->email) }}">
 
-        @include('form.error', ['field' => 'phone'])
-        <label for="phone">Numero di telefono</label>
-        <input type="phone" name="phone" value="{{ old('phone', $user->phone) }}">
+        @include('form.error', ['field' => 'phone_number'])
+        <label for="phone_number">Numero di telefono</label>
+        <input type="phone" name="phone_number" value="{{ old('phone_number', $user->phone_number) }}">
 
-        @include('form.error', ['field' => 'signup_date'])
-        <label for="signup_date">Data di iscrizione</label>
-        <input type="text" name="signup_date" value="{{ old('signup_date', $user->signup_date) }}">
+        @include('form.error', ['field' => 'created_at'])
+        <label for="created_at">Data di iscrizione</label>
+        <input type="text" name="created_at" value="{{ old('created_at', $user->created_at) }}" readonly="readonly">
 
         @include('form.error', ['field' => 'expires_at'])
         <label for="expires_at">Data di scadenza</label>
@@ -43,6 +43,10 @@
         @include('form.error', ['field' => 'info'])
         <label for="info">Info</label>
         <input type="text" name="info" value="{{ old('info', $user->info) }}">
+
+        @include('form.error', ['field' => 'active'])
+        <label for="active">Attivo</label>
+        <input type="text" name="active" value="{{ old('active', $user->active) }}">
 
         <button type="submit">Salva</button>
     </form>

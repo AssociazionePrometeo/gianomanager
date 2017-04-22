@@ -35,7 +35,7 @@ class StoreUser extends FormRequest
             'name'       => 'required',
             'email'      => $emailValidation,
             'password'   => $passwordValidation,
-            'phone'      => 'required|min:10',
+            'phone_number'      => 'required|min:10',
             'expires_at' => 'required|date',
         ];
     }

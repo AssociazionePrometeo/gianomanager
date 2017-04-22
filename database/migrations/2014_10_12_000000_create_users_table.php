@@ -20,9 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->text('info')->nullable();
             $table->integer('user_level')->default(3);
-            $table->string('mobile_number')->nullable();
-            $table->dateTime('signup_date')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('expiration_date')->nullable();;
+            $table->string('phone_number')->nullable();
+            $table->dateTime('expires_at')->nullable();;
             $table->dateTime('last_login')->nullable();;
             $table->enum('active', ['enabled', 'disabled'])->default('disabled');
             $table->rememberToken();

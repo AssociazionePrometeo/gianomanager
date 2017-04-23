@@ -42,3 +42,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('reservations', 'ReservationController');
     Route::resource('cards', 'CardController');
 });
+
+Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => 'auth'], function () {
+    Route::get('/', function () {
+      return redirect()->route('user.profile.index');
+    });
+
+    Route::resource('profile', 'ProfileController');
+    });

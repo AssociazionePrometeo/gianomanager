@@ -61,7 +61,11 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+<<<<<<< HEAD
                                       <a href="/profile">Profilo</a>
+=======
+                                      <a href="/user">Profilo</a>
+>>>>>>> add row user profile page and corrected a /home route
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

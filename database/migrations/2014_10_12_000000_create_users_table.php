@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phone_number')->nullable();
             $table->dateTime('expires_at')->nullable();;
             $table->dateTime('last_login')->nullable();;
-            $table->enum('active', ['enabled', 'disabled'])->default('disabled');
+            $table->boolean('active')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

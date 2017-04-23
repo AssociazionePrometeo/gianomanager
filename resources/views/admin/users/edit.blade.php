@@ -45,8 +45,9 @@
         <input type="text" name="info" value="{{ old('info', $user->info) }}">
 
         @include('form.error', ['field' => 'active'])
-        <label for="active">Attivo</label>
-        <input type="text" name="active" value="{{ old('active', $user->active) }}">
+        <label for="active">Verificato</label>
+        <input type="hidden" name="active" value="0">
+        <input type="checkbox" name="active" value="1" @if (old('active', $user->active) == "1") checked @endif >
 
         <button type="submit">Salva</button>
     </form>

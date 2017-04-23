@@ -35,8 +35,8 @@
             <input type="text" name="info" value="{{ old('info') }}">
 
             @include('form.error', ['field' => 'active'])
-            <label for="active">Attivo</label>
-            <input type="text" name="active" value="{{ old('active') }}">
+            <label for="active">Verificato</label>
+            <input type="checkbox" name="active" value="1">
 
             <button type="submit">Salva</button>
     </form>

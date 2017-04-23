@@ -38,6 +38,7 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
+        $request['password'] = bcrypt($request->get('password'));
         User::create($request->all());
 
         return redirect()->route('admin.users.index');
@@ -75,7 +76,7 @@ class UserController extends Controller
         $attributes = $request->except('password');
 
         if ($request->has('password')) {
-            $attributes['password'] = $request->get('password');
+            $attributes['password'] = bcrypt($request->get('password'));
         }
 
         $user->update($attributes);

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@if (Auth::guest())
 @section('content')
 <div class="container">
     <div class="row">
@@ -66,3 +66,8 @@
     </div>
 </div>
 @endsection
+@else
+<script type="text/javascript">
+    window.location = "/home";
+</script>
+@endif

@@ -6,16 +6,20 @@
         <link rel="stylesheet" href="/assets/css/style.css">
     </head>
 
-    <body class="@yield('class')">            
+    <body class="@yield('class')">
 
         @yield('navigation')
 
         <main id="main" class="container">
+<<<<<<< HEAD
             @include('flash::message')
+=======
+
+>>>>>>> add row user profile page and corrected a /home route
             @yield('main')
-            
+
         </main>
-        
+
         @section('javascripts')
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
             <script src="{{ asset('assets/js/kube.js') }}"></script>

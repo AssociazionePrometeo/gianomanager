@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\StoreUser;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,18 +33,13 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      *
-     * @param Request $request
+     * @param StoreUser $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
-        ]);
-
-        User::create($request->only('name', 'email', 'password'));
+        $request['password'] = bcrypt($request->get('password'));
+        User::create($request->all());
 
         return redirect()->route('admin.users.index');
     }
@@ -72,21 +68,15 @@ class UserController extends Controller
      * Update the specified user in storage.
      *
      * @param  User $user
-     * @param $request
+     * @param  StoreUser $request
      * @return Response
      */
-    public function update(User $user, Request $request)
+    public function update(User $user, StoreUser $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'password' => 'nullable|min:8',
-        ]);
-
-        $attributes = $request->only('name', 'email');
+        $attributes = $request->except('password');
 
         if ($request->has('password')) {
-            $attributes['password'] = $request->get('password');
+            $attributes['password'] = bcrypt($request->get('password'));
         }
 
         $user->update($attributes);

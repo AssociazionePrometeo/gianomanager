@@ -12,7 +12,10 @@
             <li><a href="{{ route('admin.users.index') }}">Utenti</a></li>
         </ul>
         <ul class="secondary">
-            <li><a href="{{ route('logout') }}">Esci</a></li>
+          <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Esci</a></li>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          {{ csrf_field() }}
+        </form>
         </ul>
     </div>
 </nav>

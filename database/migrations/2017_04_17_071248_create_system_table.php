@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateResourcesTable extends Migration
+class CreateSystemTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateResourcesTable extends Migration
      */
     public function up()
     {
-        Schema::create('resources', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->boolean('active');
-            $table->string('type');
-            $table->timestamps();
+        Schema::create('system', function (Blueprint $table) {
+             $table->enum('status', ['enabled', 'disabled']);
+             $table->timestamps();
         });
     }
 
@@ -29,6 +26,6 @@ class CreateResourcesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resources');
+        Schema::dropIfExists('system');
     }
 }

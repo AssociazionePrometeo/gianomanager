@@ -32,7 +32,7 @@
 
             @include('form.error', ['field' => 'info'])
             <label for="info">Info</label>
-            <input type="text" name="info" value="{{ old('info') }}">
+            <textarea name="info">{{ old('info') }}</textarea>
 
             @include('form.error', ['field' => 'active'])
             <label for="active">Verificato</label>

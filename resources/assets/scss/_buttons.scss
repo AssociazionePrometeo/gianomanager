@@ -1,0 +1,4 @@
+.button.edit {
+  // $text-color, $back-color
+  @include button(#fff, $color-button-edit);
+}

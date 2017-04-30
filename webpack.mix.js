@@ -11,9 +11,24 @@ const { mix } = require('laravel-mix');
  |
  */
 
+mix.sass('resources/assets/scss/style.scss', 'public/assets/css');
 
-mix.stylus('resources/assets/styl/style.styl', 'public/assets/css', {
-    use: [
-        require('nib')()
-    ]
-});
+var kube_scripts = [
+    "resources/assets/kube/_js/Core/Kube.js",
+    "resources/assets/kube/_js/Core/Kube.Plugin.js",
+    "resources/assets/kube/_js/Core/Kube.Animation.js",
+    "resources/assets/kube/_js/Core/Kube.Detect.js",
+    "resources/assets/kube/_js/Core/Kube.FormData.js",
+    "resources/assets/kube/_js/Core/Kube.Response.js",
+    "resources/assets/kube/_js/Core/Kube.Utils.js",
+    "resources/assets/kube/_js/Message/Kube.Message.js",
+    "resources/assets/kube/_js/Sticky/Kube.Sticky.js",
+    "resources/assets/kube/_js/Toggleme/Kube.Toggleme.js",
+    "resources/assets/kube/_js/Offcanvas/Kube.Offcanvas.js",
+    "resources/assets/kube/_js/Collapse/Kube.Collapse.js",
+    "resources/assets/kube/_js/Dropdown/Kube.Dropdown.js",
+    "resources/assets/kube/_js/Tabs/Kube.Tabs.js",
+    "resources/assets/kube/_js/Modal/Kube.Modal.js"
+];
+
+mix.scripts(kube_scripts, 'public/assets/js/kube.js');

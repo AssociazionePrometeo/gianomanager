@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>@yield('title', 'S19') @yield('title.suffix')</title>
+        <title>@yield('title', 'Giano') @yield('title.suffix')</title>
         <link rel="stylesheet" href="/assets/css/style.css">
     </head>
 
@@ -17,8 +17,8 @@
         </main>
         
         @section('javascripts')
-            <script src="{{ asset('assets/js/main.min.js') }}"></script>
-            <script>require(['jquery', 'selectize'], function($) { $('select').selectize(); })</script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script src="/assets/js/kube.js"></script>
         @show
     </body>
     @section('stylesheets')

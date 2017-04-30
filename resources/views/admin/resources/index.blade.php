@@ -4,9 +4,12 @@
 
 @section('main')
     <header class="admin-header">
-        <h1>Risorse</h1>
-        
-        <a href="{{ route('admin.resources.create') }}" class="add">Aggiungi nuova</a>
+        <div class="row">
+            <h1>Risorse</h1>
+            <div class="push-right">
+                <a href="{{ route('admin.resources.create') }}" class="button primary" role="button">Aggiungi nuova</a>
+            </div>
+        </div>
     </header>
     
     <table class="entities">
@@ -23,7 +26,7 @@
                     <td>{{ $resource->id }}</td>
                     <td>{{ $resource->name }}</td>
                     <td class="actions">
-                        <a href="{{ route('admin.resources.edit', $resource) }}" class="edit">Modifica</a>
+                        <a href="{{ route('admin.resources.edit', $resource) }}" class="button edit small" role="button">Modifica</a>
                     </td>
                 </tr>
             @endforeach

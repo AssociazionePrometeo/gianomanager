@@ -1,0 +1,53 @@
+@import "../kube/kube";
+@import "_variables";
+@import "_buttons";
+
+///////////////////////////////////////
+// Layout                            //
+///////////////////////////////////////
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#main {
+  margin-top: $base-line;
+}
+
+///////////////////////////////////////
+// Navigation                        //
+///////////////////////////////////////
+#navigation {
+  border-top: 4px solid $color-focus;
+  border-bottom: 1px solid $color-gray;
+  padding: $base-line/2 0;
+  @include clearfix;
+
+  li {
+    display: inline-block;
+
+    a {
+      text-decoration: none;
+      display: block;
+    }
+  }
+
+  .site-title {
+    margin-right: 2rem;
+  }
+
+  .site-title, .primary, .secondary {
+    display: inline;
+    line-height: $base-line;
+  }
+
+  .primary li {
+    margin-right: 1rem;
+  }
+
+  .secondary li {
+    margin-left: 1rem;
+  }
+
+}

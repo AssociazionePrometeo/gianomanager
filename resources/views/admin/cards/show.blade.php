@@ -7,7 +7,7 @@
     <header class="admin-header">
         <h1>{{ $resource->name }}</h1>
 
-        <a href="{{ route('admin.resources.edit', $resource) }}" class="edit">Modifica</a>
+        <a href="{{ route('admin.resources.edit', $resource) }}" class="button edit small" role="button">Modifica</a>
     </header>
     
     <h2>Prossime prenotazioni</h2>

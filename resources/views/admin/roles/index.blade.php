@@ -4,9 +4,12 @@
 
 @section('main')
     <header class="admin-header">
-        <h1>Ruoli</h1>
-        
-        <a href="{{ route('admin.roles.create') }}" class="add">Aggiungi nuovo</a>
+        <div class="row">
+            <h1>Ruoli</h1>
+            <div class="push-right">
+                <a href="{{ route('admin.roles.create') }}" class="button primary" role="button">Aggiungi nuovo</a>
+            </div>
+        </div>
     </header>
     
     <table class="entities">
@@ -24,7 +27,7 @@
                     <td>{{ $role->name }}</td>
                     <td class="actions">
                         @if(!$role->isProtected())
-                            <a href="{{ route('admin.roles.edit', $role) }}" class="edit">Modifica</a>
+                            <a href="{{ route('admin.roles.edit', $role) }}" class="button edit small" role="button">Modifica</a>
                         @endif
                     </td>
                 </tr>

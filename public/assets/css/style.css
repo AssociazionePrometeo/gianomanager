@@ -90,9 +90,19 @@ a img {
   border: none;
 }
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+.alert {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 2px;
+  color: #fff;
+}
+.alert.alert-success {
+  background-color: #b7dfa3;
+}
+.alert.alert-danger {
+  background-color: #fa8c92;
 }
 input,
 label {
@@ -109,7 +119,6 @@ label {
 }
 input {
   font: 1em/20px 'Source Sans Pro', sans-serif;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   border: 1px solid #e4e4e4;
   padding: 9px 0.5em;
@@ -125,14 +134,9 @@ input[type="submit"],
 .admin-header .edit {
   border: 0;
   padding: 10px 1em;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   display: inline-block;
   text-decoration: none;
-  -webkit-transition: background-color 0.2s ease;
-  -moz-transition: background-color 0.2s ease;
-  -o-transition: background-color 0.2s ease;
-  -ms-transition: background-color 0.2s ease;
   transition: background-color 0.2s ease;
   color: #fff;
   background-color: #72a1d8;
@@ -149,14 +153,9 @@ input[type="submit"]:hover,
 table.entities .edit {
   border: 0;
   padding: 5px 0.5em;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   display: inline-block;
   text-decoration: none;
-  -webkit-transition: background-color 0.2s ease;
-  -moz-transition: background-color 0.2s ease;
-  -o-transition: background-color 0.2s ease;
-  -ms-transition: background-color 0.2s ease;
   transition: background-color 0.2s ease;
 }
 .btn-small:hover,
@@ -194,9 +193,12 @@ body {
   border-top: 10px solid #72a1d8;
 }
 .container {
-  max-width: 1040px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 1em;
+}
+#main {
+  margin: 1em auto;
 }
 #navigation {
   border-bottom: 1px solid #e4e4e4;
@@ -297,9 +299,6 @@ a:visited {
   float: right;
   margin-top: 20px;
 }
-form.main {
-  max-width: 30em;
-}
 table.entities th.actions span {
   visibility: hidden;
 }
@@ -309,7 +308,6 @@ table.entities td.actions {
 .login .panel {
   background-color: #fff;
   border: 1px solid #e4e4e4;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   padding: 40px 2em;
   max-width: 30em;

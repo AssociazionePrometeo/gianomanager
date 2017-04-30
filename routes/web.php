@@ -19,6 +19,16 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::group(['namespace' => 'User', 'middleware' => 'auth'], function(){
+
+  Route::get('/profile', 'ProfileController@edit'
+  )->name('profile');
+
+  Route::put('/profile', 'ProfileController@update'
+  )->name('profile.update');
+
+});
+
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
@@ -31,11 +41,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('reservations', 'ReservationController');
     Route::resource('cards', 'CardController');
 });
-
-Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => 'auth'], function () {
-    Route::get('/', function () {
-      return redirect()->route('user.profile.index');
-    });
-
-    Route::resource('profile', 'ProfileController');
-    });

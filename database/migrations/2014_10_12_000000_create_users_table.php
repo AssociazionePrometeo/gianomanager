@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->text('info')->nullable();
             $table->integer('user_level')->default(3);
             $table->string('phone_number')->nullable();
-            $table->dateTime('expires_at')->nullable();;
-            $table->dateTime('last_login')->nullable();;
+            $table->dateTime('expires_at')->nullable();
+            $table->dateTime('last_login')->nullable();
             $table->boolean('active')->default(0);
             $table->rememberToken();
             $table->timestamps();

@@ -11,7 +11,7 @@
         @yield('navigation')
 
         <main id="main" class="container">
-    
+            @include('flash::message')
             @yield('main')
             
         </main>

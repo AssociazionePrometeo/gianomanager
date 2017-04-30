@@ -1,5 +1,7 @@
 <?php
+
 namespace Admin;
+
 use App\User;
 use \FunctionalTester;
 

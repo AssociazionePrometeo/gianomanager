@@ -24,3 +24,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'expires_at' => new DateTime('next month'),
     ];
 });
+
+$factory->define(App\Role::class, function (Faker\Generator $faker) {
+    return [
+        'id' => $faker->slug,
+        'name' => $faker->words(),
+        'protected' => false,
+        'permissions' => [],
+    ];
+});
+

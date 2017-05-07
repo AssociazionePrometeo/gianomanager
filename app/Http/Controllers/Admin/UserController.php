@@ -7,6 +7,7 @@ use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
 
 class UserController extends Controller
 {
@@ -85,6 +86,7 @@ class UserController extends Controller
         }
 
         $user->update($attributes);
+        $user->roles()->sync($request->get('roles'));
 
         return redirect()->route('admin.users.index');
     }

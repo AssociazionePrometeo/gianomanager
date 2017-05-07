@@ -32,11 +32,12 @@ class StoreUser extends FormRequest
         }
 
         return [
-            'name'       => 'required',
-            'email'      => $emailValidation,
-            'password'   => $passwordValidation,
-            'phone_number'      => 'required|min:10',
-            'expires_at' => 'required|date',
+            'name'         => 'required',
+            'email'        => $emailValidation,
+            'password'     => $passwordValidation,
+            'phone_number' => 'required|min:10',
+            'expires_at'   => 'nullable|date',
+            'roles'        => 'required|exists:roles,id',
         ];
     }
 }

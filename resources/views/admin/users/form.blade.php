@@ -14,9 +14,9 @@
 $selectedRoles = isset($user) ? $user->roles->pluck('id')->toArray() : null;
 ?>
 @include('form.item', [
-    'name' => 'roles[]',
+    'name' => 'roles',
     'label' => 'Ruoli',
-    'field' => Form::select('roles', $roles, $selectedRoles, [
+    'field' => Form::select('roles[]', $roles, $selectedRoles, [
         'multiple',
         'class' => 'autocomplete',
     ]),

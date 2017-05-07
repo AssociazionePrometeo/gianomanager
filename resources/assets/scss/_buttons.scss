@@ -1,4 +1,7 @@
 .button.edit {
-  // $text-color, $back-color
-  @include button(#fff, $color-button-edit);
+  @include button($color-button-edit-text, $color-button-edit);
+}
+
+.button.delete {
+  @include button($color-button-delete-text, $color-button-delete);
 }

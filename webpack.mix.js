@@ -13,7 +13,7 @@ const { mix } = require('laravel-mix');
 
 mix.sass('resources/assets/scss/style.scss', 'public/assets/css');
 
-var kube_scripts = [
+let kube_scripts = [
     "resources/assets/kube/_js/Core/Kube.js",
     "resources/assets/kube/_js/Core/Kube.Plugin.js",
     "resources/assets/kube/_js/Core/Kube.Animation.js",
@@ -31,4 +31,16 @@ var kube_scripts = [
     "resources/assets/kube/_js/Modal/Kube.Modal.js"
 ];
 
+let pickadate_scripts = [
+    "resources/assets/pickadate/compressed/picker.js",
+    "resources/assets/pickadate/compressed/picker.date.js",
+];
+
+let pickadate_css = [
+    "resources/assets/pickadate/compressed/themes/default.css",
+    "resources/assets/pickadate/compressed/themes/default.date.css",
+];
+
 mix.scripts(kube_scripts, 'public/assets/js/kube.js');
+mix.scripts(pickadate_scripts, 'public/assets/js/datepicker.js');
+mix.styles(pickadate_css, 'public/assets/css/datepicker.css');

@@ -10,7 +10,7 @@
         <form action="{{ route('admin.reservations.destroy', $reservation) }}" method="post" class="delete">
             {{ method_field('DELETE') }}
             {{ csrf_field() }}
-            <button type="submit">Elimina</button>
+            <button type="submit" class="button delete">Elimina</button>
         </form>
     </header>
 

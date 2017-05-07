@@ -1,3 +1,3 @@
 @if ($errors->has($field))
-    <div class="error">{{ $errors->first($field) }}</div>
+    <span class="error">{{ $errors->first($field) }}</span>
 @endif

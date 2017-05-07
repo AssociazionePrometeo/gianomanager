@@ -34,6 +34,13 @@ Generate the app key and create the database schema:
 ```sh
 php artisan key:generate
 php artisan migrate
+php artisan db:seed
+```
+
+You have to compile the assets (css, js, etc.)
+```sh
+npm install
+npm run dev
 ```
 
 Start the development server, and you’re done!

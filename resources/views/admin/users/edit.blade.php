@@ -4,38 +4,24 @@
 
 @section('main')
     <header class="admin-header">
-        <h1>Modifica <em>{{ $user->name }}</em></h1>
-        <form action="{{ route('admin.users.destroy', $user) }}" method="post" class="delete">
-            {{ method_field("DELETE") }}
-            {{ csrf_field() }}
-            <button type="submit">Elimina</button>
-        </form>
+        <div class="row">
+            <h1>Modifica <em>{{ $user->name }}</em></h1>
+            <form action="{{ route('admin.users.destroy', $user) }}" method="post" class="push-right">
+                {{ method_field("DELETE") }}
+                {{ csrf_field() }}
+                <button type="submit" class="button delete">Elimina</button>
+            </form>
+        </div>
     </header>
 
-    <form action="{{ route('admin.users.update', $user) }}" method="post">
-        {{ method_field('PUT') }}
-        {{ csrf_field() }}
+    {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'put', 'class' => 'form']) !!}
 
-        @if ($errors->has('name'))
-            <div class="error">{{ $errors->first('name') }}</div>
-        @endif
-        <label for="name">Nome</label>
-        <input type="text" name="name" value="{{ old('name', $user->name) }}">
+        @include('admin.users.form')
 
-        @if ($errors->has('email'))
-            <div class="error">{{ $errors->first('email') }}</div>
-        @endif
-        <label for="email">Email</label>
-        <input type="email" name="email" value="{{ old('email', $user->email) }}">
-
-        @if ($errors->has('password'))
-            <div class="error">{{ $errors->first('password') }}</div>
-        @endif
-        <label for="password">Password</label>
-        <input type="password" name="password">
-
-        <button type="submit">Salva</button>
-    </form>
+        <div class="form-item">
+            <button type="submit">Salva</button>
+        </div>
+    {!! Form::close() !!}
 
 
 @endsection

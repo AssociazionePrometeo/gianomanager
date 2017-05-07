@@ -7,28 +7,12 @@
         <h1>Crea un nuovo utente</h1>
     </header>
 
-    <form action="{{ route('admin.users.store') }}" method="post">
-            {{ csrf_field() }}
+    {!! Form::open(['route' => 'admin.users.store', 'method' => 'post']) !!}
 
-            @if ($errors->has('name'))
-                <div class="error">{{ $errors->first('name') }}</div>
-            @endif            
-            <label for="name">Nome</label>
-            <input type="text" name="name" value="{{ old('name') }}">
+        @include('admin.users.form')
 
-            @if ($errors->has('email'))
-                <div class="error">{{ $errors->first('email') }}</div>
-            @endif            
-            <label for="email">Email</label>
-            <input type="email" name="email" value="{{ old('email') }}">
+        <button type="submit">Salva</button>
 
-            @if ($errors->has('password'))
-                <div class="error">{{ $errors->first('password') }}</div>
-            @endif            
-            <label for="password">Password</label>
-            <input type="password" name="password">
-
-            <button type="submit">Salva</button>
-    </form>
+    {!! Form::close() !!}
 
 @endsection

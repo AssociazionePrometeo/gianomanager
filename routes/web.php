@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('home');
+});
+
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
@@ -23,6 +27,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     });
 
     Route::resource('users', 'UserController');
+    Route::resource('roles', 'RoleController');
     Route::resource('resources', 'ResourceController');
     Route::resource('reservations', 'ReservationController');
     Route::resource('cards', 'CardController');

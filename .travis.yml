@@ -9,4 +9,4 @@ install:
   - php artisan key:generate
 
 script:
-- vendor/bin/phpunit
+- vendor/bin/codecept run

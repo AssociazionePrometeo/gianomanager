@@ -1,5 +1,6 @@
 /node_modules
 /public/hot
+/public/assets
 /public/storage
 /storage/*.key
 /vendor
@@ -8,3 +9,6 @@
 Homestead.json
 Homestead.yaml
 .env
+
+tests/_output/*
+tests/_support/_generated/*

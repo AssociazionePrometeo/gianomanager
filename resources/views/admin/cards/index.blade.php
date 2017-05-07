@@ -4,9 +4,12 @@
 
 @section('main')
     <header class="admin-header">
-        <h1>Tessere</h1>
-        
-        <a href="{{ route('admin.cards.create') }}" class="add">Aggiungi nuova</a>
+        <div class="row">
+            <h1>Tessere</h1>
+            <div class="push-right">
+                <a href="{{ route('admin.cards.create') }}" class="button primary" role="button">Aggiungi nuova</a>
+            </div>
+        </div>
     </header>
     
     <table class="entities">
@@ -23,7 +26,7 @@
                     <td>{{ $card->id }}</td>
                     <td>{{ $card->user->name }}</td>
                     <td class="actions">
-                        <a href="{{ route('admin.cards.edit', $card) }}" class="edit">Modifica</a>
+                        <a href="{{ route('admin.cards.edit', $card) }}" class="button edit small" role="button">Modifica</a>
                     </td>
                 </tr>
             @endforeach

@@ -15,7 +15,7 @@
                 <div class="error">{{ $errors->first('user') }}</div>
             @endif
             <label for="name">Utente</label>
-            <select name="user_id">
+            <select name="user_id" class="autocomplete">
                 @foreach ($users as $user)
                     <option value="{{ $user->id }}"
                             {{ $user->id == old('user_id') ? 'selected' : '' }}>

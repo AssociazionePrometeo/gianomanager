@@ -6,7 +6,7 @@
     <header class="admin-header">
         <h1>{{ $user->name }}</h1>
         
-        <a href="{{ route('admin.users.edit', $user) }}" class="edit">Modifica</a>
+        <a href="{{ route('admin.users.edit', $user) }}" class="button edit small" role="button">Modifica</a>
     </header>
     
     <h2>Prossime prenotazioni</h2>

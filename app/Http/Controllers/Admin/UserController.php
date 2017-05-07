@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\StoreUser;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
 
 class UserController extends Controller
 {
@@ -26,24 +29,22 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::pluck('name', 'id');
+
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
      * Store a newly created user in storage.
      *
-     * @param Request $request
+     * @param StoreUser $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
-        ]);
-
-        User::create($request->only('name', 'email', 'password'));
+        $request['password'] = bcrypt($request->get('password'));
+        $user = User::create($request->all());
+        $user->roles()->sync($request->get('roles'));
 
         return redirect()->route('admin.users.index');
     }
@@ -65,34 +66,32 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::pluck('name', 'id');
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
      * Update the specified user in storage.
      *
      * @param  User $user
-     * @param $request
+     * @param  StoreUser $request
      * @return Response
      */
-    public function update(User $user, Request $request)
+    public function update(User $user, StoreUser $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'password' => 'nullable|min:8',
-        ]);
-
-        $attributes = $request->only('name', 'email');
+        $attributes = $request->except('password');
 
         if ($request->has('password')) {
-            $attributes['password'] = $request->get('password');
+            $attributes['password'] = bcrypt($request->get('password'));
         }
 
         $user->update($attributes);
+        $user->roles()->sync($request->get('roles'));
 
         return redirect()->route('admin.users.index');
     }
+
     /**
      * Remove the specified user from storage.
      *

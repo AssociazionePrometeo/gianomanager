@@ -4,9 +4,12 @@
 
 @section('main')
     <header class="admin-header">
-        <h1>Prenotazioni</h1>
-        
-        <a href="{{ route('admin.reservations.create') }}" class="add">Aggiungi nuova</a>
+        <div class="row">
+            <h1>Prenotazioni</h1>
+            <div class="push-right">
+                <a href="{{ route('admin.reservations.create') }}" class="button primary" role="button">Aggiungi nuova</a>
+            </div>
+        </div>
     </header>
     
     <table class="entities">
@@ -29,7 +32,7 @@
                     <td>{{ $reservation->starts_at->format('j F Y – H:i') }}</td>
                     <td>{{ $reservation->ends_at->format('j F Y – H:i') }}</td>
                     <td class="actions">
-                        <a href="{{ route('admin.reservations.edit', $reservation) }}" class="edit">Modifica</a>
+                        <a href="{{ route('admin.reservations.edit', $reservation) }}" class="button edit small" role="button">Modifica</a>
                     </td>
                 </tr>
             @endforeach

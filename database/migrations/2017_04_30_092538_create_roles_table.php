@@ -17,7 +17,7 @@ class CreateRolesTable extends Migration
             $table->string('id');
             $table->primary('id');
             $table->string('name');
-            $table->jsonb('permissions');
+            $table->text('permissions');
             $table->boolean('protected')->default(false);
             $table->timestamps();
         });

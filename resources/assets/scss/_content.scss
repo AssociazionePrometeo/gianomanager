@@ -54,3 +54,8 @@
     text-decoration: none;
   }
 }
+
+.content-heading h1 {
+  font-size: $font-size-large;
+  line-height: 3*$base-line;
+}

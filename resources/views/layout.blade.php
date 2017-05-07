@@ -28,7 +28,9 @@
                                 @yield('heading')
                             </div>
                             <div class="col col-4">
-                                @include('user_navigation')
+                                @if(Auth::check())
+                                    @include('user_navigation')
+                                @endif
                             </div>
                         </div>
                     </div>

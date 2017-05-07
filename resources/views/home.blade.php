@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('heading')
+    <h1>Dashboard</h1>
+@endsection
+
 @section('content')
-    <h1>Nothing to show here!</h1>
+    <p>Nothing to show here!</p>
 @endsection

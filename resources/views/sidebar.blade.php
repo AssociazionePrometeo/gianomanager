@@ -4,6 +4,7 @@
 </div>
 
 <div class="sidebar-content">
+    @if(Auth::check())
     <nav class="sidebar-navigation">
         <p class="navigation-title"></p>
         <ul>
@@ -21,4 +22,5 @@
             <li><a href="{{ route('admin.roles.index') }}"><i class="material-icons">group_work</i> Ruoli</a></li>
         </ul>
     </nav>
+    @endif
 </div>

@@ -63,6 +63,10 @@
                                     <li>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                                      <a href="/card">Le tue Card</a>
+>>>>>>> added emergency lock for your own card
                                       <a href="/profile">Profilo</a>
 =======
                                       <a href="/user">Profilo</a>

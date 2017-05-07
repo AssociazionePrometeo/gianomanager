@@ -2,26 +2,42 @@
 
 @section('title', 'Modifica utente')
 
-@section('main')
-    <header class="admin-header">
-        <div class="row">
-            <h1>Modifica <em>{{ $user->name }}</em></h1>
-            <form action="{{ route('admin.users.destroy', $user) }}" method="post" class="push-right">
-                {{ method_field("DELETE") }}
-                {{ csrf_field() }}
-                <button type="submit" class="button delete">Elimina</button>
-            </form>
+@section('heading')
+    @include('admin.breadcrumbs', ['items' => [
+        'Utenti' => route('admin.users.index'),
+        'Modifica utente',
+    ]])
+@endsection
+
+@section('topbar')
+    <div class="row topbar">
+        <div class="col">
+            <p>Modifica utente <em>{{ $user->name }}</em></p>
         </div>
-    </header>
-
-    {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'put', 'class' => 'form']) !!}
-
-        @include('admin.users.form')
-
-        <div class="form-item">
-            <button type="submit">Salva</button>
+        <div class="col push-right button-group">
+            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
         </div>
+    </div>
+@endsection
+
+@section('content')
+    <div class="row">
+        <div class="col col-12">
+            {!! Form::model($user, [
+                'route' => ['admin.users.update', $user],
+                'method' => 'put',
+                'class' => 'form',
+                'id' => 'form-edit'
+            ]) !!}
+            @include('admin.users.form')
+            <input type="submit" id="save" class="hide">
+            {!! Form::close() !!}
+        </div>
+    </div>
+
+    {!! Form::open(['route' => ['admin.users.destroy', $user], 'method' => 'delete', 'id' => 'form-delete']) !!}
+    <input type="submit" id="delete" class="hide">
     {!! Form::close() !!}
-
 
 @endsection

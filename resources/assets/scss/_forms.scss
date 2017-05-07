@@ -1,0 +1,12 @@
+.form-item.error {
+  input,
+  textarea,
+  select {
+    background-color: rgba($input-error-background-color, .1);
+    border: $input-border-width solid lighten($input-error-border-color, 15%);
+    &:focus {
+      border-color: $input-error-border-color;
+      box-shadow: $input-error-focus-box-shadow;
+    }
+  }
+}

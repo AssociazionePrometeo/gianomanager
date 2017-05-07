@@ -1,7 +1,17 @@
+// Layout & typography
+// ---------------------------------------------------------------------------
+$base-border-radius: 3px;
+$text-font-family: "Source Sans Pro", Arial, 'Helvetica Neue', Helvetica, sans-serif;
+$monospace-font-family: "Source Code Pro", Consolas, Monaco, 'Courier New', monospace !default;
+
+$button-height-small: 24px;
+
 // COLORS
 // ---------------------------------------------------------------------------
 
 $color-white: #fff;
+$color-light: #f6f8f8;
+$color-darkgray: #212e38;
 
 // Button
 $color-button-edit-text: $color-white;

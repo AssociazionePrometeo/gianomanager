@@ -1,0 +1,53 @@
+#sidebar {
+  background: $color-darkgray;
+
+  .site-name {
+    display: block;
+    text-decoration: none;
+    color: $color-white;
+    line-height: 3*$base-line;
+    font-weight: 700;
+    font-size: $font-size-big;
+  }
+}
+
+.sidebar-heading {
+  background: darken($color-darkgray, 5%);
+}
+
+.sidebar-navigation {
+
+  li {
+    margin: 0;
+  }
+
+  li a {
+    display: block;
+    padding: $base-line/2 2rem;
+    color: $color-white;
+    text-decoration: none;
+    line-height: $base-line;
+    transition: background 0.2s ease, color 0.2s ease;
+    &:hover {
+      color: $color-link-hover;
+      background-color: darken($color-darkgray, 3%);
+    }
+  }
+
+  .navigation-title {
+    padding: 0 2rem;
+    color: transparentize($color-gray, 0.4);
+    text-transform: uppercase;
+    font-size: $font-size-small;
+    margin: $base-line 0 $base-line/4 0;
+  }
+}
+
+.sidebar-navigation .material-icons {
+  font-size: $font-size-big;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+  margin-right: 0.5em;
+  opacity: 0.75;
+}

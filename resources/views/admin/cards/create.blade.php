@@ -2,30 +2,26 @@
 
 @section('title', 'Nuova tessera')
 
-@section('main')
-    <header class="admin-header">
-        <h1>Aggiungi una nuova tessera</h1>
-    </header>
+@section('heading')
+    @include('admin.breadcrumbs', ['items' => [
+        'Utenti' => route('admin.cards.index'),
+        'Nuova tessera',
+    ]])
+@endsection
 
-    <form action="{{ route('admin.cards.store') }}" method="post" class="main">
-            {{ csrf_field() }}
-            
-            @if ($errors->has('id'))
-                <div class="error">{{ $errors->first('id') }}</div>
-            @endif
-            <label for="id">Identificativo</label>
-            <input type="text" name="id" value="{{ old('id') }}">
+@section('topbar')
+    <div class="row topbar">
+        <div class="col">
+            <p>Crea una nuova tessera</p>
+        </div>
+        <div class="col push-right button-group">
+            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+        </div>
+    </div>
+@endsection
 
-            @if ($errors->has('user_id'))
-                <div class="error">{{ $errors->first('user_id') }}</div>
-            @endif
-            <label for="user_id">Utente</label>
-            <select name="user_id">
-                @foreach($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                @endforeach
-            </select>
-
-            <button type="submit">Salva</button>
-    </form>
+@section('content')
+    {!! Form::open(['route' => 'admin.cards.store', 'method' => 'post', 'class' => 'form', 'id' => 'form-edit']) !!}
+        @include('admin.cards.form')
+    {!! Form::close() !!}
 @endsection

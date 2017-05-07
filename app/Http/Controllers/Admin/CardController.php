@@ -27,7 +27,7 @@ class CardController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+        $users = $this->getUsers();
 
         return view('admin.cards.create', compact('users'));
     }
@@ -59,7 +59,7 @@ class CardController extends Controller
      */
     public function edit(Card $card)
     {
-        $users = User::all();
+        $users = $this->getUsers();
 
         return view('admin.cards.edit', compact('card', 'users'));
     }
@@ -94,5 +94,12 @@ class CardController extends Controller
     {
         $card->delete();
         return redirect()->route('admin.cards.index');
+    }
+
+    protected function getUsers()
+    {
+        return User::all('name', 'email', 'id')->mapWithKeys(function($user) {
+            return [$user->id => "{$user->name} ({$user->email})"];
+        });
     }
 }

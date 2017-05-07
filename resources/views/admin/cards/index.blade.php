@@ -2,16 +2,25 @@
 
 @section('title', 'Tessere')
 
-@section('main')
-    <header class="admin-header">
-        <div class="row">
-            <h1>Tessere</h1>
-            <div class="push-right">
-                <a href="{{ route('admin.cards.create') }}" class="button primary" role="button">Aggiungi nuova</a>
-            </div>
+@section('heading')
+    @include('admin.breadcrumbs', ['items' => ['Tessere']])
+@endsection
+
+@section('topbar')
+    <div class="row topbar">
+        <div class="col">
+            <p>Lista tessere</p>
         </div>
-    </header>
-    
+        <div class="col push-right">
+            <a href="{{ route('admin.cards.create') }}" class="button primary outline" role="button">
+                <i class="material-icons">add</i>
+                Aggiungi nuova
+            </a>
+        </div>
+    </div>
+@endsection
+
+@section('content')
     <table class="entities">
         <thead>
             <tr>

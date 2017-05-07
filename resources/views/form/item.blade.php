@@ -1,4 +1,4 @@
-<div class="form-item">
+<div class="form-item{{ $errors->has($name) ? ' error' : ''}}">
     <label for="{{ $name }}">
         {{ $label }}
         @if(isset($required) && $required)

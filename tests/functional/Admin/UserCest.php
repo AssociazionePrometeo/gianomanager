@@ -26,7 +26,7 @@ class UserCest
         $I->fillField('expires_at', '2117-04-30');
         $I->fillField('password', 'mynewpassword');
         $I->selectOption('roles[]', ['admin', 'default']);
-        $I->click('Salva');
+        $I->click('#save');
 
         $I->seeCurrentRouteIs('admin.users.index');
         $I->see('test@example.com');
@@ -47,7 +47,7 @@ class UserCest
         $I->amOnRoute('admin.users.edit', $user->id);
         $I->fillField('email', 'newemail@example.com');
         $I->selectOption('roles[]', 'admin');
-        $I->click('Salva');
+        $I->click('#save');
 
         $I->seeCurrentRouteIs('admin.users.index');
         $I->seeRecord('users', ['email' => 'newemail@example.com']);
@@ -67,7 +67,7 @@ class UserCest
         $I->seeRecord('users', ['email' => 'test@example.com']);
 
         $I->amOnRoute('admin.users.edit', $user->id);
-        $I->click('Elimina');
+        $I->click('#delete');
         $I->seeCurrentRouteIs('admin.users.index');
 
         $I->dontSeeRecord('users', ['email' => 'test@example.com']);

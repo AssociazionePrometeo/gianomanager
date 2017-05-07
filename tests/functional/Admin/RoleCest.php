@@ -22,7 +22,7 @@ class RoleCest
         $I->amOnRoute('admin.roles.create');
         $I->fillField('id', 'new_test_role');
         $I->fillField('name', 'New test role');
-        $I->click('Salva');
+        $I->click('#save');
 
         $I->seeCurrentRouteIs('admin.roles.index');
         $I->see('New test role');
@@ -36,7 +36,7 @@ class RoleCest
         $role = factory(Role::class)->create(['id' => 'test_role', 'name' => 'Old name']);
         $I->amOnRoute('admin.roles.edit', $role->id);
         $I->fillField('name', 'New name');
-        $I->click('Salva');
+        $I->click('#save');
 
         $I->seeCurrentRouteIs('admin.roles.index');
         $I->seeRecord('roles', ['name' => 'New name']);
@@ -51,7 +51,7 @@ class RoleCest
         $I->seeRecord('roles', ['id' => 'test_role']);
 
         $I->amOnRoute('admin.roles.edit', $role->id);
-        $I->click('Elimina');
+        $I->click('#delete');
         $I->seeCurrentRouteIs('admin.roles.index');
 
         $I->dontSeeRecord('roles', ['id' => 'test_role']);

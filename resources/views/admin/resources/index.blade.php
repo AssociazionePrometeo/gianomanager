@@ -2,16 +2,25 @@
 
 @section('title', 'Risorse')
 
-@section('main')
-    <header class="admin-header">
-        <div class="row">
-            <h1>Risorse</h1>
-            <div class="push-right">
-                <a href="{{ route('admin.resources.create') }}" class="button primary" role="button">Aggiungi nuova</a>
-            </div>
+@section('heading')
+    @include('admin.breadcrumbs', ['items' => ['Risorse']])
+@endsection
+
+@section('topbar')
+    <div class="row topbar">
+        <div class="col">
+            <p>Lista risorse</p>
         </div>
-    </header>
-    
+        <div class="col push-right">
+            <a href="{{ route('admin.resources.create') }}" class="button primary outline" role="button">
+                <i class="material-icons">add</i>
+                Aggiungi nuova
+            </a>
+        </div>
+    </div>
+@endsection
+
+@section('content')
     <table class="entities">
         <thead>
             <tr>

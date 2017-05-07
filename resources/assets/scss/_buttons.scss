@@ -5,3 +5,11 @@
 .button.delete {
   @include button($color-button-delete-text, $color-button-delete);
 }
+
+.button .material-icons {
+  font-size: 20px;
+  line-height: $button-base-line;
+  position: relative;
+  top: -1px;
+  vertical-align: middle;
+}

@@ -1,0 +1,56 @@
+#content {
+  background: $color-light;
+}
+
+.content-heading {
+  width: 100%;
+  background: $color-white;
+  border-bottom: 1px solid $color-lightgray;
+}
+
+.user-menu {
+  text-align: right;
+  > li {
+    display: inline-block;
+    text-align: center;
+    padding: $base-line 0;
+    line-height: $base-line;
+
+    a {
+      text-decoration: none;
+      color: $color-text;
+      &:hover {
+        color: $color-link-hover;
+      }
+    }
+  }
+}
+
+//#content .box {
+//  border: 1px solid $color-lightgray;
+//  border-radius: $base-border-radius;
+//  background: $color-white;
+//}
+
+.topbar {
+  border-bottom: 1px solid $color-lightgray;
+  margin-bottom: $base-line;
+
+  p {
+    margin: 0;
+    line-height: 1.5*$base-line;
+  }
+
+  .button {
+    margin-left: 0.5rem;
+  }
+}
+
+.content-heading .breadcrumbs {
+  font-size: $font-size-big;
+  padding: $base-line 0;
+  line-height: $base-line;
+  a {
+    text-decoration: none;
+  }
+}

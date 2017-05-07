@@ -13,12 +13,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
-
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => bcrypt('secret'),
         'remember_token' => str_random(10),
         'phone_number' => $faker->phoneNumber,
         'expires_at' => new DateTime('next month'),
@@ -27,8 +25,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Role::class, function (Faker\Generator $faker) {
     return [
-        'id' => $faker->slug,
-        'name' => $faker->words(),
+        'id' => $faker->unique()->word,
+        'name' => $faker->colorName,
         'protected' => false,
         'permissions' => [],
     ];

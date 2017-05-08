@@ -9,8 +9,8 @@
         <p class="navigation-title"></p>
         <ul>
             <li><a href="{{ route('profile') }}"><i class="material-icons">account_circle</i> Profilo</a></li>
-            <li><a href="{{ route('admin.reservations.index') }}"><i class="material-icons">event</i> Prenotazioni</a></li>
-            <li><a href="{{ route('admin.reservations.index') }}"><i class="material-icons">credit_card</i> Tessere</a></li>
+            <li><a href="#todo"><i class="material-icons">event</i> Prenotazioni</a></li>
+            <li><a href="{{ route('cards.index') }}"><i class="material-icons">credit_card</i> Tessere</a></li>
         </ul>
 
         <h6 class="navigation-title">Admin</h6>

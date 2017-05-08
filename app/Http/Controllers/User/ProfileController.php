@@ -41,16 +41,4 @@ class ProfileController extends Controller
 
          return redirect()->route('profile');
      }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $user = Auth::user();
-
-        return view('user.profile', compact('user'));
-    }
 }

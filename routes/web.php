@@ -12,11 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/home', function () {
     return view('home');
+});
+
+Route::group(['namespace' => 'User', 'middleware' => 'auth'], function () {
+    Route::get('/profile', 'ProfileController@edit')->name('profile');
+    Route::put('/profile', 'ProfileController@update')->name('profile.update');
 });
 
 Auth::routes();

@@ -11,10 +11,12 @@
         @yield('navigation')
 
         <main id="main" class="container">
+<<<<<<< HEAD
 
+=======
+>>>>>>> rebase on origin
             @include('flash::message')
             @yield('main')
-
         </main>
 
         @section('javascripts')

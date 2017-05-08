@@ -11,17 +11,8 @@
         @yield('navigation')
 
         <main id="main" class="container">
-<<<<<<< HEAD
-<<<<<<< HEAD
             @include('flash::message')
-=======
-
->>>>>>> add row user profile page and corrected a /home route
-=======
-
->>>>>>> c084f949d9b9d2b0bbfdbedaf1e9e9ef3ba07d38
             @yield('main')
-
         </main>
 
         @section('javascripts')

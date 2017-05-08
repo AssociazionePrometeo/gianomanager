@@ -61,8 +61,7 @@
                     </div>
 
                     <div class="col-md-6">
-
-                      <label for="active">Verificato: @if (old('active', $user->active) == "1") SI @else NO @endif</label>
+                    <label for="active">Verificato: @if (old('active', $user->active) == "1") SI @else NO @endif</label>
                     </div>
 
                     <div class="col-md-6">

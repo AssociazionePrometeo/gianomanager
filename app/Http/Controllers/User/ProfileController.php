@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-
-  /**
+   /**
    * Show the form for editing the current user.
    *
    * @return Response
@@ -24,7 +23,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the specified user in storage.
+     * Update the current user in storage.
      *
      * @param  UpdateProfile $request
      * @return Response
@@ -42,4 +41,16 @@ class ProfileController extends Controller
 
          return redirect()->route('profile');
      }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $user = Auth::user();
+
+        return view('user.profile', compact('user'));
+    }
 }

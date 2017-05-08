@@ -19,9 +19,11 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::group(['namespace' => 'User', 'middleware' => 'auth'], function () {
-    Route::get('/profile', 'ProfileController@edit')->name('profile');
-    Route::put('/profile', 'ProfileController@update')->name('profile.update');
+Route::group(['namespace' => 'User', 'middleware' => 'auth'], function(){
+  Route::get('/profile', 'ProfileController@edit')->name('profile');
+  Route::put('/profile', 'ProfileController@update')->name('profile.update');
+  Route::get('/card', 'CardController@index')->name('card');
+  Route::put('/card', 'CardController@update')->name('card.lock');
 });
 
 Auth::routes();

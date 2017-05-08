@@ -32,3 +32,13 @@ $factory->define(App\Role::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Card::class, function (Faker\Generator $faker) {
+    return [
+        'id' => $faker->uuid,
+        'status' => $faker->randomElement([App\Card::STATUS_ENABLED, App\Card::STATUS_DISABLED]),
+        'user_id' => function() {
+            return factory(App\User::class)->create()->id;
+        }
+    ];
+});
+

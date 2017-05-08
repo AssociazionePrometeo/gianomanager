@@ -27,11 +27,11 @@
                 <td class="actions">
                     @if($card->isEnabled())
                         {!! Form::open(['route' => ['cards.lock', $card], 'method' => 'put']) !!}
-                        <button class="button outline small delete">Blocca</button>
+                        <button class="button outline small delete lock" type="submit">Blocca</button>
                         {!! Form::close() !!}
                     @else
                         {!! Form::open(['route' => ['cards.unlock', $card], 'method' => 'put']) !!}
-                        <button class="button outline small save">Abilita</button>
+                        <button class="button outline small save unlock" type="submit">Abilita</button>
                         {!! Form::close() !!}
                     @endif
                 </td>

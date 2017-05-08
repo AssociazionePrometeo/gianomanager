@@ -48,12 +48,6 @@
                 ])
 
                 @include('form.item', [
-                    'name'  => 'active',
-                    'label' => 'Verificato',
-                    'field' => Form::checkbox('active', null, ['disabled']),
-                ])
-
-                @include('form.item', [
                     'name'  => 'password',
                     'label' => 'Password',
                     'field' => Form::password('password'),
@@ -66,7 +60,14 @@
                     'field' => Form::password('password_confirmation'),
                 ])
 
-            </form>
+                <div class="form-item">
+                    <label>Stato
+                        <span class="label {{ $user->active ? 'success' : 'warning' }}">
+                                {{ $user->active ? 'Verificato' : 'In attesa di verifica' }}
+                            </span>
+                    </label>
+                </div>
+            {!! Form::close() !!}
 
         </div>
     </div>

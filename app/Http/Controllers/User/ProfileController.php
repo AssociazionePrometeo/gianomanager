@@ -31,7 +31,7 @@ class ProfileController extends Controller
      public function update(UpdateProfile $request)
      {
          $user = Auth::user();
-         $attributes = $request->except('password');
+         $attributes = $request->only('email', 'phone_number');
 
          if ($request->has('password')) {
              $attributes['password'] = bcrypt($request->get('password'));

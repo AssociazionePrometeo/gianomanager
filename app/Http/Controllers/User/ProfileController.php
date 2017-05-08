@@ -10,11 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-
    /**
-   * Show the form for editing the specified user.
+   * Show the form for editing the current user.
    *
-   * @param  User  $user
    * @return Response
    */
     public function edit()
@@ -25,12 +23,9 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the specified user in storage.
+     * Update the current user in storage.
      *
-
-     * @param  User $user
-     * @param  StoreUser $request
-
+     * @param  UpdateProfile $request
      * @return Response
      */
      public function update(UpdateProfile $request)
@@ -53,7 +48,6 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
     {
         $user = Auth::user();
 

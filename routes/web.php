@@ -26,13 +26,12 @@ Route::group(['namespace' => 'User', 'middleware' => 'auth'], function(){
 
   Route::put('/profile', 'ProfileController@update'
   )->name('profile.update');
-
+resource://activity-streams/data/content/activity-streams.html#/HOME
   Route::get('/card', 'CardController@index'
   )->name('card');
 
   Route::put('/card', 'CardController@update'
   )->name('card.lock');
-
 });
 
 Auth::routes();

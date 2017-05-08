@@ -61,6 +61,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+
                                       <a href="/card">Le tue Card</a>
                                       <a href="/profile">Profilo</a>
                                       <a href="{{ route('logout') }}"

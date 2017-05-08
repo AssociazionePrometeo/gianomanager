@@ -10,7 +10,6 @@
 
                 <div class="panel-body">
                   <form action="{{ route('profile.update') }}" method="post">
-
                       {{ method_field('PUT') }}
                       {{ csrf_field() }}
 
@@ -22,14 +21,12 @@
                     <div class="col-md-6">
                       @include('form.error', ['field' => 'email'])
                       <label for="email">Email</label>
-
                       <input type="email" name="email" value="{{ old('email', $user->email) }}">
                     </div>
 
                     <div class="col-md-6">
                       @include('form.error', ['field' => 'phone_number'])
                       <label for="phone_number">Numero di telefono</label>
-
                       <input type="phone" name="phone_number" value="{{ old('phone_number', $user->phone_number) }}">
                     </div>
 
@@ -64,7 +61,7 @@
                     </div>
 
                     <div class="col-md-6">
-                      <label for="active">Verificato: @if (old('active', $user->active) == "1") SI @else NO @endif</label>
+                    <label for="active">Verificato: @if (old('active', $user->active) == "1") SI @else NO @endif</label>
                     </div>
 
                     <div class="col-md-6">

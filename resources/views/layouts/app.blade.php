@@ -61,20 +61,9 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
                                       <a href="/card">Le tue Card</a>
->>>>>>> added emergency lock for your own card
                                       <a href="/profile">Profilo</a>
-=======
-                                      <a href="/user">Profilo</a>
->>>>>>> add row user profile page and corrected a /home route
-=======
-                                      <a href="/profile">Profilo</a>
->>>>>>> simple user profile page
-                                        <a href="{{ route('logout') }}"
+                                      <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout

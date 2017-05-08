@@ -24,15 +24,10 @@ class UpdateProfile extends FormRequest
      */
     public function rules()
     {
-        $user = Auth::user();
-        $emailValidation = 'required|email|unique:users,email,'.$user->id;
-        $passwordValidation = 'nullable|min:8';
-
-
         return [
-            'email'      => $emailValidation,
-            'password'   => $passwordValidation,
-            'phone_number'      => 'required|min:10',
+            'email'      => 'required|email|unique:users,email,'.$this->user()->id,
+            'password'   => 'nullable|confirmed|min:8',
+            'phone_number' => 'required|min:10',
           ];
     }
 }

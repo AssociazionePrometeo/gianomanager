@@ -7,7 +7,7 @@
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Modifica profilo il tuo profilo</p>
+            <p>Modifica il tuo profilo</p>
         </div>
         <div class="col push-right button-group">
             <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
@@ -21,60 +21,50 @@
     <div class="row">
         <div class="col col-12">
 
-            <form action="{{ route('profile.update') }}" method="post" id="form-edit" class="form">
-                {{ method_field('PUT') }}
-                {{ csrf_field() }}
+            {!! Form::model($user, ['route' => 'profile.update', 'method' => 'put', 'id' => 'form-edit', 'class' => 'form']) !!}
 
+                @include('form.item', [
+                    'name' => 'name',
+                    'label' => 'Nome',
+                    'field' => Form::text('name', null, ['disabled'])
+                ])
 
-                <div class="">
-                    <label for="name">Nome : {{ old('name', $user->name) }}</label>
-                </div>
+                @include('form.item', [
+                    'name'  => 'email',
+                    'label' => 'Email',
+                    'field' => Form::email('email'),
+                ])
 
-                <div class="">
-                    @include('form.error', ['field' => 'email'])
-                    <label for="email">Email</label>
-                    <input type="email" name="email" value="{{ old('email', $user->email) }}">
-                </div>
+                @include('form.item', [
+                    'name'  => 'phone_number',
+                    'label' => 'Numero di telefono',
+                    'field' => Form::text('phone_number')
+                ])
 
-                <div class="">
-                    @include('form.error', ['field' => 'phone_number'])
-                    <label for="phone_number">Numero di telefono</label>
-                    <input type="phone" name="phone_number" value="{{ old('phone_number', $user->phone_number) }}">
-                </div>
+                @include('form.item', [
+                    'name'  => 'expires_at',
+                    'label' => 'Data di scadenza',
+                    'field' => Form::date('expires_at', null, ['disabled']),
+                ])
 
-                <div class="">
-                    <label for="created_at">Data di iscrizione : {{ old('created_at', $user->created_at) }}</label>
-                </div>
+                @include('form.item', [
+                    'name'  => 'active',
+                    'label' => 'Verificato',
+                    'field' => Form::checkbox('active', null, ['disabled']),
+                ])
 
-                <div class="">
-                    <label for="expires_at">Data di scadenza: {{ old('expires_at', $user->expires_at) }}</label>
-                </div>
+                @include('form.item', [
+                    'name'  => 'password',
+                    'label' => 'Password',
+                    'field' => Form::password('password'),
+                    'desc' => 'Lascia vuoto per mantenere quella attuale',
+                ])
 
-                <div class="form-item{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label for="password" class="col-md-4 control-label">Password</label>
-
-                    <div class="">
-                        <input id="password" type="password" class="form-control" name="password" required>
-
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="form-item">
-                    <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                    <div class="">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                    </div>
-                </div>
-                
-                <div class="">
-                    <label for="active">Verificato: @if (old('active', $user->active) == "1") SI @else NO @endif</label>
-                </div>
+                @include('form.item', [
+                    'name'  => 'password_confirmation',
+                    'label' => 'Conferma password',
+                    'field' => Form::password('password_confirmation'),
+                ])
 
             </form>
 

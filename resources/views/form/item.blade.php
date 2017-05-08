@@ -7,11 +7,11 @@
         @if($errors->has($name))
             <span class="error">{{ $errors->first($name) }}</span>
         @endif
-        @if(isset($desc))
-            <div class="desc">{{ $desc }}</div>
-        @endif
     </label>
 
     {!! $field !!}
 
+    @if(isset($desc))
+        <div class="desc">{{ $desc }}</div>
+    @endif
 </div>

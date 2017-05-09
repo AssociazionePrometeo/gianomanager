@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    const STATUS_ENABLED = 'enabled';
-    const STATUS_DISABLED = 'disabled';
+    const STATUS_ENABLED = '1';
+    const STATUS_DISABLED = '0';
 
     protected $fillable = ['id'];
 

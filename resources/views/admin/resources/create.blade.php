@@ -2,20 +2,28 @@
 
 @section('title', 'Nuova risorsa')
 
-@section('main')
-    <header class="admin-header">
-        <h1>Crea nuova risorsa</h1>
-    </header>
+@section('heading')
+    @include('admin.breadcrumbs', ['items' => [
+        'Risorse' => route('admin.resources.index'),
+        'Nuova risorsa',
+    ]])
+@endsection
 
-    <form action="{{ route('admin.resources.store') }}" method="post" class="main">
-        {{ csrf_field() }}
+@section('topbar')
+    <div class="row topbar">
+        <div class="col">
+            <p>Crea una nuova risorsa</p>
+        </div>
+        <div class="col push-right button-group">
+            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+        </div>
+    </div>
+@endsection
 
-        @if ($errors->has('name'))
-            <div class="error">{{ $errors->first('name') }}</div>
-        @endif
-        <label for="name">Nome</label>
-        <input type="text" name="name" value="{{ old('name') }}">
+@section('content')
+    {!! Form::open(['route' => 'admin.resources.store', 'method' => 'post', 'id' => 'form-edit']) !!}
 
-        <button type="submit">Salva</button>
-    </form>
+    @include('admin.resources.form')
+
+    {!! Form::close() !!}
 @endsection

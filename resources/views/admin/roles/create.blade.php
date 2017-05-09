@@ -2,23 +2,41 @@
 
 @section('title', 'Nuovo ruolo')
 
-@section('main')
-    <header class="admin-header">
-        <h1>Crea un nuovo ruolo</h1>
-    </header>
+@section('heading')
+    @include('admin.breadcrumbs', ['items' => [
+        'Ruoli' => route('admin.roles.index'),
+        'Nuovo ruolo',
+    ]])
+@endsection
 
-    <form action="{{ route('admin.roles.store') }}" method="post">
-            {{ csrf_field() }}
+@section('topbar')
+    <div class="row topbar">
+        <div class="col">
+            <p>Crea un nuovo ruolo</p>
+        </div>
+        <div class="col push-right button-group">
+            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+        </div>
+    </div>
+@endsection
 
+@section('content')
+    <form action="{{ route('admin.roles.store') }}" method="post" class="form" id="form-edit">
+        {{ csrf_field() }}
+
+        <div class="form-item">
             @include('form.error', ['field' => 'id'])
             <label for="id">Identificatore</label>
             <input type="text" name="id" value="{{ old('id') }}">
+        </div>
 
+        <div class="form-item">
             @include('form.error', ['field' => 'name'])
             <label for="name">Nome</label>
             <input type="text" name="name" value="{{ old('name') }}">
+        </div>
 
-            <button type="submit">Salva</button>
+        <input type="submit" id="save" class="hide">
     </form>
-
 @endsection
+

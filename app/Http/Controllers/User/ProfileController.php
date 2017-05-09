@@ -31,7 +31,7 @@ class ProfileController extends Controller
      public function update(UpdateProfile $request)
      {
          $user = Auth::user();
-         $attributes = $request->except('password');
+         $attributes = $request->only('email', 'phone_number');
 
          if ($request->has('password')) {
              $attributes['password'] = bcrypt($request->get('password'));
@@ -39,18 +39,8 @@ class ProfileController extends Controller
 
          $user->update($attributes);
 
+         flash('Il tuo profilo è stato aggiornato.', 'success');
+
          return redirect()->route('profile');
      }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $user = Auth::user();
-
-        return view('user.profile', compact('user'));
-    }
 }

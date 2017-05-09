@@ -9,10 +9,44 @@
     <body class="@yield('class')">
 
         @yield('navigation')
+        
+        <main id="main">
 
-        <main id="main" class="container">
-            @include('flash::message')
-            @yield('main')
+            @section('main')
+
+                <div id="sidebar">
+                    @section('sidebar')
+                        @include('sidebar')
+                    @show
+                </div>
+
+                <div id="content">
+
+                    <div class="content-heading container">
+                        <div class="row gutters">
+                            <div class="col col-8">
+                                @yield('heading')
+                            </div>
+                            <div class="col col-4">
+                                @if(Auth::check())
+                                    @include('user_navigation')
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    @yield('topbar')
+
+                    <div class="container">
+                        @include('flash::message')
+                    </div>
+
+                    <div class="container">
+                        @yield('content')
+                    </div>
+                </div>
+
+            @show
 
         </main>
 
@@ -24,9 +58,10 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
             <script>$('select.autocomplete').selectize();</script>
         @show
+        @section('stylesheets')
+            <link rel="stylesheet" href="{{ asset('assets/css/datepicker.css') }}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        @show
     </body>
-    @section('stylesheets')
-        <link rel="stylesheet" href="{{ asset('assets/css/datepicker.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css">
-    @show
 </html>

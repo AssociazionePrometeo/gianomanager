@@ -29,8 +29,8 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        $users = User::all('name', 'email', 'id');
-        $resources = Resource::all('name', 'id');
+        $users = $this->getUsers();
+        $resources = Resource::pluck('name', 'id');
 
         return view('admin.reservations.create', compact('users', 'resources'));
     }
@@ -67,8 +67,8 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        $users = User::all('name', 'email', 'id');
-        $resources = Resource::all('name', 'id');
+        $users = $this->getUsers();
+        $resources = Resource::pluck('name', 'id');
 
         return view('admin.reservations.edit', compact('reservation', 'users', 'resources'));
     }
@@ -133,5 +133,12 @@ class ReservationController extends Controller
         $date->setTime($time['hour'], $time['minute']);
 
         return $date;
+    }
+
+    protected function getUsers()
+    {
+        return User::all('name', 'email', 'id')->mapWithKeys(function($user) {
+            return [$user->id => "{$user->name} ({$user->email})"];
+        });
     }
 }

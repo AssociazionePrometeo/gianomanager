@@ -1,18 +1,36 @@
 @extends('admin.layout')
 
-@section('title', 'Nuovo utente')
+@section('title', 'Modifica utente')
 
-@section('main')
-    <header class="admin-header">
-        <h1>Crea un nuovo utente</h1>
-    </header>
+@section('heading')
+    @include('admin.breadcrumbs', ['items' => [
+        'Utenti' => route('admin.users.index'),
+        'Crea utente',
+    ]])
+@endsection
 
-    {!! Form::open(['route' => 'admin.users.store', 'method' => 'post']) !!}
+@section('topbar')
+    <div class="row topbar">
+        <div class="col">
+            <p>Crea un nuovo utente</p>
+        </div>
+        <div class="col push-right button-group">
+            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+        </div>
+    </div>
+@endsection
 
-        @include('admin.users.form')
+@section('content')
+    <div class="row">
+        <div class="col col-12">
+            {!! Form::open(['route' => 'admin.users.store', 'method' => 'post', 'id' => 'form-edit']) !!}
 
-        <button type="submit">Salva</button>
-
-    {!! Form::close() !!}
+                @include('admin.users.form')
+                <input type="submit" id="save" class="hide">
+            {!! Form::close() !!}
+        </div>
+    </div>
 
 @endsection
+
+

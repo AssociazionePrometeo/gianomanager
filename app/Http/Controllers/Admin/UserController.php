@@ -100,6 +100,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->id == \Auth::id()) {
+            flash("You cannot delete your account.", "error");
+
+            return redirect()->back();
+        }
+
         $user->delete();
 
         return redirect()->route('admin.users.index');

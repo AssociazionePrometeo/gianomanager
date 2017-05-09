@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Card;
-use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -18,24 +17,38 @@ class CardController extends Controller
      */
     public function index()
     {
-      $cards = Card::all()->where('user_id', '=', Auth::id());
-      return view('user.card', compact('cards'));
+        $user = Auth::user();
+
+        return view('user.cards.index', compact('user'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Disable the card.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function lock(Request $id)
+    public function lock(Card $card)
     {
-      $card->id = get('id');
-      $card->status = 'disabled';
-      $card->save();
+        $this->authorize('disable', $card);
 
-      return redirect()->route('user.card');
+        $card->disable()->save();
+
+        return redirect()->route('cards.index');
     }
 
+    /**
+     * Enable the card.
+     *
+     * @param  Card  $card
+     * @return \Illuminate\Http\Response
+     */
+    public function unlock(Card $card)
+    {
+        $this->authorize('enable', $card);
+
+        $card->enable()->save();
+
+        return redirect()->route('cards.index');
+    }
 }

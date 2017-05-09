@@ -1,57 +1,63 @@
-@import "../kube/kube";
 @import "_variables";
+@import "../kube/kube";
 @import "_buttons";
+@import "_forms";
+@import "_login";
+@import "_sidebar";
+@import "_content";
 
 ///////////////////////////////////////
 // Layout                            //
 ///////////////////////////////////////
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+html, body {
+  height: 100%;
+}
+
+#main, #sidebar {
+  min-height: 100%;
 }
 
 #main {
-  margin-top: $base-line;
+  @include grid-row;
 }
 
-///////////////////////////////////////
-// Navigation                        //
-///////////////////////////////////////
-#navigation {
-  border-top: 4px solid $color-focus;
-  border-bottom: 1px solid $color-gray;
-  padding: $base-line/2 0;
-  @include clearfix;
-
-  li {
-    display: inline-block;
-
-    a {
-      text-decoration: none;
-      display: block;
-    }
-  }
-
-  .site-title {
-    margin-right: 2rem;
-  }
-
-  .site-title, .primary, .secondary {
-    display: inline;
-    line-height: $base-line;
-  }
-
-  .primary li {
-    margin-right: 1rem;
-  }
-
-  .secondary li {
-    margin-left: 1rem;
-  }
-
+#sidebar {
+  @include flex-item-width(270px);
 }
 
+#content {
+  @include flex-item-auto;
+}
+
+.sidebar-heading, .content-heading {
+  height: 3*$base-line;
+}
+
+.row.no-margin {
+  margin: 0;
+}
+
+.container {
+  padding: 0 2rem;
+}
+
+.dropdown.open {
+  overflow: hidden;
+}
+
+.topbar {
+  padding: $base-line/2 2rem;
+}
+
+.box {
+  //padding: $base-line 2rem;
+}
+
+.spaced {
+  padding-top: $base-line/2;
+  padding-bottom: $base-line/2;
+}
 
 ///////////////////////////////////////
 // Tables                            //
@@ -61,4 +67,8 @@ table th.actions {
 }
 table td.actions {
   text-align: right;
+}
+
+td {
+  vertical-align: middle;
 }

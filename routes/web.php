@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return response()->redirectToRoute('login');
 });
 
 Route::get('/home', function () {
@@ -22,8 +22,9 @@ Route::get('/home', function () {
 Route::group(['namespace' => 'User', 'middleware' => 'auth'], function(){
   Route::get('/profile', 'ProfileController@edit')->name('profile');
   Route::put('/profile', 'ProfileController@update')->name('profile.update');
-  Route::get('/card', 'CardController@index')->name('card');
-  Route::put('/card', 'CardController@update')->name('card.lock');
+  Route::get('/cards', 'CardController@index')->name('cards.index');
+  Route::put('/cards/{card}/lock', 'CardController@lock')->name('cards.lock');
+  Route::put('/cards/{card}/unlock', 'CardController@unlock')->name('cards.unlock');
 });
 
 Auth::routes();

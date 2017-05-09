@@ -1,4 +1,4 @@
-<div class="form-item">
+<div class="form-item{{ $errors->has($name) ? ' error' : ''}}">
     <label for="{{ $name }}">
         {{ $label }}
         @if(isset($required) && $required)
@@ -7,11 +7,11 @@
         @if($errors->has($name))
             <span class="error">{{ $errors->first($name) }}</span>
         @endif
-        @if(isset($desc))
-            <div class="desc">{{ $desc }}</div>
-        @endif
     </label>
 
     {!! $field !!}
 
+    @if(isset($desc))
+        <div class="desc">{{ $desc }}</div>
+    @endif
 </div>

@@ -2,28 +2,37 @@
 
 @section('title', 'Modifica risorsa')
 
-@section('main')
+@section('heading')
+    @include('admin.breadcrumbs', ['items' => [
+        'Risorse' => route('admin.resources.index'),
+        'Modifica risorsa',
+    ]])
+@endsection
 
-    <header class="admin-header">
-        <h1>Modifica <em>{{ $resource->name }}</em></h1>
+@section('topbar')
+    <div class="row topbar">
+        <div class="col">
+            <p>Modifica risorsa <em>{{ $resource->name }}</em></p>
+        </div>
+        <div class="col push-right button-group">
+            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+        </div>
+    </div>
+@endsection
 
-        <form action="{{ route('admin.resources.destroy', $resource) }}" method="post" class="delete">
-            {{ method_field('DELETE') }}
-            {{ csrf_field() }}
-            <button type="submit" class="button delete">Elimina</button>
-        </form>
-    </header>
+@section('content')
+    {!! Form::model($resource, [
+        'route' => ['admin.resources.update', $resource],
+        'method' => 'put',
+        'class' => 'form',
+        'id' => 'form-edit'
+    ]) !!}
 
-    <form action="{{ route('admin.resources.update', $resource) }}" method="post" class="main">
-        {{ method_field('PUT') }}
-        {{ csrf_field() }}
+    @include('admin.resources.form')
 
-        @if ($errors->has('name'))
-            <div class="error">{{ $errors->first('name') }}</div>
-        @endif
-        <label for="name">Nome</label>
-        <input type="text" name="name" value="{{ old('name', $resource->name) }}">
+    {!! Form::close() !!}
 
-        <button type="submit">Salva</button>
-    </form>
+    {!! Form::open(['route' => ['admin.resources.destroy', $resource], 'method' => 'delete', 'id' => 'form-delete']) !!}{!! Form::close() !!}
+
 @endsection

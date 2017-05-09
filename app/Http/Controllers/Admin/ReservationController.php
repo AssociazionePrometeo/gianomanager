@@ -46,19 +46,17 @@ class ReservationController extends Controller
         $this->validate($request, [
             'user_id' => 'required|exists:users,id',
             'resource_id' => 'required|exists:resources,id',
-            'start_date' => 'required|date|after:yesterday',
-            'end_date' => 'required|date',
-            'start_time' => 'required|date_format:H:i|after:yesterday',
-            'end_time' => 'required|date_format:H:i',
+            'starts_at' => 'required|date|after:yesterday',
+            'ends_at' => 'required|date',
         ]);
-        $reservation = new Reservation;
-        $this->updateTimeFields($reservation, $request);
+        $reservation = new Reservation($request->only('starts_at', 'ends_at'));
         $reservation->user()->associate($request->get('user_id'));
         $reservation->resource()->associate($request->get('resource_id'));
         $reservation->save();
 
         return redirect()->route('admin.reservations.index');
     }
+
     /**
      * Show the form for editing the specified reservation.
      *
@@ -85,15 +83,14 @@ class ReservationController extends Controller
         $this->validate($request, [
             'resource_id' => 'required|exists:resources,id',
             'user_id' => 'required|exists:users,id',
-            'start_date' => 'required|date|after:yesterday',
-            'end_date' => 'required|date',
-            'start_time' => 'required|date_format:H:i|after:yesterday',
-            'end_time' => 'required|date_format:H:i',
+            'starts_at' => 'required|date|after:yesterday',
+            'ends_at' => 'required|date',
         ]);
 
         $reservation->user()->associate($request->get('user_id'));
         $reservation->resource()->associate($request->get('resource_id'));
-        $this->updateTimeFields($reservation, $request);
+        $reservation->starts_at = $request->get('starts_at');
+        $reservation->ends_at = $request->get('ends_at');
         $reservation->save();
 
         return redirect()->route('admin.reservations.index');
@@ -110,31 +107,7 @@ class ReservationController extends Controller
 
         return redirect()->route('admin.reservations.index');
     }
-
-    protected function updateTimeFields(Reservation &$reservation, $request)
-    {
-        $reservation->starts_at = $this->parseDateTime(
-            $request->get('start_date'),
-            $request->get('start_time')
-        );
-        $reservation->ends_at = $this->parseDateTime(
-            $request->get('end_date'),
-            $request->get('end_time')
-        );
-
-        return $reservation;
-    }
-
-    protected function parseDateTime($date, $time)
-    {
-        $time = date_parse_from_format('H:i', $time);
-        $time['minute'] -= $time['minute'] % 30;
-        $date = new DateTime($date);
-        $date->setTime($time['hour'], $time['minute']);
-
-        return $date;
-    }
-
+    
     protected function getUsers()
     {
         return User::all('name', 'email', 'id')->mapWithKeys(function($user) {

@@ -12,6 +12,8 @@ class Reservation extends Model
 
     protected $appends = ['card_id'];
 
+    protected $fillable = ['starts_at', 'ends_at'];
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -20,25 +22,5 @@ class Reservation extends Model
     public function resource()
     {
         return $this->belongsTo('App\Resource');
-    }
-
-    public function getStartDateAttribute()
-    {
-        return $this->getAttribute('starts_at')->format('Y-m-d');
-    }
-
-    public function getStartTimeAttribute()
-    {
-        return $this->getAttribute('starts_at')->format('H:i');
-    }
-
-    public function getEndDateAttribute()
-    {
-        return $this->getAttribute('ends_at')->format('Y-m-d');
-    }
-
-    public function getEndTimeAttribute()
-    {
-        return $this->getAttribute('ends_at')->format('H:i');
     }
 }

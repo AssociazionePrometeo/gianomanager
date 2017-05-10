@@ -16,7 +16,7 @@ class CreateCardsTable extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->string('id')->unique();
             $table->integer('user_id')->unsigned();
-            $table->enum('status', ['enabled', 'disabled'])->default('disabled');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

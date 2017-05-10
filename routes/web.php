@@ -25,6 +25,14 @@ Route::group(['namespace' => 'User', 'middleware' => 'auth'], function(){
   Route::get('/cards', 'CardController@index')->name('cards.index');
   Route::put('/cards/{card}/lock', 'CardController@lock')->name('cards.lock');
   Route::put('/cards/{card}/unlock', 'CardController@unlock')->name('cards.unlock');
+  Route::get('/reservations', 'ReservationController@index')->name('reservations.index');
+  Route::get('/reservations/{reservation}/edit', 'ReservationController@edit')->name('reservations.edit');
+  Route::put('/reservations/update', 'ReservationController@update')->name('reservations.update');
+  Route::post('/reservations/store', 'ReservationController@store')->name('reservations.store');
+  Route::get('/reservations/create', 'ReservationController@create')->name('reservations.create');
+  Route::delete('/reservations/{reservation}/destroy', 'ReservationController@destroy')->name('reservations.destroy');
+
+
 });
 
 Auth::routes();

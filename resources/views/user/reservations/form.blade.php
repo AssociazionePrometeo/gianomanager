@@ -5,33 +5,20 @@
 ])
 
 <div class="form-item">
-    <label>
-        Inizio prenotazione
-        @include('form.error', ['field' => 'start_date'])
-        @include('form.error', ['field' => 'start_time'])
-    </label>
     <div class="row gutters">
         <div class="col col-6">
-            {!! Form::date('start_date') !!}
+            @include('form.item', [
+                'name' => 'starts_at',
+                'label' => 'Inizio prenotazione',
+                'field' => Form::datetime('starts_at', null, ['class' => 'datetimepicker'])
+               ])
         </div>
         <div class="col col-6">
-            {!! Form::time('start_time') !!}
-        </div>
-    </div>
-</div>
-
-<div class="form-item">
-    <label>
-        Fine prenotazione
-        @include('form.error', ['field' => 'end_date'])
-        @include('form.error', ['field' => 'end_time'])
-    </label>
-    <div class="row gutters">
-        <div class="col col-6">
-            {!! Form::date('end_date') !!}
-        </div>
-        <div class="col col-6">
-            {!! Form::time('end_time') !!}
+            @include('form.item', [
+                'name' => 'ends_at',
+                'label' => 'Fine prenotazione',
+                'field' => Form::datetime('ends_at', null, ['class' => 'datetimepicker'])
+               ])
         </div>
     </div>
 </div>

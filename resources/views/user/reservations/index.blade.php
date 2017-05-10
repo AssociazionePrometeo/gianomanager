@@ -39,11 +39,12 @@
                     <td>{{ $reservation->starts_at->format('j F Y – H:i') }}</td>
                     <td>{{ $reservation->ends_at->format('j F Y – H:i') }}</td>
                     <td class="actions">
-                        <a href="{{ route('reservations.edit', $reservation) }}" class="button edit small" role="button">Modifica</a>
+                        <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    {!! Form::open(['route' => ['reservations.destroy', $reservation], 'method' => 'delete', 'id' => 'form-delete']) !!}{!! Form::close() !!}
 
 @endsection

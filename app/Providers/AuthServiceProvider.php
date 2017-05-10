@@ -3,8 +3,15 @@
 namespace App\Providers;
 
 use App\Card;
+use App\Role;
+use App\User;
+use App\Resource;
+use App\Reservation;
+use App\Policies\UserPolicy;
+use App\Policies\RolePolicy;
 use App\Policies\CardPolicy;
-use Illuminate\Support\Facades\Gate;
+use App\Policies\ResourcePolicy;
+use App\Policies\ReservationPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -16,6 +23,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Card::class => CardPolicy::class,
+        User::class => UserPolicy::class,
+        Role::class => RolePolicy::class,
+        Reservation::class => ReservationPolicy::class,
+        Resource::class => ResourcePolicy::class,
     ];
 
     /**

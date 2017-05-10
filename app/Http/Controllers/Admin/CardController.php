@@ -16,6 +16,8 @@ class CardController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', Card::class);
+
         $cards = Card::all();
 
         return view('admin.cards.index', compact('cards'));
@@ -27,6 +29,8 @@ class CardController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Card::class);
+
         $users = $this->getUsers();
 
         return view('admin.cards.create', compact('users'));
@@ -40,6 +44,8 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('update', Card::class);
+
         $this->validate($request, [
             'id' => 'required|unique:cards,id',
             'user_id' => 'required|exists:users,id',
@@ -54,6 +60,7 @@ class CardController extends Controller
 
         return redirect()->route('admin.cards.index');
     }
+
     /**
      * Show the form for editing the specified card.
      *
@@ -62,6 +69,8 @@ class CardController extends Controller
      */
     public function edit(Card $card)
     {
+        $this->authorize('update', $card);
+
         $users = $this->getUsers();
 
         return view('admin.cards.edit', compact('card', 'users'));
@@ -76,6 +85,8 @@ class CardController extends Controller
      */
     public function update(Card $card, Request $request)
     {
+        $this->authorize('update', $card);
+
         $this->validate($request, [
             'id' => 'required|unique:cards,id,'.$card->id,
             'user_id' => 'required|exists:users,id',
@@ -89,6 +100,7 @@ class CardController extends Controller
 
         return redirect()->route('admin.cards.index');
     }
+
     /**
      * Remove the specified card from storage.
      *
@@ -97,7 +109,10 @@ class CardController extends Controller
      */
     public function destroy(Card $card)
     {
+        $this->authorize('delete', $card);
+
         $card->delete();
+
         return redirect()->route('admin.cards.index');
     }
 

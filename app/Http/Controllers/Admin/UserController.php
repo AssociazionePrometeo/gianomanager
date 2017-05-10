@@ -18,6 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', User::class);
+
         $users = User::all();
 
         return view('admin.users.index', compact('users'));
@@ -29,6 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
+
         $roles = Role::pluck('name', 'id');
 
         return view('admin.users.create', compact('roles'));
@@ -43,11 +47,16 @@ class UserController extends Controller
     public function store(StoreUser $request)
     {
         $request['password'] = bcrypt($request->get('password'));
-        $user = User::create($request->all());
+        $user = new User($request->all());
+
+        $this->authorize('create', $user);
+
+        $user->save();
         $user->roles()->sync($request->get('roles'));
 
         return redirect()->route('admin.users.index');
     }
+
     /**
      * Display the specified user.
      *
@@ -56,8 +65,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $this->authorize('view', $user);
+
         return view('admin.users.show', compact('user'));
     }
+
     /**
      * Show the form for editing the specified user.
      *
@@ -66,6 +78,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
+
         $roles = Role::pluck('name', 'id');
 
         return view('admin.users.edit', compact('user', 'roles'));
@@ -80,6 +94,8 @@ class UserController extends Controller
      */
     public function update(User $user, StoreUser $request)
     {
+        $this->authorize('update', $user);
+
         $attributes = $request->except('password');
 
         if ($request->has('password')) {
@@ -100,6 +116,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('delete', $user);
+
         if ($user->id == \Auth::id()) {
             flash("You cannot delete your account.", "error");
 

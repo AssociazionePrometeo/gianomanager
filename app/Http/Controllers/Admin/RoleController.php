@@ -16,10 +16,13 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', Role::class);
+
         $roles = Role::all();
 
         return view('admin.roles.index', compact('roles'));
     }
+
     /**
      * Show the form for creating a new group.
      *
@@ -27,7 +30,11 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.roles.create');
+        $this->authorize('create', Role::class);
+
+        $permissions = $this->getPermissions();
+
+        return view('admin.roles.create', compact('permissions'));
     }
 
     /**
@@ -38,13 +45,14 @@ class RoleController extends Controller
      */
     public function store(StoreRole $request)
     {
-        $role = new Role($request->only('id', 'name'));
-        // @TODO: manage permissions
-        $role->permissions = [];
+        $this->authorize('create', Role::class);
+
+        $role = new Role($request->only('id', 'name', 'permissions'));
         $role->save();
 
         return redirect()->route('admin.roles.index');
     }
+
     /**
      * Display the specified role.
      *
@@ -53,8 +61,11 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        $this->authorize('view', $role);
+
         return view('admin.roles.show', compact('role'));
     }
+
     /**
      * Show the form for editing the specified role.
      *
@@ -63,13 +74,17 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        $this->authorize('update', $role);
+
         if ($role->isProtected()) {
             flash("Il ruolo {$role->name} non può essere modificato", 'error');
 
             return redirect()->back();
         }
 
-        return view('admin.roles.edit', compact('role'));
+        $permissions = $this->getPermissions();
+
+        return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -81,13 +96,15 @@ class RoleController extends Controller
      */
     public function update(Role $role, StoreRole $request)
     {
+        $this->authorize('update', $role);
+
         if ($role->isProtected()) {
             flash("Il ruolo {$role->name} non può essere modificato", 'error');
 
             return redirect()->back();
         }
 
-        $role->update($request->only('name'));
+        $role->update($request->only('name', 'permissions'));
 
         return redirect()->route('admin.roles.index');
     }
@@ -100,7 +117,26 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        $this->authorize('delete', $role);
+
         $role->delete();
 
         return redirect()->route('admin.roles.index');
-    }}
+    }
+
+    protected function getPermissions()
+    {
+        $models = ['card', 'resource', 'reservation', 'role', 'user'];
+        $abilities = ['view', 'create', 'update', 'delete'];
+
+        $permissions = [];
+
+        foreach($models as $model) {
+            foreach($abilities as $ability) {
+                $permissions[] = $model . '-' . $ability;
+            }
+        }
+
+        return $permissions;
+    }
+}

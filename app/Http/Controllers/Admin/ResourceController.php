@@ -15,6 +15,8 @@ class ResourceController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', Resource::class);
+
         $resources = Resource::all();
 
         return view('admin.resources.index', ['resources' => $resources]);
@@ -26,6 +28,8 @@ class ResourceController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Resource::class);
+
         return view('admin.resources.create');
     }
 
@@ -37,6 +41,8 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Resource::class);
+
         $this->validate($request, [
             'name' => 'required'
         ]);
@@ -53,6 +59,8 @@ class ResourceController extends Controller
      */
     public function show(Resource $resource)
     {
+        $this->authorize('show', $resource);
+
         return view('admin.resources.show', compact('resource'));
     }
 
@@ -64,6 +72,8 @@ class ResourceController extends Controller
      */
     public function edit(Resource $resource)
     {
+        $this->authorize('update', $resource);
+
         return view('admin.resources.edit', ['resource' => $resource]);
     }
 
@@ -76,6 +86,8 @@ class ResourceController extends Controller
      */
     public function update(Resource $resource, Request $request)
     {
+        $this->authorize('update', $resource);
+
         $this->validate($request, [
             'name' => 'required',
         ]);
@@ -93,6 +105,8 @@ class ResourceController extends Controller
      */
     public function destroy(Resource $resource)
     {
+        $this->authorize('delete', $resource);
+
         $resource->delete();
 
         return redirect()->route('admin.resources.index');

@@ -23,9 +23,9 @@
         @foreach($user->cards as $card)
             <tr>
                 <td><span class="monospace">{{ $card->id }}</span></td>
-                <td><span class="label {{ $card->isEnabled() ? 'success' : 'default' }}">{{ $card->isEnabled() ? 'Abilitata' : 'Disabilitata' }}</span></td>
+                <td><span class="label {{ $card->active ? 'success' : 'default' }}">{{ $card->active ? 'Abilitata' : 'Disabilitata' }}</span></td>
                 <td class="actions">
-                    @if($card->isEnabled())
+                    @if($card->active)
                         {!! Form::open(['route' => ['cards.lock', $card], 'method' => 'put']) !!}
                         <button class="button outline small delete lock" type="submit">Blocca</button>
                         {!! Form::close() !!}

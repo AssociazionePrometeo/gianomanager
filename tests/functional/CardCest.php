@@ -20,7 +20,7 @@ class CardCest
 
         factory(Card::class)->create([
             'id' => 'test_card',
-            'status' => Card::STATUS_ENABLED,
+            'active' => true,
             'user_id' => $this->user->id
         ]);
 
@@ -32,7 +32,7 @@ class CardCest
         $I->seeCurrentRouteIs('cards.index');
         $I->see('test_card');
         $I->see('Disabilitata');
-        $I->seeRecord(Card::class, ['id' => 'test_card', 'status' => Card::STATUS_DISABLED]);
+        $I->seeRecord(Card::class, ['id' => 'test_card', 'active' => false]);
     }
 
     public function unlockCard(FunctionalTester $I)
@@ -41,7 +41,7 @@ class CardCest
 
         factory(Card::class)->create([
             'id' => 'test_card',
-            'status' => Card::STATUS_DISABLED,
+            'active' => false,
             'user_id' => $this->user->id
         ]);
 
@@ -53,6 +53,6 @@ class CardCest
         $I->seeCurrentRouteIs('cards.index');
         $I->see('test_card');
         $I->see('Abilitata');
-        $I->seeRecord(Card::class, ['id' => 'test_card', 'status' => Card::STATUS_ENABLED]);
+        $I->seeRecord(Card::class, ['id' => 'test_card', 'active' => true]);
     }
 }

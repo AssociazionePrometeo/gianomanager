@@ -25,6 +25,8 @@ Route::group(['namespace' => 'User', 'middleware' => 'auth'], function(){
   Route::get('/cards', 'CardController@index')->name('cards.index');
   Route::put('/cards/{card}/lock', 'CardController@lock')->name('cards.lock');
   Route::put('/cards/{card}/unlock', 'CardController@unlock')->name('cards.unlock');
+  Route::resource('reservations', 'ReservationController', ['only' => ['index', 'create', 'store', 'destroy',]]);
+
 });
 
 Auth::routes();

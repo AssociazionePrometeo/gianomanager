@@ -42,10 +42,13 @@ class CardController extends Controller
     {
         $this->validate($request, [
             'id' => 'required|unique:cards,id',
-            'user_id' => 'required|exists:users,id'
+            'user_id' => 'required|exists:users,id',
+            'active' => 'boolean',
         ]);
 
-        $card = new Card($request->only('id'));
+        $card = new Card();
+        $card->id = $request->get('id');
+        $card->active = $request->get('active', false);
         $card->user()->associate($request->get('user_id'));
         $card->save();
 
@@ -76,16 +79,12 @@ class CardController extends Controller
         $this->validate($request, [
             'id' => 'required|unique:cards,id,'.$card->id,
             'user_id' => 'required|exists:users,id',
-
+            'active' => 'boolean',
         ]);
 
         $card->id = $request->get('id');
+        $card->active = $request->get('active', false);
         $card->user()->associate($request->get('user_id'));
-        if ($request->get('status') != null){
-        $card->status = $request->get('status');
-      }else{
-        $card->status = "0";
-      }
         $card->save();
 
         return redirect()->route('admin.cards.index');

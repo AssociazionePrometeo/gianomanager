@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    const STATUS_ENABLED = '1';
-    const STATUS_DISABLED = '0';
-
     protected $fillable = ['id'];
 
     public $incrementing = false;
@@ -18,21 +15,16 @@ class Card extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function isEnabled()
-    {
-        return $this->status == self::STATUS_ENABLED;
-    }
-
     public function disable()
     {
-        $this->status = self::STATUS_DISABLED;
+        $this->active = false;
 
         return $this;
     }
 
     public function enable()
     {
-        $this->status = self::STATUS_ENABLED;
+        $this->active = true;
 
         return $this;
     }

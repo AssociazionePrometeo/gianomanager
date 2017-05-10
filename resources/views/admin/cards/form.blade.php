@@ -11,7 +11,7 @@
 ])
 
 @include('form.item', [
-    'name'  => 'status',
+    'name'  => 'active',
     'label' => 'Attivo',
-    'field' => Form::checkbox('status'),
+    'field' => Form::checkbox('active'),
 ])

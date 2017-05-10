@@ -31,7 +31,7 @@ $selectedRoles = isset($user) ? $user->roles->pluck('id')->toArray() : null;
 @include('form.item', [
     'name'  => 'expires_at',
     'label' => 'Data di scadenza',
-    'field' => Form::date('expires_at'),
+    'field' => Form::date('expires_at', null, ['class' => 'datepicker']),
 ])
 
 @include('form.item', [

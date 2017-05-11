@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\StoreUser;
+use Auth;
 use App\Role;
 use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Collection;
+use App\Http\Requests\Admin\StoreUser;
 
 class UserController extends Controller
 {
@@ -33,7 +32,7 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
 
-        $roles = Role::pluck('name', 'id');
+        $roles = $this->getRoles();
 
         return view('admin.users.create', compact('roles'));
     }
@@ -80,7 +79,7 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        $roles = Role::pluck('name', 'id');
+        $roles = $this->getRoles();
 
         return view('admin.users.edit', compact('user', 'roles'));
     }
@@ -127,5 +126,19 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('admin.users.index');
+    }
+
+    protected function getRoles()
+    {
+        $roles = Role::pluck('name', 'id');
+
+        // A non-admin user cannot assign the administrator role.
+        // Robust validation is done in `StoreUser`, here we just
+        // want to hide the role in the select options.
+        if (!Auth::user()->isAdmin()) {
+            unset($roles['admin']);
+        }
+
+        return $roles;
     }
 }

@@ -7,7 +7,7 @@
 @include('form.item', [
     'name' => 'user_id',
     'label' => trans_choice('models.user', 1),
-    'field' => Form::select('user_id', $users),
+    'field' => Form::select('user_id', $users, null, ['class' => 'autocomplete']),
 ])
 
 @include('form.item', [

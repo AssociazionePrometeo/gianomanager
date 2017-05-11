@@ -12,10 +12,12 @@
             <p>Lista risorse</p>
         </div>
         <div class="col push-right">
+            @can('create', App\Resource::class)
             <a href="{{ route('admin.resources.create') }}" class="button primary outline" role="button">
                 <i class="material-icons">add</i>
                 Aggiungi nuova
             </a>
+            @endcan
         </div>
     </div>
 @endsection
@@ -35,7 +37,9 @@
                     <td>{{ $resource->id }}</td>
                     <td>{{ $resource->name }}</td>
                     <td class="actions">
+                        @can('update', $resource)
                         <a href="{{ route('admin.resources.edit', $resource) }}" class="button edit small" role="button">Modifica</a>
+                        @endcan
                     </td>
                 </tr>
             @endforeach

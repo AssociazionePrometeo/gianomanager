@@ -12,10 +12,12 @@
             <p>Lista ruoli</p>
         </div>
         <div class="col push-right">
+            @can('create', App\Role::class)
             <a href="{{ route('admin.roles.create') }}" class="button primary outline" role="button">
                 <i class="material-icons">add</i>
                 Aggiungi nuovo
             </a>
+            @endcan
         </div>
     </div>
 @endsection
@@ -35,9 +37,11 @@
                 <td>{{ $role->id }}</td>
                 <td>{{ $role->name }}</td>
                 <td class="actions">
+                    @can('update', $role)
                     @if(!$role->isProtected())
                         <a href="{{ route('admin.roles.edit', $role) }}" class="button edit small" role="button">Modifica</a>
                     @endif
+                    @endcan
                 </td>
             </tr>
         @endforeach

@@ -12,10 +12,12 @@
             <p>Lista tessere</p>
         </div>
         <div class="col push-right">
+            @can('create', App\Card::class)
             <a href="{{ route('admin.cards.create') }}" class="button primary outline" role="button">
                 <i class="material-icons">add</i>
                 Aggiungi nuova
             </a>
+            @endcan
         </div>
     </div>
 @endsection
@@ -35,7 +37,9 @@
                     <td>{{ $card->id }}</td>
                     <td>{{ $card->user->name }}</td>
                     <td class="actions">
+                        @can('update', $card)
                         <a href="{{ route('admin.cards.edit', $card) }}" class="button edit small" role="button">Modifica</a>
+                        @endcan
                     </td>
                 </tr>
             @endforeach

@@ -53,7 +53,7 @@
 
         @section('stylesheets')
             <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css">
+            <link rel="stylesheet" href="{{ asset('assets/css/selectize.css') }}">
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         @show
 
@@ -61,7 +61,7 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
             <script src="{{ asset('assets/js/kube.js') }}"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
-            <script>$('select.autocomplete').selectize();</script>
+            <script>$('select.autocomplete').selectize({plugins: ['remove_button']});</script>
             <script src="https://unpkg.com/flatpickr"></script>
             <script>
                 $('input.datepicker').flatpickr();

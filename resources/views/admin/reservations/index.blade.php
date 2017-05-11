@@ -12,10 +12,12 @@
             <p>Lista prenotazioni</p>
         </div>
         <div class="col push-right">
+            @can('create', App\Reservation::class)
             <a href="{{ route('admin.reservations.create') }}" class="button primary outline" role="button">
                 <i class="material-icons">add</i>
                 Aggiungi nuova
             </a>
+            @endcan
         </div>
     </div>
 @endsection
@@ -41,7 +43,9 @@
                     <td>{{ $reservation->starts_at->format('j F Y – H:i') }}</td>
                     <td>{{ $reservation->ends_at->format('j F Y – H:i') }}</td>
                     <td class="actions">
+                        @can('update', $reservation)
                         <a href="{{ route('admin.reservations.edit', $reservation) }}" class="button edit small" role="button">Modifica</a>
+                        @endcan
                     </td>
                 </tr>
             @endforeach

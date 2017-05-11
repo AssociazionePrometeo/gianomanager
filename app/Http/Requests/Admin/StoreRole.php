@@ -25,6 +25,8 @@ class StoreRole extends FormRequest
     {
         $rules = [
             'name' => 'required',
+            'permissions' => 'array',
+            'permissions.*' => 'boolean',
         ];
 
         if ($this->route('role') == null) {

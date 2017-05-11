@@ -21,22 +21,14 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('admin.roles.store') }}" method="post" class="form" id="form-edit">
-        {{ csrf_field() }}
+    <div class="row">
+        <form action="{{ route('admin.roles.store') }}" method="post" class="form" id="form-edit">
+            {{ csrf_field() }}
 
-        <div class="form-item">
-            @include('form.error', ['field' => 'id'])
-            <label for="id">Identificatore</label>
-            <input type="text" name="id" value="{{ old('id') }}">
-        </div>
+            @include('admin.roles.form')
 
-        <div class="form-item">
-            @include('form.error', ['field' => 'name'])
-            <label for="name">Nome</label>
-            <input type="text" name="name" value="{{ old('name') }}">
-        </div>
-
-        <input type="submit" id="save" class="hide">
-    </form>
+            <input type="submit" id="save" class="hide">
+        </form>
+    </div>
 @endsection
 

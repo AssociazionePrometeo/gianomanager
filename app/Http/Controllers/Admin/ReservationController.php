@@ -18,6 +18,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', Reservation::class);
+
         $reservations = Reservation::all();
 
         return view('admin.reservations.index', compact('reservations'));
@@ -29,6 +31,8 @@ class ReservationController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Reservation::class);
+
         $users = $this->getUsers();
         $resources = Resource::pluck('name', 'id');
 
@@ -43,6 +47,8 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Reservation::class);
+
         $this->validate($request, [
             'user_id' => 'required|exists:users,id',
             'resource_id' => 'required|exists:resources,id',
@@ -65,6 +71,8 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
+        $this->authorize('update', $reservation);
+
         $users = $this->getUsers();
         $resources = Resource::pluck('name', 'id');
 
@@ -80,6 +88,8 @@ class ReservationController extends Controller
      */
     public function update(Reservation $reservation, Request $request)
     {
+        $this->authorize('update', $reservation);
+
         $this->validate($request, [
             'resource_id' => 'required|exists:resources,id',
             'user_id' => 'required|exists:users,id',
@@ -103,6 +113,8 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
+        $this->authorize('delete', $reservation);
+
         $reservation->delete();
 
         return redirect()->route('admin.reservations.index');

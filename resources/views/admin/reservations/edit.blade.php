@@ -15,7 +15,9 @@
             <p>Modifica prenotazione <em>#{{ $reservation->id }}</em></p>
         </div>
         <div class="col push-right button-group">
+            @can('delete', $reservation)
             <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
+            @endcan
             <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
         </div>
     </div>

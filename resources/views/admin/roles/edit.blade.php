@@ -15,28 +15,20 @@
             <p>Modifica ruolo <em>{{ $role->name }}</em></p>
         </div>
         <div class="col push-right button-group">
+            @can('delete', $role)
             <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
+            @endcan
             <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
         </div>
     </div>
 @endsection
 
 @section('content')
-    <form action="{{ route('admin.roles.update', $role) }}" method="post" class="form" id="form-edit">
+    {!! Form::model($role, ['route' => ['admin.roles.update', $role], 'method' => 'post', 'class' => 'form', 'id' => 'form-edit']) !!}
         {{ method_field('PUT') }}
         {{ csrf_field() }}
 
-        <div class="form-item">
-            @include('form.error', ['field' => 'id'])
-            <label for="id">Identificatore</label>
-            <input type="text" name="id" value="{{ old('id', $role->id) }}">
-        </div>
-
-        <div class="form-item">
-            @include('form.error', ['field' => 'name'])
-            <label for="name">Nome</label>
-            <input type="text" name="name" value="{{ old('name', $role->name) }}">
-        </div>
+        @include('admin.roles.form')
 
         <input type="submit" id="save" class="hide">
     </form>

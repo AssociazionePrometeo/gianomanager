@@ -12,10 +12,12 @@
             <p>Lista utenti</p>
         </div>
         <div class="col push-right">
+            @can('create', App\User::class)
             <a href="{{ route('admin.users.create') }}" class="button primary outline" role="button">
                 <i class="material-icons">add</i>
                 Aggiungi nuovo
             </a>
+            @endcan
         </div>
     </div>
 @endsection
@@ -37,7 +39,9 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td class="actions">
+                    @can('update', $user)
                     <a href="{{ route('admin.users.edit', $user) }}" class="button edit small" role="button">Modifica</a>
+                    @endcan
                 </td>
             </tr>
         @endforeach

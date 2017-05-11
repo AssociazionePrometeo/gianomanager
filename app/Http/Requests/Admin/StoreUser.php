@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUser extends FormRequest
@@ -31,7 +32,7 @@ class StoreUser extends FormRequest
             $passwordValidation = 'nullable|min:8';
         }
 
-        return [
+        $rules = [
             'name'         => 'required',
             'email'        => $emailValidation,
             'password'     => $passwordValidation,
@@ -39,5 +40,13 @@ class StoreUser extends FormRequest
             'expires_at'   => 'nullable|date',
             'roles'        => 'required|exists:roles,id',
         ];
+
+        // A non-admin user cannot promote herself or another user to the
+        // administrator role. That would allow for privileges escalation.
+        if (!Auth::user()->isAdmin()) {
+            $rules['roles.*'] = 'not_in:admin';
+        }
+
+        return $rules;
     }
 }

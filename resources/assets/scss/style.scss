@@ -27,7 +27,7 @@ html, body {
 }
 
 #content {
-  @include flex-item-auto;
+  @include flex-item-one;
 }
 
 .sidebar-heading, .content-heading {

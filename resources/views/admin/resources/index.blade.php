@@ -1,21 +1,21 @@
 @extends('admin.layout')
 
-@section('title', 'Risorse')
+@section('title', trans_choice('models.resource', 2))
 
 @section('heading')
-    @include('admin.breadcrumbs', ['items' => ['Risorse']])
+    @include('admin.breadcrumbs', ['items' => [trans_choice('models.resource', 2)]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Lista risorse</p>
+            <p>@lang('models.resource_list')</p>
         </div>
         <div class="col push-right">
             @can('create', App\Resource::class)
             <a href="{{ route('admin.resources.create') }}" class="button primary outline" role="button">
                 <i class="material-icons">add</i>
-                Aggiungi nuova
+                @lang('actions.add_new')
             </a>
             @endcan
         </div>
@@ -27,8 +27,8 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nome</th>
-                <th class="actions"><span>Azioni</span></th>
+                <th>@lang('models.name')</th>
+                <th class="actions"><span>@lang('actions.actions')</span></th>
             </tr>
         </thead>
         <tbody>
@@ -38,7 +38,7 @@
                     <td>{{ $resource->name }}</td>
                     <td class="actions">
                         @can('update', $resource)
-                        <a href="{{ route('admin.resources.edit', $resource) }}" class="button edit small" role="button">Modifica</a>
+                        <a href="{{ route('admin.resources.edit', $resource) }}" class="button edit small" role="button">@lang('actions.edit')</a>
                         @endcan
                     </td>
                 </tr>

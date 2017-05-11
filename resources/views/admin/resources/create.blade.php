@@ -1,21 +1,21 @@
 @extends('admin.layout')
 
-@section('title', 'Nuova risorsa')
+@section('title', __('models.resource_new'))
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Risorse' => route('admin.resources.index'),
-        'Nuova risorsa',
+        trans_choice('models.resource', 2) => route('admin.resources.index'),
+        __('models.resource_new'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Crea una nuova risorsa</p>
+            <p>@lang('models.resource_new')</p>
         </div>
         <div class="col push-right button-group">
-            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
         </div>
     </div>
 @endsection

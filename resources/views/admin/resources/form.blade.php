@@ -1,5 +1,5 @@
 @include('form.item', [
     'name' => 'name',
-    'label' => 'Nome',
+    'label' => __('models.name'),
     'field' => Form::text('name'),
 ])

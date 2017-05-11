@@ -1,12 +1,12 @@
 @include('form.item', [
     'name' => 'user_id',
-    'label' => 'Utente',
+    'label' => trans_choice('models.user', 1),
     'field' => Form::select('user_id', $users)
 ])
 
 @include('form.item', [
     'name' => 'resource_id',
-    'label' => 'Risorsa',
+    'label' => trans_choice('models.resource', 1),
     'field' => Form::select('resource_id', $resources)
 ])
 
@@ -15,14 +15,14 @@
         <div class="col col-6">
             @include('form.item', [
                 'name' => 'starts_at',
-                'label' => 'Inizio prenotazione',
+                'label' => __('models.reservation_starts_at'),
                 'field' => Form::datetime('starts_at', null, ['class' => 'datetimepicker'])
                ])
         </div>
         <div class="col col-6">
             @include('form.item', [
                 'name' => 'ends_at',
-                'label' => 'Fine prenotazione',
+                'label' => __('models.reservation_ends_at'),
                 'field' => Form::datetime('ends_at', null, ['class' => 'datetimepicker'])
                ])
         </div>

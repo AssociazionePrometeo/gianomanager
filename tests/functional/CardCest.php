@@ -26,12 +26,12 @@ class CardCest
 
         $I->amOnRoute('cards.index');
         $I->see('test_card');
-        $I->see('Abilitata');
+        $I->see(__('models.card_enabled'));
         $I->click('button.lock');
 
         $I->seeCurrentRouteIs('cards.index');
         $I->see('test_card');
-        $I->see('Disabilitata');
+        $I->see(__('models.card_disabled'));
         $I->seeRecord(Card::class, ['id' => 'test_card', 'active' => false]);
     }
 
@@ -47,12 +47,12 @@ class CardCest
 
         $I->amOnRoute('cards.index');
         $I->see('test_card');
-        $I->see('Disabilitata');
+        $I->see(__('models.card_disabled'));
         $I->click('button.unlock');
 
         $I->seeCurrentRouteIs('cards.index');
         $I->see('test_card');
-        $I->see('Abilitata');
+        $I->see(__('models.card_enabled'));
         $I->seeRecord(Card::class, ['id' => 'test_card', 'active' => true]);
     }
 }

@@ -1,26 +1,30 @@
 @include('form.item', [
     'name' => 'id',
-    'label' => 'Identificatore',
+    'label' => __('models.identifier'),
     'field' => Form::text('id')
 ])
 
 @include('form.item', [
     'name' => 'name',
-    'label' => 'Nome',
+    'label' => __('models.name'),
     'field' => Form::text('name')
 ])
 
 
 <div class="form-item">
-    <label>Permessi @include('form.error', ['field' => 'permissions'])</label>
+    <label>{{ trans_choice('models.permission', 2) }} @include('form.error', ['field' => 'permissions'])</label>
+
     <div class="row gutters">
-        @foreach($permissions as $permission)
-            <div class="col col-3">
-                <label class="checkbox">
-                    {!! Form::checkbox('permissions['.$permission.']') !!}
-                    {{ $permission }}
-                </label>
-            </div>
-        @endforeach
+    @foreach(App\Permission::$models as $model)
+        <fieldset class="col col-3">
+            <legend>{{ trans_choice("models.$model", 2) }}</legend>
+            @foreach(App\Permission::model($model) as $permission)
+                    <label class="checkbox">
+                        {!! Form::checkbox('permissions['.$permission.']') !!}
+                        {{ __("permissions.$permission") }}
+                    </label>
+            @endforeach
+        </fieldset>
+    @endforeach
     </div>
 </div>

@@ -11,7 +11,7 @@
                 <h3 class="text-center site-name">{{ config('app.name') }}</h3>
 
                 @if($errors->any())
-                    <div class="message error" data-component="message">Invalid email or password.<span class="close small"></span></div>
+                    <div class="message error" data-component="message">{{ $error->first() }}<span class="close small"></span></div>
                 @endif
 
                 <form action="{{ route('login') }}" method="post" class="form">
@@ -26,11 +26,11 @@
                     </div>
 
                     <div class="form-item">
-                        <button type="submit" class="button big w100">Login</button>
+                        <button type="submit" class="button big w100">@lang('auth.login')</button>
                     </div>
 
                     <div class="small text-center">
-                        <a href="{{ route('password.request') }}">Forgot Your Password?</a>
+                        <a href="{{ route('password.request') }}">@lang('auth.forgot_password')</a>
                     </div>
 
                 </form>

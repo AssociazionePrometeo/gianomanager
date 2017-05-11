@@ -1,24 +1,24 @@
 @extends('admin.layout')
 
-@section('title', 'Modifica risorsa')
+@section('title', __('models.resource_edit'))
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Risorse' => route('admin.resources.index'),
-        'Modifica risorsa',
+        trans_choice('resource', 2) => route('admin.resources.index'),
+        __('models.resource_edit'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Modifica risorsa <em>{{ $resource->name }}</em></p>
+            <p>@lang('models.resource_edit') <em>{{ $resource->name }}</em></p>
         </div>
         <div class="col push-right button-group">
             @can('delete', $resource)
-            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
+            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">@lang('actions.delete')</button>
             @endcan
-            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
         </div>
     </div>
 @endsection

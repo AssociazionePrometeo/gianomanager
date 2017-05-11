@@ -4,9 +4,9 @@ namespace App;
 
 class Permission
 {
-    protected static $models = ['card', 'resource', 'reservation', 'user', 'role'];
+    public static $models = ['card', 'resource', 'reservation', 'user', 'role'];
 
-    protected static $abilities = ['view', 'create', 'update', 'delete'];
+    public static $abilities = ['view', 'create', 'update', 'delete'];
 
     public static function all()
     {

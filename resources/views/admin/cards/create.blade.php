@@ -1,21 +1,21 @@
 @extends('admin.layout')
 
-@section('title', 'Nuova tessera')
+@section('title', __('models.card_new'))
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Utenti' => route('admin.cards.index'),
-        'Nuova tessera',
+        trans_choice('models.card', 2) => route('admin.cards.index'),
+        __('models.card_new'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Crea una nuova tessera</p>
+            <p>@lang('models.card_new')</p>
         </div>
         <div class="col push-right button-group">
-            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
         </div>
     </div>
 @endsection

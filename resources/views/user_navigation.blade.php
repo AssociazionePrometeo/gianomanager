@@ -9,8 +9,8 @@
     </ul>
     <div class="dropdown hide" id="dropdown-fixed">
         <ul>
-            <li><a href="{{ route('profile') }}">Profilo</a></li>
-            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Esci</a></li>
+            <li><a href="{{ route('profile') }}">@lang('user.profile')</a></li>
+            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">@lang('user.logout')</a></li>
         </ul>
         <form id="logout-form" action="{{ route('logout') }}" method="post" class="hide">
             {{ csrf_field() }}

@@ -1,24 +1,24 @@
 @extends('admin.layout')
 
-@section('title', 'Modifica utente')
+@section('title', __('models.user_edit'))
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Utenti' => route('admin.users.index'),
-        'Modifica utente',
+        trans_choice('models.user', 2) => route('admin.users.index'),
+        __('models.user_edit'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Modifica utente <em>{{ $user->name }}</em></p>
+            <p>@lang('models.user_edit') <em>{{ $user->name }}</em></p>
         </div>
         <div class="col push-right button-group">
             @can('delete', $user)
-            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
+            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">@lang('actions.delete')</button>
             @endcan
-            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
         </div>
     </div>
 @endsection

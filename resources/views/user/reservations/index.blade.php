@@ -1,20 +1,20 @@
 @extends('layout')
 
-@section('title', 'Prenotazioni')
+@section('title', trans_choice('models.reservation', 2))
 
 @section('heading')
-<h1>Prenotazioni</h1>
+<h1>{{ trans_choice('models.reservation', 2) }}</h1>
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Lista prenotazioni</p>
+            <p>@lang('models.reservation_list')</p>
         </div>
         <div class="col push-right">
             <a href="{{ route('reservations.create') }}" class="button primary outline" role="button">
                 <i class="material-icons">add</i>
-                Aggiungi nuova
+                @lang('actions.add_new')
             </a>
         </div>
     </div>
@@ -25,10 +25,10 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Risorsa</th>
-                <th>Inizio prenotazione</th>
-                <th>Fine prenotazione</th>
-                <th class="actions"><span>Azioni</span></th>
+                <th>{{ trans_choice('models.resource', 1) }}</th>
+                <th>@lang('models.reservation_starts_at')</th>
+                <th>@lang('models.reservation_ends_at')</th>
+                <th class="actions"><span>@lang('actions.actions')</span></th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +39,7 @@
                     <td>{{ $reservation->starts_at->format('j F Y – H:i') }}</td>
                     <td>{{ $reservation->ends_at->format('j F Y – H:i') }}</td>
                     <td class="actions">
-                        <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
+                        <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">@lang('actions.delete')</button>
                     </td>
                 </tr>
                 {!! Form::open(['route' => ['reservations.destroy', $reservation], 'method' => 'delete', 'id' => 'form-delete']) !!}{!! Form::close() !!}

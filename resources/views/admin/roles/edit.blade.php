@@ -1,24 +1,24 @@
 @extends('admin.layout')
 
-@section('title', 'Modifica ruolo')
+@section('title', __('models.role_edit'))
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Ruoli' => route('admin.roles.index'),
-        'Modifica ruolo',
+        trans_choice('models.role', 2) => route('admin.roles.index'),
+        __('models.role_edit'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Modifica ruolo <em>{{ $role->name }}</em></p>
+            <p>@lang('models.role_edit') <em>{{ $role->name }}</em></p>
         </div>
         <div class="col push-right button-group">
             @can('delete', $role)
-            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
+            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">@lang('actions.delete')</button>
             @endcan
-            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
         </div>
     </div>
 @endsection

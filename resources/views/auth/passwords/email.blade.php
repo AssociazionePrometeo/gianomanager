@@ -9,7 +9,7 @@
                 <h3 class="text-center site-name">{{ config('app.name') }}</h3>
 
                 @if($errors->any())
-                    <div class="message error" data-component="message">The email was not found.<span class="close small"></span></div>
+                    <div class="message error" data-component="message">{{ $errors->first() }}<span class="close small"></span></div>
                 @endif
 
                 @if(session('status'))
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="form-item">
-                        <button type="submit" class="button big w100">Send password reset link</button>
+                        <button type="submit" class="button big w100">@lang('auth.send_reset_link')</button>
                     </div>
                 </form>
             </div>

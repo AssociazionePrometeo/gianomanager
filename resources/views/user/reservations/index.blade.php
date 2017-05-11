@@ -42,9 +42,8 @@
                         <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
                     </td>
                 </tr>
+                {!! Form::open(['route' => ['reservations.destroy', $reservation], 'method' => 'delete', 'id' => 'form-delete']) !!}{!! Form::close() !!}
             @endforeach
         </tbody>
     </table>
-    {!! Form::open(['route' => ['reservations.destroy', $reservation], 'method' => 'delete', 'id' => 'form-delete']) !!}{!! Form::close() !!}
-
 @endsection

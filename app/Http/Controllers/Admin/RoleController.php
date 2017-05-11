@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,7 +33,7 @@ class RoleController extends Controller
     {
         $this->authorize('create', Role::class);
 
-        $permissions = $this->getPermissions();
+        $permissions = Permission::all();
 
         return view('admin.roles.create', compact('permissions'));
     }
@@ -82,7 +83,7 @@ class RoleController extends Controller
             return redirect()->back();
         }
 
-        $permissions = $this->getPermissions();
+        $permissions = Permission::all();
 
         return view('admin.roles.edit', compact('role', 'permissions'));
     }
@@ -122,21 +123,5 @@ class RoleController extends Controller
         $role->delete();
 
         return redirect()->route('admin.roles.index');
-    }
-
-    protected function getPermissions()
-    {
-        $models = ['card', 'resource', 'reservation', 'role', 'user'];
-        $abilities = ['view', 'create', 'update', 'delete'];
-
-        $permissions = [];
-
-        foreach($models as $model) {
-            foreach($abilities as $ability) {
-                $permissions[] = $model . '-' . $ability;
-            }
-        }
-
-        return $permissions;
     }
 }

@@ -6,7 +6,7 @@ class Permission
 {
     protected static $models = ['card', 'resource', 'reservation', 'user', 'role'];
 
-    protected static $abilities = ['view', 'create', 'edit', 'delete'];
+    protected static $abilities = ['view', 'create', 'update', 'delete'];
 
     public static function all()
     {

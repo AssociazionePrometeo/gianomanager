@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use App\Mail\EmailVerification;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
-//use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -72,7 +71,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone_number' => $data['phone_number'],
             'password' => bcrypt($data['password']),
-            'email_token' => str_random(10),
+            'email_token' => str_random(64),
             'active' => false,
         ]);
 
@@ -94,7 +93,6 @@ class RegisterController extends Controller
         $this->throwValidationException($request, $validator);
     }
 
-    DB::beginTransaction();
     try
     {
         $user = $this->create($request->all());

@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('giano'),
             'email' => 'admin@example.com',
             'active' => true,
-            'verified' => true,
+            'email_verified' => true,
         ]);
 
         $user->roles()->attach($admin);

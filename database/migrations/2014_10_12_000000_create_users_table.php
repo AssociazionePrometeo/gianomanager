@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('expires_at')->nullable();
             $table->dateTime('last_login')->nullable();
             $table->boolean('active')->default(0);
-            $table->tinyInteger('verified')->default(0);
+            $table->boolean('email_verified')->default(0);
             $table->string('email_token')->nullable();
             $table->rememberToken();
             $table->timestamps();

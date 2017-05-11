@@ -1,21 +1,21 @@
 @extends('admin.layout')
 
-@section('title', 'Nuova prenotazione')
+@section('title', __('models.reservation_new'))
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Prenotazioni' => route('admin.reservations.index'),
-        'Crea prenotazione',
+        trans_choice('models.reservation', 2) => route('admin.reservations.index'),
+        __('models.reservation_new'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Crea una nuova prenotazione</p>
+            <p>@lang('models.reservation_new')</p>
         </div>
         <div class="col push-right button-group">
-            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
         </div>
     </div>
 @endsection

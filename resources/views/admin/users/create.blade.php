@@ -1,21 +1,21 @@
 @extends('admin.layout')
 
-@section('title', 'Modifica utente')
+@section('title', __('models.user_new'))
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Utenti' => route('admin.users.index'),
-        'Crea utente',
+        trans_choice('models.user', 2) => route('admin.users.index'),
+        __('models.user_new'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Crea un nuovo utente</p>
+            <p>@lang('models.user_new')</p>
         </div>
         <div class="col push-right button-group">
-            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
         </div>
     </div>
 @endsection

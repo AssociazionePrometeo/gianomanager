@@ -13,12 +13,12 @@ return [
     |
     */
 
-    'login' => 'Login',
-    'forgot_password' => 'Forgot your password?',
-    'send_reset_link' => 'Send password reset link',
-    'reset_password' => 'Reset password',
-    'register' => 'Register',
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'login' => 'Entra',
+    'forgot_password' => 'Hai dimenticato la password?',
+    'send_reset_link' => 'Invia link per reimpostare la password',
+    'reset_password' => 'Reimposta password',
+    'register' => 'Registrati',
+    'failed' => 'Le credenziali non corrispondono.',
+    'throttle' => 'Troppi tentativi di login. Per favore, riprova tra :seconds secondi.',
 
 ];

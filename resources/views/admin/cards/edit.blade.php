@@ -1,24 +1,24 @@
 @extends('admin.layout')
 
-@section('title', 'Modifica tessera')
+@section('title', __('models.card_edit'))
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Tessere' => route('admin.cards.index'),
-        'Modifica tessera',
+        trans_choice('models.card', 2) => route('admin.cards.index'),
+        __('models.card_edit'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Modifica tessera <em>{{ $card->id }}</em></p>
+            <p>@lang('models.card_edit') <em>{{ $card->id }}</em></p>
         </div>
         <div class="col push-right button-group">
             @can('delete', $card)
-            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
+            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">@lang('actions.delete')</button>
             @endcan
-            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
         </div>
     </div>
 @endsection

@@ -4,7 +4,7 @@
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Utenti' => route('admin.users.index'),
+        'trans_choice('models.user', 2)' => route('admin.users.index'),
         'Mostra utente',
     ]])
 @endsection
@@ -15,7 +15,7 @@
             <p>{{ $user->name }}</p>
         </div>
         <div class="col push-right button-group">
-            <a href="{{ route('admin.users.edit', $user) }}" class="button edit">Modifica</a>
+            <a href="{{ route('admin.users.edit', $user) }}" class="button edit">@lang('actions.edit')</a>
         </div>
     </div>
 @endsection

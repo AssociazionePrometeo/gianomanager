@@ -2,7 +2,7 @@
 
 @section('class', 'login')
 
-@section('title', 'Reset password')
+@section('title', __('reset password'))
 
 @section('main')
     <div id="content">
@@ -22,24 +22,24 @@
 
                     @include('form.item', [
                         'name' => 'email',
-                        'label' => 'Email',
+                        'label' => __('models.email'),
                         'field' => Form::email('email', null, ['class' => 'big']),
                     ])
 
                     @include('form.item', [
                         'name' => 'password',
-                        'label' => 'Password',
+                        'label' => __('models.password'),
                         'field' => Form::password('password', ['class' => 'big']),
                     ])
 
                     @include('form.item', [
                         'name' => 'password_confirmation',
-                        'label' => 'Confirm password',
+                        'label' => __('models.password_confirm'),
                         'field' => Form::password('password_confirmation', ['class' => 'big']),
                     ])
 
                     <div class="form-item">
-                        <button type="submit" class="button big w100">Reset password</button>
+                        <button type="submit" class="button big w100">@lang('auth.reset_password')</button>
                     </div>
                 </form>
             </div>

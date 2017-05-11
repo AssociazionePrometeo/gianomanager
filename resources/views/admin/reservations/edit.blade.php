@@ -1,24 +1,24 @@
 @extends('admin.layout')
 
-@section('title', 'Modifica prenotazione')
+@section('title', __('models.reservation_edit'))
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Prenotazioni' => route('admin.reservations.index'),
-        'Modifica prenotazione',
+        trans_choice('reservation', 2) => route('admin.reservations.index'),
+        __('models.reservation_edit'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Modifica prenotazione <em>#{{ $reservation->id }}</em></p>
+            <p>@lang('actions.reservation_edit') <em>#{{ $reservation->id }}</em></p>
         </div>
         <div class="col push-right button-group">
             @can('delete', $reservation)
-            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">Elimina</button>
+            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">@lang('actions.delete')</button>
             @endcan
-            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
         </div>
     </div>
 @endsection

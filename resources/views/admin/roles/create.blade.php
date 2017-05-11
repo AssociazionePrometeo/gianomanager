@@ -1,21 +1,21 @@
 @extends('admin.layout')
 
-@section('title', 'Nuovo ruolo')
+@section('title', __('models.role_new'))
 
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
-        'Ruoli' => route('admin.roles.index'),
-        'Nuovo ruolo',
+        trans_choice('models.role', 2) => route('admin.roles.index'),
+        __('models.role_new'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>Crea un nuovo ruolo</p>
+            <p>@lang('models.role_new')</p>
         </div>
         <div class="col push-right button-group">
-            <button class="button" onclick="document.getElementById('form-edit').submit();">Salva</button>
+            <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
         </div>
     </div>
 @endsection

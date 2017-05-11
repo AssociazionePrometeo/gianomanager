@@ -28,4 +28,9 @@ class Card extends Model
 
         return $this;
     }
+
+    public function getStatusAttribute()
+    {
+        return $this->active ? __('models.card_enabled') : __('models.card_disabled');
+    }
 }

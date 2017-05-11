@@ -7,7 +7,7 @@
     <header class="admin-header">
         <h1>{{ $resource->name }}</h1>
 
-        <a href="{{ route('admin.resources.edit', $resource) }}" class="button edit small" role="button">Modifica</a>
+        <a href="{{ route('admin.resources.edit', $resource) }}" class="button edit small" role="button">@lang('actions.edit')</a>
     </header>
     
     <h2>Prossime prenotazioni</h2>
@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Utente</th>
+                <th>{{ trans_choice('models.user', 1) }}</th>
                 <th>Inizio</th>
                 <th>Fine</th>
             </tr>

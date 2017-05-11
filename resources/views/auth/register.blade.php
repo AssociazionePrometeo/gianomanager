@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Register')
+@section('title', __('auth.register'))
 
 @section('class', 'login')
 
@@ -8,7 +8,7 @@
     <div id="content">
         <div class="row align-center align-middle">
             <div class="col col-4 login-box">
-                <h3 class="text-center site-name">Registration</h3>
+                <h3 class="text-center site-name">@lang('auth.register')</h3>
 
                 {!! Form::open(['route' => 'register', 'method' => 'post', 'class' => 'form']) !!}
 
@@ -43,7 +43,7 @@
                     ])
 
                 <div class="form-item">
-                    <button type="submit" class="button w100">Register</button>
+                    <button type="submit" class="button w100">@lang('auth.register')</button>
                 </div>
 
                 {!! Form::close() !!}

@@ -2,6 +2,8 @@
 
 @section('class', 'login')
 
+@section('title', 'Login')
+
 @section('main')
     <div id="content">
         <div class="row align-center align-middle">

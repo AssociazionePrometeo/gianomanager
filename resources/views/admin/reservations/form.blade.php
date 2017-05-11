@@ -1,13 +1,13 @@
 @include('form.item', [
     'name' => 'user_id',
     'label' => trans_choice('models.user', 1),
-    'field' => Form::select('user_id', $users)
+    'field' => Form::select('user_id', $users, null, ['class' => 'autocomplete'])
 ])
 
 @include('form.item', [
     'name' => 'resource_id',
     'label' => trans_choice('models.resource', 1),
-    'field' => Form::select('resource_id', $resources)
+    'field' => Form::select('resource_id', $resources, null, ['class' => 'autocomplete'])
 ])
 
 <div class="form-item">

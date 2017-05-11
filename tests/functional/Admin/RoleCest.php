@@ -11,6 +11,8 @@ class RoleCest
     public function _before(FunctionalTester $I)
     {
         $user = factory(User::class)->create();
+        $user->roles()->sync(['admin']);
+
         $I->amLoggedAs($user);
     }
 
@@ -22,11 +24,16 @@ class RoleCest
         $I->amOnRoute('admin.roles.create');
         $I->fillField('id', 'new_test_role');
         $I->fillField('name', 'New test role');
+        $I->checkOption('permissions[user-view]');
+        $I->checkOption('permissions[user-create]');
         $I->click('#save');
 
         $I->seeCurrentRouteIs('admin.roles.index');
         $I->see('New test role');
-        $I->seeRecord('roles', ['id' => 'new_test_role']);
+        $role = $I->grabRecord(Role::class, ['id' => 'new_test_role']);
+        $I->assertTrue($role->permissions['user-view']);
+        $I->assertTrue($role->permissions['user-create']);
+        $I->assertCount(2, $role->permissions);
     }
 
     public function editRole(FunctionalTester $I)

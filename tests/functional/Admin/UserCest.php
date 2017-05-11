@@ -10,6 +10,7 @@ class UserCest
     public function _before(FunctionalTester $I)
     {
         $user = factory(User::class)->create();
+        $user->roles()->sync(['admin']);
 
         $I->amLoggedAs($user);
     }

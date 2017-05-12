@@ -40,6 +40,8 @@
                     @can('update', $role)
                     @if(!$role->isProtected())
                         <a href="{{ route('admin.roles.edit', $role) }}" class="button edit small" role="button">@lang('actions.edit')</a>
+                    @else
+                        <a href="{{ route('admin.roles.edit', $role) }}" class="button edit small" role="button">@lang('actions.view')</a>
                     @endif
                     @endcan
                 </td>

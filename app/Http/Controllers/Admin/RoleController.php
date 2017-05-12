@@ -77,12 +77,6 @@ class RoleController extends Controller
     {
         $this->authorize('update', $role);
 
-        if ($role->isProtected()) {
-            flash("Il ruolo {$role->name} non può essere modificato", 'error');
-
-            return redirect()->back();
-        }
-
         $permissions = Permission::all();
 
         return view('admin.roles.edit', compact('role', 'permissions'));

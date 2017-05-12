@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use DB;
+use Mail;
 use App\User;
+use Validator;
+use Illuminate\Http\Request;
+use App\Mail\EmailVerification;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -68,11 +71,47 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone_number' => $data['phone_number'],
             'password' => bcrypt($data['password']),
+            'email_token' => str_random(64),
             'active' => false,
         ]);
 
         $user->roles()->sync(['default']);
 
         return $user;
+    }
+
+    /**
+    *  Over-ridden the register method from the "RegistersUsers" trait
+    *  Remember to take care while upgrading laravel
+    */
+    public function register(Request $request)
+    {
+    // Laravel validation
+    $validator = $this->validator($request->all());
+    if ($validator->fails())
+    {
+        $this->throwValidationException($request, $validator);
+    }
+
+    try
+    {
+        $user = $this->create($request->all());
+        $email = new EmailVerification(new User(['email_token' => $user->email_token, 'name' => $user->name]));
+        Mail::to($user->email)->send($email);
+        DB::commit();
+        return back();
+    }
+    catch(Exception $e)
+    {
+        DB::rollback();
+        return back();
+    }
+  }
+
+  // Get the user who has the same token and change his/her status to verified i.e. 1
+    public function ifverify($token)
+    {
+      User::where('email_token',$token)->firstOrFail()->verify();
+      return redirect('login');
     }
 }

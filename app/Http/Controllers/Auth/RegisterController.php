@@ -109,9 +109,9 @@ class RegisterController extends Controller
   }
 
   // Get the user who has the same token and change his/her status to verified i.e. 1
-    public function verify($token)
+    public function ifverify($token)
     {
-      User::where('email_token',$token)->firstOrFail()->verified();
+      User::where('email_token',$token)->firstOrFail()->verify();
       return redirect('login');
     }
 }

@@ -53,7 +53,7 @@ class User extends Authenticatable
         return $this->roles()->pluck('permissions')->collapse();
     }
 
-    public function verified()
+    public function verify()
     {
     $this->email_verified = 1;
     $this->email_token = null;

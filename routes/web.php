@@ -19,7 +19,7 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('register/verify/{token}', 'Auth\RegisterController@verify'); 
+Route::get('register/verify/{token}', 'Auth\RegisterController@ifverify'); 
 
 Route::group(['namespace' => 'User', 'middleware' => 'auth'], function(){
   Route::get('/profile', 'ProfileController@edit')->name('profile');

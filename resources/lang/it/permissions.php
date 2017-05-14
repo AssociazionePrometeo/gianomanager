@@ -25,4 +25,5 @@ return [
     'user-create' => 'Crea utenti',
     'user-update' => 'Modifica utenti',
     'user-delete' => 'Elimina utenti',
+    'user-validate' => 'Valida utenti',
 ];

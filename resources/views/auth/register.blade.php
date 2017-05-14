@@ -30,8 +30,6 @@
                         'field' => Form::text('phone_number')
                     ])
 
-
-                {{csrf_token()}}
                     @include('form.item', [
                         'name'  => 'password',
                         'label' => __('models.password'),

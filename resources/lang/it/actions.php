@@ -5,6 +5,6 @@ return [
     'delete' => 'Elimina',
     'edit' => 'Modifica',
     'add_new' => 'Aggiungi nuovo',
-    'view' => 'Visualizza',
-
+    'show' => 'Mostra',
+    'validate' => 'Valida',
 ];

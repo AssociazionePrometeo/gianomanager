@@ -20,5 +20,7 @@ return [
     'register' => 'Registrati',
     'failed' => 'Le credenziali non corrispondono.',
     'throttle' => 'Troppi tentativi di login. Per favore, riprova tra :seconds secondi.',
+    'verification_email_sent' => 'Ti abbiamo inviato un’email per verificare il tuo account, controlla la tua posta!',
+    'verification_email_complete' => 'La tua email è stata confermata, ora puoi entrare.',
 
 ];

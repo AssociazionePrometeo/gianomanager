@@ -16,7 +16,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password', 'phone_number', 'user_level', 'signup_date', 'expires_at', 'last_login',
-        'active', 'info','email_token','email_verified',
+        'active', 'info', 'email_token', 'email_verified',
     ];
 
     /**
@@ -55,8 +55,8 @@ class User extends Authenticatable
 
     public function verify()
     {
-    $this->email_verified = 1;
-    $this->email_token = null;
-    $this->save();
+        $this->email_verified = 1;
+        $this->email_token = null;
+        $this->save();
     }
 }

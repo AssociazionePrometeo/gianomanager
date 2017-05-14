@@ -10,8 +10,10 @@
             <div class="col col-4 login-box">
                 <h3 class="text-center site-name">{{ config('app.name') }}</h3>
 
+                @include('flash::message')
+
                 @if($errors->any())
-                    <div class="message error" data-component="message">{{ $error->first() }}<span class="close small"></span></div>
+                    <div class="message error" data-component="message">{{ $errors->first() }}<span class="close small"></span></div>
                 @endif
 
                 <form action="{{ route('login') }}" method="post" class="form">

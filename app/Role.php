@@ -17,6 +17,11 @@ class Role extends Model
         return $this->getAttribute('protected');
     }
 
+    public function isEditable()
+    {
+        return !$this->getAttribute('protected');
+    }
+
     public function setPermissionsAttribute($permissions)
     {
         if (is_null($permissions)) {

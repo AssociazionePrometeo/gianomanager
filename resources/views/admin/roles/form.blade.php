@@ -1,7 +1,11 @@
+<?php
+    $options = isset($role) && $role->isProtected() ? ['disabled'] : [];
+?>
+
 @include('form.item', [
     'name' => 'id',
     'label' => __('models.identifier'),
-    'field' => Form::text('id')
+    'field' => Form::text('id', null, $options)
 ])
 
 @include('form.item', [
@@ -20,7 +24,7 @@
             <legend>{{ trans_choice("models.$model", 2) }}</legend>
             @foreach(App\Permission::model($model) as $permission)
                     <label class="checkbox">
-                        {!! Form::checkbox('permissions['.$permission.']') !!}
+                        {!! Form::checkbox('permissions['.$permission.']', 1, null, $options) !!}
                         {{ __("permissions.$permission") }}
                     </label>
             @endforeach

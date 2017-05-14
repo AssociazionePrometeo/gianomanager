@@ -77,12 +77,6 @@ class RoleController extends Controller
     {
         $this->authorize('update', $role);
 
-        if ($role->isProtected()) {
-            flash("Il ruolo {$role->name} non può essere modificato", 'error');
-
-            return redirect()->back();
-        }
-
         $permissions = Permission::all();
 
         return view('admin.roles.edit', compact('role', 'permissions'));
@@ -99,13 +93,11 @@ class RoleController extends Controller
     {
         $this->authorize('update', $role);
 
-        if ($role->isProtected()) {
-            flash("Il ruolo {$role->name} non può essere modificato", 'error');
-
-            return redirect()->back();
+        if ($role->isEditable()) {
+            $role->update($request->only('name', 'permissions'));
+        } else {
+            $role->update($request->only('name'));
         }
-
-        $role->update($request->only('name', 'permissions'));
 
         return redirect()->route('admin.roles.index');
     }
@@ -120,7 +112,10 @@ class RoleController extends Controller
     {
         $this->authorize('delete', $role);
 
-        $role->delete();
+        if ($role->isEditable()) {
+            $role->delete();
+        }
+
 
         return redirect()->route('admin.roles.index');
     }

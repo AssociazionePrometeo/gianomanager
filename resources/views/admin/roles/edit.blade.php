@@ -15,14 +15,12 @@
             <p>@lang('models.role_edit') <em>{{ $role->name }}</em></p>
         </div>
         <div class="col push-right button-group">
-          @if(!$role->isProtected())
-            @can('delete', $role)
-            <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">@lang('actions.delete')</button>
-            @endcan
+            @if($role->isEditable())
+                @can('delete', $role)
+                <button class="button outline delete" onclick="document.getElementById('form-delete').submit()">@lang('actions.delete')</button>
+                @endcan
+            @endif
             <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>
-          @else
-            <button class="button outline" onclick="history.back()">@lang('pagination.back')</button>
-          @endif
         </div>
     </div>
 @endsection

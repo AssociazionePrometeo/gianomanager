@@ -40,11 +40,11 @@ class LoginController extends Controller
 
     public function credentials(Request $request)
     {
-    return [
-        'email' => $request->email,
-        'password' => $request->password,
-        'email_verified' => 1,
-        'active' => 1,
-    ];
+        return [
+            'email' => $request->email,
+            'password' => $request->password,
+            'email_verified' => 1,
+            'active' => 1,
+        ];
     }
 }

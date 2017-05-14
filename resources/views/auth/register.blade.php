@@ -14,31 +14,33 @@
 
                     @include('form.item', [
                                 'name'  => 'name',
-                                'label' => 'Nome',
+                                'label' => __('models.name'),
                                 'field' => Form::text('name'),
                             ])
 
                     @include('form.item', [
                         'name'  => 'email',
-                        'label' => 'Email',
+                        'label' => __('models.email'),
                         'field' => Form::email('email'),
                     ])
 
                     @include('form.item', [
                         'name'  => 'phone_number',
-                        'label' => 'Numero di telefono',
+                        'label' => __('models.phone_number'),
                         'field' => Form::text('phone_number')
                     ])
 
+
+                {{csrf_token()}}
                     @include('form.item', [
                         'name'  => 'password',
-                        'label' => 'Password',
+                        'label' => __('models.password'),
                         'field' => Form::password('password'),
                     ])
 
                     @include('form.item', [
                         'name'  => 'password_confirmation',
-                        'label' => 'Password',
+                        'label' => __('models.password_confirm'),
                         'field' => Form::password('password_confirmation'),
                     ])
 

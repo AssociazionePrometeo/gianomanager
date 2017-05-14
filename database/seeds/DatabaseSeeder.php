@@ -2,6 +2,7 @@
 
 use App\Role;
 use App\User;
+use App\Permission;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,8 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         // Create default roles
         $admin = new Role(['id' => 'admin', 'name' => 'Administrators']);
+        $admin->permissions = Permission::getAdminValues();
         $admin->protected = true;
-        $admin->permissions = ['admin' => true];
         $admin->save();
 
         $default = new Role(['id' => 'default', 'name' => 'Default']);

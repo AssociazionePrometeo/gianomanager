@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-use DB;
+
 use Mail;
 use App\User;
 use Validator;
 use Illuminate\Http\Request;
 use App\Mail\EmailVerification;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class RegisterController extends Controller
 {
@@ -45,7 +47,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -61,7 +63,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -80,38 +82,28 @@ class RegisterController extends Controller
         return $user;
     }
 
-    /**
-    *  Over-ridden the register method from the "RegistersUsers" trait
-    *  Remember to take care while upgrading laravel
-    */
     public function register(Request $request)
     {
-    // Laravel validation
-    $validator = $this->validator($request->all());
-    if ($validator->fails())
-    {
-        $this->throwValidationException($request, $validator);
-    }
+        $this->validator($request->all())->validate();
 
-    try
-    {
-        $user = $this->create($request->all());
-        $email = new EmailVerification(new User(['email_token' => $user->email_token, 'name' => $user->name]));
+        event(new Registered($user = $this->create($request->all())));
+
+        $email = new EmailVerification($user);
         Mail::to($user->email)->send($email);
-        DB::commit();
-        return back();
-    }
-    catch(Exception $e)
-    {
-        DB::rollback();
-        return back();
-    }
-  }
+        flash(__('auth.verification_email_sent'), 'success');
 
-  // Get the user who has the same token and change his/her status to verified i.e. 1
-    public function ifverify($token)
+        return redirect()->route('login');
+    }
+
+    public function verify($token)
     {
-      User::where('email_token',$token)->firstOrFail()->verify();
-      return redirect('login');
+        if (strlen($token) != 64) {
+            throw new ModelNotFoundException();
+        }
+
+        User::where('email_token', $token)->firstOrFail()->verify();
+        flash(__('auth.verification_email_complete'), 'success');
+
+        return redirect('login');
     }
 }

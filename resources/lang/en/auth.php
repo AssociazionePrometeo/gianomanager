@@ -20,5 +20,7 @@ return [
     'register' => 'Register',
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'verification_email_sent' => 'We sent you an email to verify your account, check your inbox!',
+    'verification_email_complete' => 'Your email was confirmed, you can now login.',
 
 ];

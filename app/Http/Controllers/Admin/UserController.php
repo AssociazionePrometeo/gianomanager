@@ -45,10 +45,17 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        $request['password'] = bcrypt($request->get('password'));
-        $user = new User($request->all());
+        $this->authorize('create', User::class);
 
-        $this->authorize('create', $user);
+        $user = new User($request->only(
+            'name',
+            'email',
+            'phone_number',
+            'expires_at',
+            'info'
+        ));
+        $user->password = bcrypt($request->get('password'));
+        $user->validated = $request->has('validated');
 
         $user->save();
         $user->roles()->sync($request->get('roles'));
@@ -95,13 +102,21 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        $attributes = $request->except('password');
+        $user->fill($request->only(
+            'name',
+            'email',
+            'phone_number',
+            'expires_at',
+            'info'
+        ));
+        $user->validated = $request->has('validated');
 
         if ($request->has('password')) {
-            $attributes['password'] = bcrypt($request->get('password'));
+            $user->password = bcrypt($request->get('password'));
         }
 
-        $user->update($attributes);
+        $user->save();
+
         $user->roles()->sync($request->get('roles'));
 
         return redirect()->route('admin.users.index');
@@ -126,6 +141,18 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('admin.users.index');
+    }
+
+    public function validateUser(User $user)
+    {
+        $this->authorize('validate', $user);
+
+        $user->validated = true;
+        $user->save();
+
+        flash(__('models.user_validated_successfully'), 'success');
+
+        return redirect()->back();
     }
 
     protected function getRoles()

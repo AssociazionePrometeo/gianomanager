@@ -29,6 +29,7 @@
             <th>ID</th>
             <th>@lang('models.name')</th>
             <th>@lang('models.email')</th>
+            <th>@lang('models.status')</th>
             <th class="actions"><span>@lang('actions.actions')</span></th>
         </tr>
         </thead>
@@ -38,7 +39,15 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
+                <td>
+                    <span class="label {{ $user->active ? 'success' : 'default' }}">
+                        {{ $user->getStatusLabel() }}
+                    </span>
+                </td>
                 <td class="actions">
+                    @can('view', $user)
+                    <a href="{{ route('admin.users.show', $user) }}" class="button small" role="button">@lang('actions.show')</a>
+                    @endcan
                     @can('update', $user)
                     <a href="{{ route('admin.users.edit', $user) }}" class="button edit small" role="button">@lang('actions.edit')</a>
                     @endcan

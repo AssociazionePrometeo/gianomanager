@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     });
 
     Route::resource('users', 'UserController');
+    Route::post('/users/{user}/validate', 'UserController@validateUser')->name('users.validate');
     Route::resource('roles', 'RoleController');
     Route::resource('resources', 'ResourceController');
     Route::resource('reservations', 'ReservationController');

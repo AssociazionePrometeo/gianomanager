@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,8 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone_number', 'user_level', 'signup_date', 'expires_at', 'last_login',
-        'active', 'info', 'email_token', 'email_verified',
+        'name', 'email', 'phone_number', 'expires_at', 'info',
     ];
 
     /**
@@ -25,8 +25,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'email_token',
     ];
+
+    protected $dates = ['expires_at'];
 
     public function reservations()
     {
@@ -53,10 +55,35 @@ class User extends Authenticatable
         return $this->roles()->pluck('permissions')->collapse();
     }
 
+    public function getActiveAttribute()
+    {
+        return $this->validated && !$this->isExpired();
+    }
+
+    public function isExpired()
+    {
+        return $this->expires_at !== null && $this->expires_at < Carbon::now();
+    }
+
     public function verify()
     {
         $this->email_verified = 1;
         $this->email_token = null;
         $this->save();
+    }
+
+    public function getStatusLabel()
+    {
+        if ($this->active) {
+            return __('models.user_status_active');
+        }
+
+        if ($this->isExpired()) {
+            return __('models.user_status_expired');
+        }
+
+        if (!$this->validated) {
+            return __('models.user_status_not_validated');
+        }
     }
 }

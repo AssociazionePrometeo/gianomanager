@@ -46,6 +46,23 @@
   }
 }
 
+// Topbar tabs
+.topbar {
+  nav.tabs {
+    margin: 0;
+    position: relative;
+    bottom: -12px;
+  }
+
+  .tabs ul {
+    border-bottom: 0;
+  }
+
+  .tabs li.active a {
+    border-bottom: 1px solid $color-light;
+  }
+}
+
 .content-heading .breadcrumbs {
   font-size: $font-size-big;
   padding: $base-line 0;

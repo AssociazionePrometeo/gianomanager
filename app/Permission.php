@@ -16,6 +16,9 @@ class Permission
             $permissions = array_merge($permissions, self::model($model));
         }
 
+        // Special permission for user
+        $permissions[] = 'user-validate';
+
         return $permissions;
     }
 
@@ -24,6 +27,11 @@ class Permission
         $permissions = [];
         foreach (self::$abilities as $ability) {
             $permissions[] = $model . '-' . $ability;
+        }
+
+        // Special permission for user
+        if ($model == 'user') {
+            $permissions[] = 'user-validate';
         }
 
         return $permissions;

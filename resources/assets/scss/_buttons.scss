@@ -6,6 +6,10 @@
   @include button($color-button-delete-text, $color-button-delete);
 }
 
+.button.validate {
+  @include button($color-button-validate-text, $color-button-validate);
+}
+
 .button .material-icons {
   font-size: 20px;
   line-height: $button-base-line;

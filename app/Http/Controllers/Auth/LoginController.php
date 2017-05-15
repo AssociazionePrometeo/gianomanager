@@ -44,7 +44,7 @@ class LoginController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'email_verified' => 1,
-            'active' => 1,
+            'validated' => 1,
         ];
     }
 }

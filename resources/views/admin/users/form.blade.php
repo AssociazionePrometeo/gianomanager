@@ -47,7 +47,7 @@ $selectedRoles = isset($user) ? $user->roles->pluck('id')->toArray() : null;
 ])
 
 @include('form.item', [
-    'name'  => 'active',
-    'label' => __('models.user_verified'),
-    'field' => Form::checkbox('active'),
+    'name'  => 'validated',
+    'label' => __('models.user_validated'),
+    'field' => Form::checkbox('validated'),
 ])

@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $this->authorize('view', User::class);
 
-        $users = User::all();
+        $users = User::paginate(20);
 
         return view('admin.users.index', compact('users'));
     }

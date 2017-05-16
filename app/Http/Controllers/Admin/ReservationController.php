@@ -20,7 +20,7 @@ class ReservationController extends Controller
     {
         $this->authorize('view', Reservation::class);
 
-        $reservations = Reservation::all();
+        $reservations = Reservation::paginate(20);
 
         return view('admin.reservations.index', compact('reservations'));
     }

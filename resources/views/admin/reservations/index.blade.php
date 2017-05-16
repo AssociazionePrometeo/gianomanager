@@ -51,5 +51,5 @@
             @endforeach
         </tbody>
     </table>
-
+    {{ $reservations->links() }}
 @endsection

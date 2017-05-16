@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\EmailVerifier;
+use Mail;
 use Auth;
 use App\Role;
 use App\User;
+use Illuminate\Http\Request;
+use App\Mail\EmailVerification;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUser;
 
@@ -23,6 +27,7 @@ class UserController extends Controller
 
         return view('admin.users.index', compact('users'));
     }
+
     /**
      * Show the form for creating a new user.
      *
@@ -40,10 +45,11 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      *
-     * @param StoreUser $request
+     * @param  StoreUser $request
+     * @param  EmailVerifier $verifier
      * @return Response
      */
-    public function store(StoreUser $request)
+    public function store(StoreUser $request, EmailVerifier $verifier)
     {
         $this->authorize('create', User::class);
 
@@ -56,9 +62,14 @@ class UserController extends Controller
         ));
         $user->password = bcrypt($request->get('password'));
         $user->validated = $request->has('validated');
+        $user->email_verified = !$request->has('require_email_verification');
 
         $user->save();
         $user->roles()->sync($request->get('roles'));
+
+        if ($request->has('require_email_verification')) {
+            $verifier->sendVerification($user);
+        }
 
         return redirect()->route('admin.users.index');
     }
@@ -66,7 +77,7 @@ class UserController extends Controller
     /**
      * Display the specified user.
      *
-     * @param User  $user
+     * @param User $user
      * @return Response
      */
     public function show(User $user)
@@ -79,7 +90,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified user.
      *
-     * @param  User  $user
+     * @param  User $user
      * @return Response
      */
     public function edit(User $user)
@@ -96,9 +107,10 @@ class UserController extends Controller
      *
      * @param  User $user
      * @param  StoreUser $request
+     * @param  EmailVerifier $verifier
      * @return Response
      */
-    public function update(User $user, StoreUser $request)
+    public function update(User $user, StoreUser $request, EmailVerifier $verifier)
     {
         $this->authorize('update', $user);
 
@@ -110,6 +122,7 @@ class UserController extends Controller
             'info'
         ));
         $user->validated = $request->has('validated');
+        $user->email_verified = !$request->has('require_email_verification');
 
         if ($request->has('password')) {
             $user->password = bcrypt($request->get('password'));
@@ -119,13 +132,17 @@ class UserController extends Controller
 
         $user->roles()->sync($request->get('roles'));
 
+        if ($request->has('require_email_verification')) {
+            $verifier->sendVerification($user);
+        }
+
         return redirect()->route('admin.users.index');
     }
 
     /**
      * Remove the specified user from storage.
      *
-     * @param  User  $user
+     * @param  User $user
      * @return Response
      */
     public function destroy(User $user)

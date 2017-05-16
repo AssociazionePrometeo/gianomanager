@@ -30,12 +30,12 @@ return [
     'user_updated_successfully' => 'Your profile has been updated',
     'user_status_active' => 'Active',
     'user_status_expired' => 'Expired',
-    'user_status_unknown' => 'Unknown',
-    'user_status_pending_validation' => 'Pending validation',
+    'user_status_not_validated' => 'Pending validation',
     'user_email_verified' => 'Verified',
     'user_email_unverified' => 'Unverified',
     'user_delete_error' => 'You cannot delete your account!',
-
+    'user_require_email_verification' => 'Require email verification',
+    'user_require_email_verification_desc' => 'An email will be sent to verify the address.',
 
     'role_new' => 'New role',
     'role_edit' => 'Edit role',

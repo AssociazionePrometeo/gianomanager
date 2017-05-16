@@ -39,7 +39,7 @@ class ProfileController extends Controller
 
          $user->update($attributes);
 
-         flash('Il tuo profilo è stato aggiornato.', 'success');
+         flash(__('models.user_updated_successfully'), 'success');
 
          return redirect()->route('profile');
      }

@@ -133,7 +133,7 @@ class UserController extends Controller
         $this->authorize('delete', $user);
 
         if ($user->id == \Auth::id()) {
-            flash("You cannot delete your account.", "error");
+            flash(__('models.user_delete_error'), "error");
 
             return redirect()->back();
         }

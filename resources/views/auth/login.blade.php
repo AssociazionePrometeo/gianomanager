@@ -34,7 +34,10 @@
                     <div class="small text-center">
                         <a href="{{ route('password.request') }}">@lang('auth.forgot_password')</a>
                     </div>
-
+                    
+                    <div class="small text-center">
+                        <a href="{{ route('register') }}">@lang('auth.register')</a>
+                    </div>
                 </form>
             </div>
         </div>

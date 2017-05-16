@@ -36,9 +36,29 @@ $factory->define(App\Card::class, function (Faker\Generator $faker) {
     return [
         'id' => $faker->uuid,
         'active' => $faker->boolean(),
-        'user_id' => function() {
+        'user_id' => function () {
             return factory(App\User::class)->create()->id;
         }
     ];
 });
 
+$factory->define(App\Resource::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+    ];
+});
+
+$factory->define(App\Reservation::class, function (Faker\Generator $faker) {
+    $startDate = new DateTime('tomorrow 2pm');
+
+    return [
+        'starts_at' => $startDate,
+        'ends_at' => $startDate->modify('+2 hours'),
+        'user_id' => function () {
+            return factory(App\User::class)->create();
+        },
+        'resource_id' => function () {
+            return factory(App\Resource::class)->create();
+        }
+    ];
+});

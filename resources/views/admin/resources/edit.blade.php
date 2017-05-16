@@ -32,9 +32,12 @@
     ]) !!}
 
     @include('admin.resources.form')
+    <input type="submit" id="save" class="hide">
 
     {!! Form::close() !!}
 
-    {!! Form::open(['route' => ['admin.resources.destroy', $resource], 'method' => 'delete', 'id' => 'form-delete']) !!}{!! Form::close() !!}
+    {!! Form::open(['route' => ['admin.resources.destroy', $resource], 'method' => 'delete', 'id' => 'form-delete']) !!}
+        <input type="submit" id="delete" class="hide">
+    {!! Form::close() !!}
 
 @endsection

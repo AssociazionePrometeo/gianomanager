@@ -23,5 +23,6 @@
 @section('content')
     {!! Form::open(['route' => 'admin.cards.store', 'method' => 'post', 'class' => 'form', 'id' => 'form-edit']) !!}
         @include('admin.cards.form')
+        <input type="submit" id="save" class="hide">
     {!! Form::close() !!}
 @endsection

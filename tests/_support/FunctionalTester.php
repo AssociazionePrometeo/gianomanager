@@ -1,4 +1,5 @@
 <?php
+use App\User;
 
 
 /**
@@ -15,12 +16,16 @@
  * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = NULL)
  *
  * @SuppressWarnings(PHPMD)
-*/
+ */
 class FunctionalTester extends \Codeception\Actor
 {
     use _generated\FunctionalTesterActions;
 
-   /**
-    * Define custom actions here
-    */
+    public function amLoggedAsAdmin()
+    {
+        $user = factory(User::class)->create();
+        $user->roles()->sync(['admin']);
+
+        $this->amLoggedAs($user);
+    }
 }

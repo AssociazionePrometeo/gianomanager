@@ -32,9 +32,12 @@
     ]) !!}
 
     @include('admin.reservations.form')
+    <input type="submit" id="save" class="hide">
 
     {!! Form::close() !!}
 
-    {!! Form::open(['route' => ['admin.reservations.destroy', $reservation], 'method' => 'delete', 'id' => 'form-delete']) !!}{!! Form::close() !!}
+    {!! Form::open(['route' => ['admin.reservations.destroy', $reservation], 'method' => 'delete', 'id' => 'form-delete']) !!}
+        <input type="submit" id="delete" class="hide">
+    {!! Form::close() !!}
 
 @endsection

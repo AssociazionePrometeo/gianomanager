@@ -23,5 +23,6 @@
 @section('content')
     {!! Form::open(['route' => 'admin.reservations.store', 'method' => 'post', 'id' => 'form-edit']) !!}
         @include('admin.reservations.form')
+        <input type="submit" id="save" class="hide">
     {!! Form::close() !!}
 @endsection

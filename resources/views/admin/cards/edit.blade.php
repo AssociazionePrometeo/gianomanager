@@ -35,11 +35,14 @@
 
 
             @include('admin.cards.form')
+            <input type="submit" id="save" class="hide">
 
             {!! Form::close() !!}
         </div>
     </div>
 
-    {!! Form::open(['route' => ['admin.cards.destroy', $card], 'method' => 'delete', 'id' => 'form-delete']) !!}{!! Form::close() !!}
+    {!! Form::open(['route' => ['admin.cards.destroy', $card], 'method' => 'delete', 'id' => 'form-delete']) !!}
+        <input type="submit" id="delete" class="hide">
+    {!! Form::close() !!}
 
 @endsection

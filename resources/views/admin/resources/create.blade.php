@@ -24,6 +24,7 @@
     {!! Form::open(['route' => 'admin.resources.store', 'method' => 'post', 'id' => 'form-edit']) !!}
 
     @include('admin.resources.form')
+    <input type="submit" id="save" class="hide">
 
     {!! Form::close() !!}
 @endsection

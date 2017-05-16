@@ -27,11 +27,13 @@ return [
     'user_active' => 'Attivo',
     'user_inactive' => 'Non attivo',
     'user_validated_successfully' => 'L’utente è stato validato',
+    'user_updated_successfully' => 'Il tuo profilo è stato aggiornato',
     'user_status_active' => 'Attivo',
     'user_status_expired' => 'Scaduto',
     'user_status_not_validated' => 'In attesa di validazione',
     'user_email_verified' => 'Verificata',
     'user_email_unverified' => 'Non verificata',
+    'user_delete_error' => 'Non puoi eliminare il tuo account!',
 
     'role_new' => 'Nuovo ruolo',
     'role_edit' => 'Modifica ruolo',

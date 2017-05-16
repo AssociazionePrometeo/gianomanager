@@ -27,12 +27,14 @@ return [
     'user_active' => 'Active',
     'user_inactive' => 'Inactive',
     'user_validated_successfully' => 'User has been validated',
+    'user_updated_successfully' => 'Your profile has been updated',
     'user_status_active' => 'Active',
     'user_status_expired' => 'Expired',
     'user_status_unknown' => 'Unknown',
     'user_status_pending_validation' => 'Pending validation',
     'user_email_verified' => 'Verified',
     'user_email_unverified' => 'Unverified',
+    'user_delete_error' => 'You cannot delete your account!',
 
 
     'role_new' => 'New role',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Services\EmailVerifier;
+use Illuminate\Support\Facades\Auth;
 use Mail;
 use App\User;
 use Validator;
@@ -45,7 +46,7 @@ class RegisterController extends Controller
     public function __construct(EmailVerifier $verifier)
     {
         $this->verifier = $verifier;
-        $this->middleware('guest');
+        $this->middleware('guest')->except('verify');
     }
 
     /**
@@ -103,6 +104,10 @@ class RegisterController extends Controller
     {
         if ($this->verifier->attemptVerification($email, $token)) {
             flash(__('auth.verification_email_complete'), 'success');
+
+            if (Auth::check()) {
+                return redirect('home');
+            }
 
             return redirect('login');
         }

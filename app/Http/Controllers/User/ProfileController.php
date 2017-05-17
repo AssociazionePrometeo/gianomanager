@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use Mail;
-use App\Http\Requests\User\UpdateProfile;
-use App\User;
-use Illuminate\Http\Request;
-//use App\Mail\EmailVerification;
-use App\Mail\VerifyEmail;
 use App\Services\EmailVerifier;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\User\UpdateProfile;
 
 class ProfileController extends Controller
 {
@@ -30,6 +25,7 @@ class ProfileController extends Controller
      * Update the current user in storage.
      *
      * @param  UpdateProfile $request
+     * @param  EmailVerifier $verifier
      * @return Response
      */
      public function update(UpdateProfile $request, EmailVerifier $verifier)
@@ -43,7 +39,6 @@ class ProfileController extends Controller
 
          if ($request->get('email') !== $user->email) {
              $user->new_email = $request->get('email');
-             //$user->email_token = str_random(64);
              $verifier->sendVerification($user);
              flash(__('auth.new_verification_email_sent'), 'success');
          }

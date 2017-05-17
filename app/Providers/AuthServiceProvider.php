@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Card;
 use App\Role;
+use App\Services\EmailVerifier;
 use App\User;
 use App\Resource;
 use App\Reservation;
@@ -38,6 +39,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        $this->app->singleton(EmailVerifier::class, function ($app) {
+            $key = $app['config']['app.key'];
+
+            if (starts_with($key, 'base64:')) {
+                $key = base64_decode(substr($key, 7));
+            }
+
+            return new EmailVerifier($app['mailer'], $app['hash'], $key);
+        });
     }
 }

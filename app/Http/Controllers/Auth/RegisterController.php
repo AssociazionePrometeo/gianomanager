@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Services\EmailVerifier;
+use Illuminate\Support\Facades\Auth;
 use Mail;
 use App\User;
 use Validator;
@@ -34,14 +36,17 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
+    protected $verifier;
+
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param EmailVerifier $verifier
      */
-    public function __construct()
+    public function __construct(EmailVerifier $verifier)
     {
-        $this->middleware('guest');
+        $this->verifier = $verifier;
+        $this->middleware('guest')->except('verify');
     }
 
     /**
@@ -76,7 +81,6 @@ class RegisterController extends Controller
         $user->password = bcrypt($data['password']);
         $user->validated = false;
         $user->email_verified = false;
-        $user->email_token = str_random(64);
         $user->save();
 
         $user->roles()->sync(['default']);
@@ -90,22 +94,24 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        $email = new EmailVerification($user);
-        Mail::to($user->email)->send($email);
+        $this->verifier->sendVerification($user);
         flash(__('auth.verification_email_sent'), 'success');
 
         return redirect()->route('login');
     }
 
-    public function verify($token)
+    public function verify($email, $token)
     {
-        if (strlen($token) != 64) {
-            throw new ModelNotFoundException();
+        if ($this->verifier->attemptVerification($email, $token)) {
+            flash(__('auth.verification_email_complete'), 'success');
+
+            if (Auth::check()) {
+                return redirect('home');
+            }
+
+            return redirect('login');
         }
 
-        User::where('email_token', $token)->firstOrFail()->verify();
-        flash(__('auth.verification_email_complete'), 'success');
-
-        return redirect('login');
+        abort(404);
     }
 }

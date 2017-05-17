@@ -34,6 +34,8 @@ return [
     'user_email_verified' => 'Verificata',
     'user_email_unverified' => 'Non verificata',
     'user_delete_error' => 'Non puoi eliminare il tuo account!',
+    'user_require_email_verification' => 'Richiedi verifica email',
+    'user_require_email_verification_desc' => 'Verrà inviata un’email per confermare l’indirizzo.',
 
     'role_new' => 'Nuovo ruolo',
     'role_edit' => 'Modifica ruolo',

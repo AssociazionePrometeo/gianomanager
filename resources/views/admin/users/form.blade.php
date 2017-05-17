@@ -4,11 +4,22 @@
             'field' => Form::text('name'),
         ])
 
-@include('form.item', [
-    'name'  => 'email',
-    'label' => 'Email',
-    'field' => Form::email('email'),
-])
+<div class="row gutters">
+
+    <div class="col col-8">
+        @include('form.item', [
+            'name'  => 'email',
+            'label' => 'Email',
+            'field' => Form::email('email'),
+        ])
+    </div>
+    <div class="col col-4">
+        <div class="form-item inline-checkbox">
+            <label class="checkbox"><input type="checkbox" name="require_email_verification" value="1"> @lang('models.user_require_email_verification')</label>
+            <div class="desc">@lang('models.user_require_email_verification_desc')</div>
+        </div>
+    </div>
+</div>
 
 <?php
 $selectedRoles = isset($user) ? $user->roles->pluck('id')->toArray() : null;

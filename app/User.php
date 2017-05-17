@@ -69,6 +69,10 @@ class User extends Authenticatable
     {
         $this->email_verified = 1;
         $this->email_token = null;
+        if ($this->new_email !== null){
+        $this->email = $this->new_email;
+        $this->new_email = null;
+        }
         $this->save();
     }
 

@@ -22,5 +22,6 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'verification_email_sent' => 'We sent you an email to verify your account, check your inbox!',
     'verification_email_complete' => 'Your email was confirmed, you can now login.',
+    'new_verification_email_sent' =>'Your email has changed, we sent you a new email to verify your account please logout and check your inbox',
 
 ];

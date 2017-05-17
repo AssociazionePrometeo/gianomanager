@@ -47,13 +47,22 @@ class EmailVerifier
      */
     public function attemptVerification($email, $token)
     {
-        $user = User::where('email', $email)->first();
+        $user = User::where('email', $email)->orWhere('new_email', $email)->first();
 
         if (!is_null($user) && $this->hasher->check($token, $user->email_token)) {
+          if (is_null($user->new_email)){
             $user->email_verified = true;
             $user->email_token = null;
             return $user->save();
+          }else{
+            $user->email_verified = true;
+            $user->email_token = null;
+            $user->email = $user->new_email;
+            $user->new_email = null;
+            return $user->save();
+          }
         }
+
 
         return false;
     }
@@ -68,11 +77,20 @@ class EmailVerifier
         $token = $this->createToken();
 
         $user->email_token = $this->hasher->make($token);
+
+      if(is_null($user->new_email)){
         $user->email_verified = false;
         $user->save();
 
         // Send the verification email.
         $this->mail->to($user)->send(new VerifyEmail($user->email, $token));
+      }else{
+        //$user->email_verified = false;
+        $user->save();
+
+        // Send the verification email.
+        $this->mail->to($user)->send(new VerifyEmail($user->new_email, $token));
+      }
     }
 
     protected function createToken()

@@ -22,5 +22,5 @@ return [
     'throttle' => 'Troppi tentativi di login. Per favore, riprova tra :seconds secondi.',
     'verification_email_sent' => 'Ti abbiamo inviato un’email per verificare il tuo account, controlla la tua posta!',
     'verification_email_complete' => 'La tua email è stata confermata, ora puoi entrare.',
-
+    'new_verification_email_sent' =>'La tua email è stata modificata, ti abbiamo mandato una nuova mail di verifica, effettua il logout e controlla la tua posta.',
 ];

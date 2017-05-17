@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\User;
 
+use Mail;
 use App\Http\Requests\User\UpdateProfile;
 use App\User;
 use Illuminate\Http\Request;
+//use App\Mail\EmailVerification;
+use App\Mail\VerifyEmail;
+use App\Services\EmailVerifier;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,13 +32,20 @@ class ProfileController extends Controller
      * @param  UpdateProfile $request
      * @return Response
      */
-     public function update(UpdateProfile $request)
+     public function update(UpdateProfile $request, EmailVerifier $verifier)
      {
          $user = Auth::user();
-         $attributes = $request->only('email', 'phone_number');
+         $attributes = $request->only('phone_number');
 
          if ($request->has('password')) {
              $attributes['password'] = bcrypt($request->get('password'));
+         }
+
+         if ($request->get('email') !== $user->email) {
+             $user->new_email = $request->get('email');
+             //$user->email_token = str_random(64);
+             $verifier->sendVerification($user);
+             flash(__('auth.new_verification_email_sent'), 'success');
          }
 
          $user->update($attributes);

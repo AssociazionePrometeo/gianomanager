@@ -23,4 +23,11 @@ class Reservation extends Model
     {
         return $this->belongsTo('App\Resource');
     }
+
+    public static function JustIsReserved($starts_at, $ends_at, $resource_id)
+    {
+    $CheckIsReserved = Reservation::where('starts_at', '<', $ends_at)->where('ends_at', '>', $starts_at)->where('resource_id', $resource_id)->first();
+    return $CheckIsReserved;
+    }
+
 }

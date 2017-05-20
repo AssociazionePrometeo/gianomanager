@@ -55,11 +55,14 @@ class ReservationController extends Controller
             'starts_at' => 'required|date|after:yesterday',
             'ends_at' => 'required|date',
         ]);
+        if(is_null(Reservation::JustIsReserved($request->get('starts_at'), $request->get('ends_at'), $request->get('resource_id')))){
         $reservation = new Reservation($request->only('starts_at', 'ends_at'));
         $reservation->user()->associate($request->get('user_id'));
         $reservation->resource()->associate($request->get('resource_id'));
         $reservation->save();
-
+      }else{
+        flash(__('resources.justreserved'), 'error');
+      }
         return redirect()->route('admin.reservations.index');
     }
 
@@ -119,7 +122,7 @@ class ReservationController extends Controller
 
         return redirect()->route('admin.reservations.index');
     }
-    
+
     protected function getUsers()
     {
         return User::all('name', 'email', 'id')->mapWithKeys(function($user) {

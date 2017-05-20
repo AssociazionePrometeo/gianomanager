@@ -32,7 +32,7 @@ class ReservationController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $resources = Resource::pluck('name', 'id');
+        $resources = Resource::where('active', '=', 1)->pluck('name', 'id');
 
         return view('user.reservations.create', compact('user', 'resources'));
     }
@@ -50,7 +50,7 @@ class ReservationController extends Controller
           'starts_at' => 'required|date|after:yesterday',
           'ends_at' => 'required|date',
         ]);
-        //$old_reservation = Reservation::where('starts_at', '<', $request->get('ends_at'))->where('ends_at', '>', $request->get('starts_at'))->where('resource_id', $request->get('resource_id'))->first();
+
         if(is_null(Reservation::JustIsReserved($request->get('starts_at'), $request->get('ends_at'), $request->get('resource_id')))){
         $reservation = new Reservation($request->only('starts_at', 'ends_at'));
         $reservation->resource()->associate($request->get('resource_id'));

@@ -11,6 +11,8 @@ return [
     'resource_new' => 'Nuova risorsa',
     'resource_edit' => 'Modifica risorsa',
     'resource_list' => 'Lista risorse',
+    'resource_enabled' => 'Abilitata',
+    'resource_disabled' => 'Disabilitata',
 
     'reservation_new' => 'Nuova prenotazione',
     'reservation_edit' => 'Modifica prenotazione',

@@ -28,14 +28,16 @@
             <tr>
                 <th>ID</th>
                 <th>@lang('models.name')</th>
+                <th>@lang('models.status')</th>
                 <th class="actions"><span>@lang('actions.actions')</span></th>
             </tr>
         </thead>
         <tbody>
             @foreach($resources as $resource)
                 <tr>
-                    <td>{{ $resource->id }}</td>
+                    <td><span class="monospace">{{ $resource->id }}</span></td>
                     <td>{{ $resource->name }}</td>
+                    <td><span class="label {{ $resource->active ? 'success' : 'default' }}">{{ $resource->status }}</span></td>
                     <td class="actions">
                         @can('update', $resource)
                         <a href="{{ route('admin.resources.edit', $resource) }}" class="button edit small" role="button">@lang('actions.edit')</a>

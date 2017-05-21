@@ -15,7 +15,7 @@ class AddResourcesFeature extends Migration
     {
         Schema::table('resources', function (Blueprint $table) {
             $table->boolean('limited')->default(0);
-            $table->text('reservable_range');
+            $table->text('reservable_range')->nullable();
         });
     }
 

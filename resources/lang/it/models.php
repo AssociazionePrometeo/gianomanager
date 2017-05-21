@@ -17,6 +17,7 @@ return [
     'reservation_new' => 'Nuova prenotazione',
     'reservation_edit' => 'Modifica prenotazione',
     'reservation_list' => 'Lista prenotazioni',
+    'reservation_list_archived' => 'Lista prenotazioni archiviate',
     'reservation_starts_at' => 'Inizio prenotazione',
     'reservation_ends_at' => 'Fine prenotazione',
 

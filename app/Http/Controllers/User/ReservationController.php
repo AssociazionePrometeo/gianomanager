@@ -24,6 +24,19 @@ class ReservationController extends Controller
 
       return view('user.reservations.index', compact('user'));
     }
+
+    /**
+     * Display a listing of the reservation.
+     *
+     * @return Response
+     */
+    public function archive()
+    {
+      $user = Auth::user();
+
+      return view('user.reservations.archive', compact('user'));
+    }
+
     /**
      * Show the form for creating a new reservation.
      *
@@ -47,10 +60,9 @@ class ReservationController extends Controller
     {
         $this->validate($request, [
           'resource_id' => 'required|exists:resources,id',
-          'starts_at' => 'required|date|after:yesterday',
-          'ends_at' => 'required|date',
+          'starts_at' => 'required|date|after:today',
+          'ends_at' => 'required|date|after:today',
         ]);
-
         if(is_null(Reservation::JustIsReserved($request->get('starts_at'), $request->get('ends_at'), $request->get('resource_id')))){
         $reservation = new Reservation($request->only('starts_at', 'ends_at'));
         $reservation->resource()->associate($request->get('resource_id'));
@@ -59,6 +71,7 @@ class ReservationController extends Controller
       }else{
         flash(__('resources.justreserved'), 'error');
       }
+
         return redirect()->route('reservations.index');
     }
 

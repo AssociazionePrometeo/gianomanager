@@ -7,4 +7,5 @@ return [
     'add_new' => 'Aggiungi nuovo',
     'show' => 'Mostra',
     'validate' => 'Valida',
+    'archive' => 'Archivio',
 ];

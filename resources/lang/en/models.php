@@ -17,6 +17,7 @@ return [
     'reservation_new' => 'New reservation',
     'reservation_edit' => 'Edit reservation',
     'reservation_list' => 'Reservations list',
+    'reservation_list_archived' => 'Reservations list archived',
     'reservation_starts_at' => 'Reservation starting time',
     'reservation_ends_at' => 'Reservation end time',
 

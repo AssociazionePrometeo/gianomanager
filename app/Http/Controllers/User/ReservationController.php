@@ -76,6 +76,20 @@ class ReservationController extends Controller
     }
 
     /**
+     * List all reservation from storage.
+     *
+     *
+     * @return Response
+     */
+    public function list($request, $date)
+        {
+          $nextdate = date('Y-m-d H:i:s', strtotime($date)+86400);
+          $reservations = Reservation::all()->where('resource_id', '=', $request)->where('starts_at', '>', $date)->where('starts_at', '<', $nextdate);
+
+      return view('user.reservations.list', compact('reservations'));
+    }
+
+    /**
      * Remove the specified reservation from storage.
      *
      * @param  Reservation  $reservation
@@ -87,5 +101,7 @@ class ReservationController extends Controller
 
         return redirect()->route('reservations.index');
     }
+
+
 
 }

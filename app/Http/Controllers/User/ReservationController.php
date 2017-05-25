@@ -60,8 +60,8 @@ class ReservationController extends Controller
     {
         $this->validate($request, [
           'resource_id' => 'required|exists:resources,id',
-          'starts_at' => 'required|date|after:today',
-          'ends_at' => 'required|date|after:today',
+          'starts_at' => 'required|date|after:today|before:+2 month',
+          'ends_at' => 'required|date|after:today|before:+2 month',
         ]);
         if(is_null(Reservation::JustIsReserved($request->get('starts_at'), $request->get('ends_at'), $request->get('resource_id')))){
         $reservation = new Reservation($request->only('starts_at', 'ends_at'));

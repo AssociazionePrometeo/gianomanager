@@ -24,6 +24,19 @@ class ReservationController extends Controller
 
       return view('user.reservations.index', compact('user'));
     }
+
+    /**
+     * Display a listing of the reservation.
+     *
+     * @return Response
+     */
+    public function archive()
+    {
+      $user = Auth::user();
+
+      return view('user.reservations.archive', compact('user'));
+    }
+
     /**
      * Show the form for creating a new reservation.
      *
@@ -32,7 +45,7 @@ class ReservationController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $resources = Resource::pluck('name', 'id');
+        $resources = Resource::where('active', '=', 1)->pluck('name', 'id');
 
         return view('user.reservations.create', compact('user', 'resources'));
     }
@@ -47,13 +60,17 @@ class ReservationController extends Controller
     {
         $this->validate($request, [
           'resource_id' => 'required|exists:resources,id',
-          'starts_at' => 'required|date|after:yesterday',
-          'ends_at' => 'required|date',
+          'starts_at' => 'required|date|after:today|before:+2 month',
+          'ends_at' => 'required|date|after:today|before:+2 month',
         ]);
+        if(is_null(Reservation::JustIsReserved($request->get('starts_at'), $request->get('ends_at'), $request->get('resource_id')))){
         $reservation = new Reservation($request->only('starts_at', 'ends_at'));
-        $reservation->user()->associate(Auth::user());
         $reservation->resource()->associate($request->get('resource_id'));
+        $reservation->user()->associate(Auth::user());
         $reservation->save();
+      }else{
+        flash(__('resources.justreserved'), 'error');
+      }
 
         return redirect()->route('reservations.index');
     }

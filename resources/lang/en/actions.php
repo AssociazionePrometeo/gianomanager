@@ -7,4 +7,5 @@ return [
     'add_new' => 'Add new',
     'show' => 'Show',
     'validate' => 'Validate',
+    'archive' => 'Archive',
 ];

@@ -10,7 +10,7 @@
     <body class="@yield('class')">
 
         @yield('navigation')
-        
+
         <main id="main">
 
             @section('main')
@@ -45,12 +45,16 @@
                     <div class="container">
                         @yield('content')
                     </div>
-                </div>
+                  </div>
 
             @show
 
         </main>
+        <footer>
+          @include('footer')
+        </footer>
 
+        
         @section('stylesheets')
             <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
             <link rel="stylesheet" href="{{ asset('assets/css/selectize.css') }}">

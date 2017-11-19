@@ -14,16 +14,22 @@ html, body {
   height: 100%;
 }
 
-#main, #sidebar {
+#main-container, #sidebar {
   min-height: 100%;
 }
 
-#main {
+#main-container {
   @include grid-row;
 }
 
 #sidebar {
   @include flex-item-width(270px);
+  display: flex;
+  flex-direction: column;
+
+  .sidebar-content {
+    flex-grow: 1;
+  }
 }
 
 #content {

@@ -1,4 +1,3 @@
-<div class="sidebar-heading">
-  <br>
-    <p class="site-name text-center">{{ config('app.name') }} is based on <a href="/">Giano</a>, is Freesoftware!</p>
+<div>
+    <small>Powered by <a href="https://github.com/AssociazionePrometeo/gianomanager">Giano</a>, a free software by <a href="https://prometeolibero.eu/">Associazione Prometeo</a>.</small>
 </div>

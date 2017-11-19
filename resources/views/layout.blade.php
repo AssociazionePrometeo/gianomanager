@@ -11,7 +11,7 @@
 
         @yield('navigation')
 
-        <main id="main">
+        <div id="main-container">
 
             @section('main')
 
@@ -19,9 +19,13 @@
                     @section('sidebar')
                         @include('sidebar')
                     @show
+
+                    <footer id="footer">
+                        @include('footer')                    
+                    </footer>
                 </div>
 
-                <div id="content">
+                <main id="content" role="main">
 
                     <div class="content-heading container">
                         <div class="row gutters">
@@ -45,16 +49,13 @@
                     <div class="container">
                         @yield('content')
                     </div>
+
                   </div>
 
             @show
 
-        </main>
-        <footer>
-          @include('footer')
-        </footer>
+        </div>
 
-        
         @section('stylesheets')
             <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
             <link rel="stylesheet" href="{{ asset('assets/css/selectize.css') }}">

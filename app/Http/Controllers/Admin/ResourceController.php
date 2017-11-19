@@ -44,10 +44,11 @@ class ResourceController extends Controller
         $this->authorize('create', Resource::class);
 
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'active' => 'boolean',
         ]);
 
-        Resource::create($request->only('name'));
+        Resource::create($request->only('name', 'active'));
 
         return redirect()->route('admin.resources.index');
     }
@@ -90,9 +91,12 @@ class ResourceController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
+            'active' => 'boolean',
         ]);
-
-        $resource->update($request->only('name'));
+        
+        $resource->name = $request->get('name');
+        $resource->active = $request->get('active', false);
+        $resource->save();
 
         return redirect()->route('admin.resources.index');
     }

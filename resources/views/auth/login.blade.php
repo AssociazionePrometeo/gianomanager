@@ -20,7 +20,7 @@
                     {{ csrf_field() }}
 
                     <div class="form-item">
-                        <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" class="big text-center">
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" autofocus="autofocus" class="big text-center">
                     </div>
 
                     <div class="form-item">
@@ -34,7 +34,7 @@
                     <div class="small text-center">
                         <a href="{{ route('password.request') }}">@lang('auth.forgot_password')</a>
                     </div>
-                    
+
                     <div class="small text-center">
                         <a href="{{ route('register') }}">@lang('auth.register')</a>
                     </div>

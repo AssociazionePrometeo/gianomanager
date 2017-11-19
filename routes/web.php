@@ -28,8 +28,9 @@ Route::group(['namespace' => 'User', 'middleware' => 'auth'], function(){
   Route::put('/cards/{card}/lock', 'CardController@lock')->name('cards.lock');
   Route::put('/cards/{card}/unlock', 'CardController@unlock')->name('cards.unlock');
   Route::resource('reservations', 'ReservationController', ['only' => ['index', 'create', 'store', 'destroy',]]);
+  Route::get('/reservations/archive', 'ReservationController@archive')->name('reservations.archive');
 
-});
+  });
 
 Auth::routes();
 

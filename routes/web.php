@@ -29,6 +29,9 @@ Route::group(['namespace' => 'User', 'middleware' => 'auth'], function(){
   Route::put('/cards/{card}/unlock', 'CardController@unlock')->name('cards.unlock');
   Route::resource('reservations', 'ReservationController', ['only' => ['index', 'create', 'store', 'destroy',]]);
   Route::get('/reservations/archive', 'ReservationController@archive')->name('reservations.archive');
+  Route::resource('subscriptions', 'SubscriptionController', ['only' => ['index', 'create', 'store', 'destroy',]]);
+  Route::get('/subscriptions/archive', 'SubscriprionController@archive')->name('subscriptions.archive');
+
 
   });
 
@@ -43,6 +46,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('/users/{user}/validate', 'UserController@validateUser')->name('users.validate');
     Route::resource('roles', 'RoleController');
     Route::resource('resources', 'ResourceController');
+    Route::resource('subscriptions', 'SubscriptionController');
     Route::resource('reservations', 'ReservationController');
     Route::resource('cards', 'CardController');
 });

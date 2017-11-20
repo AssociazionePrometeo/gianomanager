@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'subscription-view' => 'View subscriptions',
+    'subscription-create' => 'Create subscriptions',
+    'subscription-update' => 'Edit subscriptions',
+    'subscription-delete' => 'Delete subscriptions',
+
     'card-view' => 'View cards',
     'card-create' => 'Create cards',
     'card-update' => 'Edit cards',

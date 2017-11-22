@@ -62,3 +62,10 @@ $factory->define(App\Reservation::class, function (Faker\Generator $faker) {
         }
     ];
 });
+
+$factory->define(App\Subscription::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->words,
+        'active' => $faker->boolean,
+    ];
+});

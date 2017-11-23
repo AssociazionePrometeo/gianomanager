@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subscription extends Model
 {
-  protected $fillable = [
-      'name',
-  ];
+  protected $fillable = ['name'];
+
+  protected $dates = ['end_date', 'created_at', 'updated_at'];
 
 public function getStatusAttribute()
   {

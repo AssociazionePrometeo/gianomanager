@@ -5,14 +5,14 @@
 @section('heading')
     @include('admin.breadcrumbs', ['items' => [
         trans_choice('models.subscription', 2) => route('admin.subscriptions.index'),
-        __('models.resource_new'),
+        __('models.subscription_new'),
     ]])
 @endsection
 
 @section('topbar')
     <div class="row topbar">
         <div class="col">
-            <p>@lang('models.subscriprion_new')</p>
+            <p>@lang('models.subscription_new')</p>
         </div>
         <div class="col push-right button-group">
             <button class="button" onclick="document.getElementById('form-edit').submit();">@lang('actions.save')</button>

@@ -44,11 +44,16 @@ class SubscriptionController extends Controller
         $this->authorize('create', Subscription::class);
 
         $this->validate($request, [
-            'name' => 'required',
-            'active' => 'boolean',
+          'name' => 'required',
+          'active' => 'boolean',
+          'end_date' => 'required|date|after:today',
         ]);
 
-        Subscription::create($request->only('name', 'active'));
+        $subscription = new Subscription();
+        $subscription->name = $request->get('name');
+        $subscription->active = $request->get('active', false);
+        $subscription->end_date = $request->get('end_date');
+        $subscription->save();
 
         return redirect()->route('admin.subscriptions.index');
     }
@@ -91,11 +96,13 @@ class SubscriptionController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
+            'end_date' => 'required|date|after:today',
             'active' => 'boolean',
         ]);
 
         $subscription->name = $request->get('name');
         $subscription->active = $request->get('active', false);
+        $subscription->end_date = $request->get('end_date');
         $subscription->save();
 
         return redirect()->route('admin.subscriptions.index');

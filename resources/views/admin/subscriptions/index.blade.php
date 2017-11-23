@@ -12,7 +12,7 @@
             <p>@lang('models.subscription_list')</p>
         </div>
         <div class="col push-right">
-            @can('create', App\subscription::class)
+            @can('create', App\Subscription::class)
             <a href="{{ route('admin.subscriptions.create') }}" class="button primary outline" role="button">
                 <i class="material-icons">add</i>
                 @lang('actions.add_new')

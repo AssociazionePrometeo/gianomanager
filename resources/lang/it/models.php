@@ -20,6 +20,7 @@ return [
     'subscription_list' => 'Lista sottoscrizione',
     'subscription_enabled' => 'Abilitata',
     'subscription_disabled' => 'Disabilitata',
+    'subscription_end_date' => 'Scadenza sottoscrizione',
 
     'reservation_new' => 'Nuova prenotazione',
     'reservation_edit' => 'Modifica prenotazione',

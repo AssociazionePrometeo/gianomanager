@@ -20,6 +20,7 @@ return [
     'subscription_list' => 'Subscription List',
     'subscription_enabled' => 'Enabled',
     'subscription_disabled' => 'Disabled',
+    'subscription_end_date' => 'Subscription End Date',
 
     'reservation_new' => 'New reservation',
     'reservation_edit' => 'Edit reservation',

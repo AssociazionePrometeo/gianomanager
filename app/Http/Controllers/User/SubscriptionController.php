@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
 
-
 class SubscriptionController extends Controller
 {
     /**
@@ -21,5 +20,4 @@ class SubscriptionController extends Controller
 
         return view('user.subscriptions.index', compact('user'));
     }
-  
 }

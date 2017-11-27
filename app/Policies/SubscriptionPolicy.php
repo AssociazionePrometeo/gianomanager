@@ -6,7 +6,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class SubscriptionPolicy extends ModelPolicy
 {
-  protected $model = 'subscription';
+    protected $model = 'subscription';
 
-  use HandlesAuthorization;
+    use HandlesAuthorization;
 }

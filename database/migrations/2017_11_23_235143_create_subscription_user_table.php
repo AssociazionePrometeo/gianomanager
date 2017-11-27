@@ -14,9 +14,9 @@ class CreateSubscriptionUserTable extends Migration
     public function up()
     {
         Schema::create('subscription_user', function (Blueprint $table) {
-          $table->primary(['subscription_id', 'user_id']);
-          $table->integer('subscription_id')->unsigned();
-          $table->integer('user_id')->unsigned()
+            $table->primary(['subscription_id', 'user_id']);
+            $table->integer('subscription_id')->unsigned();
+            $table->integer('user_id')->unsigned();
         });
     }
 

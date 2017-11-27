@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
 
-
 class CardController extends Controller
 {
     /**

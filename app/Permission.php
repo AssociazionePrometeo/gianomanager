@@ -39,8 +39,9 @@ class Permission
 
     public static function getAdminValues()
     {
-        return array_reduce(self::all(), function($carry, $permission) {
-            $carry[$permission] = true; return $carry;
+        return array_reduce(self::all(), function ($carry, $permission) {
+            $carry[$permission] = true;
+            return $carry;
         }, []);
     }
 }

@@ -10,9 +10,8 @@ class Resource extends Model
         'name',
     ];
 
-  public function getStatusAttribute()
+    public function getStatusAttribute()
     {
         return $this->active ? __('models.resource_enabled') : __('models.resource_disabled');
     }
-
 }

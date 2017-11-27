@@ -118,7 +118,7 @@ class CardController extends Controller
 
     protected function getUsers()
     {
-        return User::all('name', 'email', 'id')->mapWithKeys(function($user) {
+        return User::all('name', 'email', 'id')->mapWithKeys(function ($user) {
             return [$user->id => "{$user->name} ({$user->email})"];
         });
     }

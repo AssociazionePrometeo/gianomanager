@@ -34,7 +34,9 @@ class Role extends Model
         $permissions = array_only($permissions, Permission::all());
 
         // Cast permissions to boolean.
-        $permissions = array_map(function($value) { return boolval($value); }, $permissions);
+        $permissions = array_map(function ($value) {
+            return boolval($value);
+        }, $permissions);
 
         // Eventually JSON encode for persisting in the database.
         $this->attributes['permissions'] = $this->castAttributeAsJson('permissions', $permissions);

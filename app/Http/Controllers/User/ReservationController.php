@@ -20,9 +20,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-      $user = Auth::user();
+        $user = Auth::user();
 
-      return view('user.reservations.index', compact('user'));
+        return view('user.reservations.index', compact('user'));
     }
 
     /**
@@ -32,9 +32,9 @@ class ReservationController extends Controller
      */
     public function archive()
     {
-      $user = Auth::user();
+        $user = Auth::user();
 
-      return view('user.reservations.archive', compact('user'));
+        return view('user.reservations.archive', compact('user'));
     }
 
     /**
@@ -63,14 +63,14 @@ class ReservationController extends Controller
           'starts_at' => 'required|date|after:today|before:+2 month',
           'ends_at' => 'required|date|after:today|before:+2 month',
         ]);
-        if(is_null(Reservation::JustIsReserved($request->get('starts_at'), $request->get('ends_at'), $request->get('resource_id')))){
-        $reservation = new Reservation($request->only('starts_at', 'ends_at'));
-        $reservation->resource()->associate($request->get('resource_id'));
-        $reservation->user()->associate(Auth::user());
-        $reservation->save();
-      }else{
-        flash(__('resources.justreserved'), 'error');
-      }
+        if (is_null(Reservation::JustIsReserved($request->get('starts_at'), $request->get('ends_at'), $request->get('resource_id')))) {
+            $reservation = new Reservation($request->only('starts_at', 'ends_at'));
+            $reservation->resource()->associate($request->get('resource_id'));
+            $reservation->user()->associate(Auth::user());
+            $reservation->save();
+        } else {
+            flash(__('resources.justreserved'), 'error');
+        }
 
         return redirect()->route('reservations.index');
     }
@@ -87,5 +87,4 @@ class ReservationController extends Controller
 
         return redirect()->route('reservations.index');
     }
-
 }

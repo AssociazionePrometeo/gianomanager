@@ -9,7 +9,7 @@ use App\Http\Requests\User\UpdateProfile;
 
 class ProfileController extends Controller
 {
-   /**
+    /**
    * Show the form for editing the current user.
    *
    * @return Response

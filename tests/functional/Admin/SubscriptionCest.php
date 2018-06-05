@@ -21,6 +21,7 @@ class SubscriptionCest
 
         $I->amOnRoute('admin.subscriptions.create');
         $I->fillField('name', 'New subscription');
+        $I->fillField('ends_date', new DateTime('tomorrow 8pm'));
         $I->click('#save');
 
         $I->seeCurrentRouteIs('admin.subscriptions.index');

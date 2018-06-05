@@ -6,6 +6,7 @@ use App\Card;
 use App\User;
 use App\Subscription;
 use \FunctionalTester;
+use Carbon\Carbon as DateTime;
 
 class SubscriptionCest
 {

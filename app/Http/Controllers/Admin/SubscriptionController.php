@@ -114,7 +114,7 @@ class SubscriptionController extends Controller
      * @param Subscription $Subscription
      * @return Response
      */
-    public function destroy(Subscriptions $subscription)
+    public function destroy(Subscription $subscription)
     {
         $this->authorize('delete', $subscription);
 

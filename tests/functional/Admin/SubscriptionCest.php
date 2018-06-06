@@ -50,7 +50,7 @@ class SubscriptionCest
 
         $subscription = factory(Subscription::class)->create();
 
-        $I->amOnRoute('admin.subscriptions.destroy', $subscription->id);
+        $I->amOnRoute('admin.subscriptions.edit', $subscription->id);
         $I->click('#delete');
 
         $I->seeCurrentRouteIs('admin.subscriptions.index');

@@ -2,4 +2,4 @@
 
 return [
     'justreserved' => 'Resources just reserved',
-       ];
+];

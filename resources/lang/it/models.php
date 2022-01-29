@@ -6,6 +6,7 @@ return [
     'user' => 'Utente|Utenti',
     'role' => 'Ruolo|Ruoli',
     'card' => 'Tessera|Tessere',
+    'subscription' => 'Sottoscrizione|Sottoscrizioni',
     'permission' => 'Permesso|Permessi',
 
     'resource_new' => 'Nuova risorsa',
@@ -13,6 +14,13 @@ return [
     'resource_list' => 'Lista risorse',
     'resource_enabled' => 'Abilitata',
     'resource_disabled' => 'Disabilitata',
+
+    'subscription_new' => 'Nuova sottoscrizione',
+    'subscription_edit' => 'Modifica sottoscrizione',
+    'subscription_list' => 'Lista sottoscrizione',
+    'subscription_enabled' => 'Abilitata',
+    'subscription_disabled' => 'Disabilitata',
+    'subscription_end_date' => 'Scadenza sottoscrizione',
 
     'reservation_new' => 'Nuova prenotazione',
     'reservation_edit' => 'Modifica prenotazione',

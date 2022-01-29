@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'subscription-view' => 'Visualizza sottoscrizione',
+    'subscription-create' => 'Crea sottoscrizione',
+    'subscription-update' => 'Modifica sottoscrizione',
+    'subscription-delete' => 'Elimina sottoscrizione',
+
     'card-view' => 'Visualizza tessere',
     'card-create' => 'Crea tessere',
     'card-update' => 'Modifica tessere',

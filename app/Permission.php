@@ -4,7 +4,7 @@ namespace App;
 
 class Permission
 {
-    public static $models = ['card', 'resource', 'reservation', 'user', 'role'];
+    public static $models = ['subscription', 'card', 'resource', 'reservation', 'user', 'role'];
 
     public static $abilities = ['view', 'create', 'update', 'delete'];
 

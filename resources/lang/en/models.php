@@ -6,6 +6,7 @@ return [
     'user' => 'User|Users',
     'role' => 'Role|Roles',
     'card' => 'Card|Cards',
+    'subscription' => 'Subscription|Subscriptions',
     'permission' => 'Permission|Permissions',
 
     'resource_new' => 'New resource',
@@ -13,6 +14,13 @@ return [
     'resource_list' => 'Resources list',
     'resource_enabled' => 'Enabled',
     'resource_disabled' => 'Disabled',
+
+    'subscription_new' => 'New subscription',
+    'subscription_edit' => 'Edit Subscription',
+    'subscription_list' => 'Subscription List',
+    'subscription_enabled' => 'Enabled',
+    'subscription_disabled' => 'Disabled',
+    'subscription_end_date' => 'Subscription End Date',
 
     'reservation_new' => 'New reservation',
     'reservation_edit' => 'Edit reservation',

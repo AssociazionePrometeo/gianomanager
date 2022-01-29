@@ -8,7 +8,9 @@ use App\Services\EmailVerifier;
 use App\User;
 use App\Resource;
 use App\Reservation;
+use App\Subscription;
 use App\Policies\UserPolicy;
+use App\Policies\SubscriptionPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\CardPolicy;
 use App\Policies\ResourcePolicy;
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Card::class => CardPolicy::class,
         User::class => UserPolicy::class,
+        Subscription::class => SubscriptionPolicy::class,
         Role::class => RolePolicy::class,
         Reservation::class => ReservationPolicy::class,
         Resource::class => ResourcePolicy::class,

@@ -14,7 +14,7 @@
         "laravelcollective/html": "^5.5"
     },
     "require-dev": {
-        "codeception/codeception": "^2.2",
+        "codeception/codeception": "^3.1",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~6.0",
